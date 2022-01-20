@@ -5,11 +5,9 @@ const FETCH_PRODUCT =gql`
     query fetchProdecut($productId: ID){
         fetchProduct(productId: $productId){
             _id
-            seller
             name
             detail
             price
-            createdAt
         }
     }
 `
@@ -18,7 +16,7 @@ export default function ProductDetailPage(){
     const router = useRouter()
 
     const { data } = useMutation(FETCH_PRODUCT, {
-        variables: {productID: router.query.id}
+        variables: {productID: Number(router.query.id)}
     })
 
     const onClickMoveToEdit = () =>{

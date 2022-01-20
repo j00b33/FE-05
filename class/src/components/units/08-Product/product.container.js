@@ -39,20 +39,20 @@ export default function ProductWrite(props){
 
 
     const onChangeMyName = (event) => {
-        setMyName(event.target.value)     //하나하나 입력할떄마다 저장이 됨 이떄 myWriter는 저장 전임 (초기값인 빈 공백상태)
-        if (event.target.value && myDetail && myPrice){
+        setName(event.target.value)     //하나하나 입력할떄마다 저장이 됨 이떄 myWriter는 저장 전임 (초기값인 빈 공백상태)
+        if (event.target.value && detail && price){
             setIsActive(true)
         }
     }
     const onChangeMyDetail = (event) => {
-        setMyDetail(event.target.value)
-        if (myName && event.target.value && myPrice){          //each of them must be in event target value so that all the data are saved at each condition
+        setDetail(event.target.value)
+        if (name && event.target.value && price){          //each of them must be in event target value so that all the data are saved at each condition
             setIsActive(true)
         }
     }
     const onChangeMyPrice = (event) => {
-        setMyPrice(event.target.value)
-        if (myName && myDetail && event.target.value){
+        setPrice(event.target.value)
+        if (name && detail && event.target.value){
             setIsActive(true)
         }
     }
