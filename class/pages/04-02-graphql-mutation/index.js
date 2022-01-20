@@ -4,7 +4,11 @@ import {useMutation, gql} from '@apollo/client'
 
 const CREATE_BOARD = gql`
 mutation {
-    : {writer: "JB" , title: "Assignment", contents: "!@#$%"}
+    createBoard(writer: "JB" , title: "Assignment", contents: "!@#$%"){
+        _id
+        number
+        message
+}
   }
 `
 
@@ -14,20 +18,22 @@ mutation {
 export default function GraphqlMutation(){
 
     const [aaa, setAaa] = useState("")
-    const [qqq] = useMutation(CREATE_BOARD)
+    const [createBoard] = useMutation(CREATE_BOARD)
 
-    const zzz = async() => {
-        // const result = await axios.get('http://koreanjson.com/posts/1')
-        const result =  await qqq()
+    const onClickButton = async() => {
+        const result =  await createBoard()     
+        //createBoard만나는 순간 backend에 요청해서 database에 가서 data를 꺼내가지고 옴 그래ㅔ서 다시 createBoard에 돌려줌 그리고 그걸 result애 넣어주는것
+        // console.log(result) -->콘솔에 데이터 잘 저장됐는지 확인용
         
         
         // console.log(result.data.createBoard.message)
         setAaa(result.data.createBoard.message)
+        //게시물이 정상적으로 등록되었습니다.
     }
 
     return(
         <>
-            <button onClick={zzz}>REST-API 요청하기</button>
+            <button onClick={onClickButton}>REST-API 요청하기</button>
             <div>{aaa}</div>
         </>
         )

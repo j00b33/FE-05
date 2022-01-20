@@ -1,21 +1,9 @@
 import axios from 'axios'
-// qqq 로 요청해도 API axios 받아오기 가능해짐
 import {useState} from 'react'
 import { useMutation} from '@apollo/client'
 import BoardWriteUI from './BoardWrite.presenter'
 import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import { useRouter } from 'next/router'
-
-
-
-//중괄호를 주지 않고 있음: 기본값이기 때문 (골라서 받는게 아니라면 무조건 default로 쓰임)
-// AAAABBBB 로 써도 사용 가능
-
-//자식컴포넌트 import 해주고 리턴에 자식컴포넌트 연결해주기
-
-//햔위치 알려줌
-
-
 
 export default function BoardWrite(props){
         const router = useRouter()
@@ -32,8 +20,6 @@ export default function BoardWrite(props){
         const [www] = useMutation(UPDATE_BOARD)
     
         const zzz = async () => {
-            // const result = await axios.get("https://koreanjson.com/posts/1")
-                                    // qqq.get 으로 대체 가능 It works anyway.
             const result = await qqq({ 
                 variables: { writer: myWriter, title: myTitle, contents: myContents} 
             })
@@ -52,6 +38,10 @@ export default function BoardWrite(props){
             console.log(result.data.updateBoard.message)
             router.push(`/08-05-boards/${router.query.mynumber}`)
         }
+
+
+
+
 
         const onChangeMyWriter = (event) => {
             setMyWriter(event.target.value)     //하나하나 입력할떄마다 저장이 됨 이떄 myWriter는 저장 전임 (초기값인 빈 공백상태)

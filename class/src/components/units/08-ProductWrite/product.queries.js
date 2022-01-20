@@ -1,5 +1,4 @@
 import {gql} from '@apollo/client'
-// import gql from 'graphql-tag';
 
 export const CREATE_PRODUCT = gql`
     mutation createProduct($seller: String, $createProductInput: CreateProductInput!){

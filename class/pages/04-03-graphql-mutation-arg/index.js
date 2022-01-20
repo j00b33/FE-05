@@ -13,8 +13,6 @@ mutation createBoard($writer: String, $title: String, $contents: String){
         number
         message
     }
-
-
   }
 `
 
@@ -31,7 +29,8 @@ export default function GraphqlMutation(){
         // const result = await axios.get('http://koreanjson.com/posts/1')
         const result =  await qqq({ 
         variables: {writer: "JB" , title: "Assignment", contents: "!@#$%"}
-        }) 
+        })      //어떤 값을 넣어줄건지 써주는것
+        console.log(result) //google console 창에 data 잘 찍히는지 확인
         console.log(result.data.createBoard.message)
         setAaa(result.data.createBoard.message)
     }
@@ -39,7 +38,9 @@ export default function GraphqlMutation(){
     return(
         <>
             <button onClick={zzz}>REST-API 요청하기</button>
-            <div>{aaa}</div>
+            <div>{aaa}</div> 
         </>
         )
 }
+
+//aaa 자체 message를 가져와서 화면에 display 하기

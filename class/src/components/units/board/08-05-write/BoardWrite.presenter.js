@@ -27,7 +27,9 @@ export default function BoardWriteUI(props){
             {props.isEdit && <S.MyButton onClick={props.xxx} ggg={props.isActive}>수정하기</S.MyButton>}
             {!props.isEdit && <S.MyButton onClick={props.ccc} ggg={props.isActive}>등록하기</S.MyButton>} */}
             <div>{props.bbb}</div>
+            
         </>
     )
 }
 //MyButton MyInput --> emotion component
+//게시글이 성공적으로 등록됐다고 화면에 display해주는 setAaa 통해서 {aaa} =bbb
