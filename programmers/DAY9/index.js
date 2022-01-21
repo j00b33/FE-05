@@ -41,6 +41,6 @@ function solution(n){
     const answer = string(n)
                             .split (" ")
                             .reduce ((cu, el) => {
-                                return Number(cu) + Nmber(el)
+                                return Number(cu) + Number(el)
                             },0
 }

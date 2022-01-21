@@ -1,10 +1,9 @@
 import axios from 'axios'
 import {useState} from 'react'
-import {useMutation, gql} from '@apollo/client'
+import {useMutation} from '@apollo/client'
 import { useRouter } from 'next/router'
 import {CREATE_BOARD} from './BoardWrite.queries'
-import BoardPresent from './BoradWrite.presenter'
-
+import BoardUIPresenter from './BoardWrite.presenter'
 // import {Wrapper, Title, 
 //     AccountSection, Label, Writer, Password,
 //     Longbox, Contents, InputWrapper,
@@ -35,12 +34,14 @@ export default function BoardContain(){
         setWriter(event.target.value);
         if(writer.length>1){
             setMyWriterError("")
+            setIsActive(true)
         }
     } 
     function onChangeMyPw(event){
         setPw(event.target.value);
         if(pw.length>7){
             setMyPasswordError("")
+            setIsActive(true)
     }
 }
     
@@ -48,6 +49,7 @@ export default function BoardContain(){
         setTitle(event.target.value);
         if(title.length>0){
             setMyTitleError("")
+            setIsActive(true)
     }
 }
 
@@ -55,6 +57,7 @@ export default function BoardContain(){
         setContents(event.target.value);
         if(contents.length>9){
             setMyContentsError("")
+            setIsActive(true)
     }
 }
 
@@ -77,34 +80,39 @@ export default function BoardContain(){
             && contents.length>9) {
             alert("게시물이 등록됐습니다");
 
+
+            
             const result = await createBoard({
-                variables: {
-                        writer,
-                        password:pw,
-                        title,
-                        contents
+                variables: {createBoardInput:{
+                    writer: writer,
+                    password: pw,
+                    title: title,
+                    contents: contents
                 }
+            }
             })
 
-    router.push(`/01-01-board/${result.data.createBoard.number}`)
+    router.push(`/01-01-board/${result.data.createBoard._id}`)
 
         }
     }
 
     return (
-       <BoardPresent
-       wr={myWriterError}
-       pass={myPasswordError}
-       tit={myTitleError}
-       con={myContentsError}
+       <BoardUIPresenter
+       myWriterError={myWriterError}
+       myPasswordError={myPasswordError}
+       myTitleError={myTitleError}
+       myContentsError={myContentsError}
        
-       w={onChangeMyWriter}
-       p={onChangeMyPw}
-       t={onChangeMyTitle}
-       c={onChangeMyContents}
-       s={onClickSubmit}
+       onChangeMyWriter={onChangeMyWriter}
+       onChangeMyPw={onChangeMyPw}
+       onChangeMyTitle={onChangeMyTitle}
+       onChangeMyContents={onChangeMyContents}
+       onClickSubmit={onClickSubmit}
        
        isActive={isActive}
+
+       isEdit={props.isEdit}
        />
     )
 

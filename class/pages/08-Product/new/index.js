@@ -5,3 +5,4 @@ export default function NewProduct(){
         <ProductWrite isEdit={false}/>
     )
 }
+

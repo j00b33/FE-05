@@ -2,15 +2,10 @@ import {useRouter} from 'next/router'
 import {useQuery, gql} from '@apollo/client'
 import react from 'react'
 
-import {
-    Wrapper, MyHeader, HeaderLine, MyWriter, MyDate, 
-    DivisionL, MyBody, MyTitle, MainPic, MainVid, MyContents,
-    PageBottom, MyBtn
-        } from '../../../styles/amotion'
-
 const FETCH_BOARD = gql`
-  query fetchBoard($number: Int) {
-    fetchBoard(number: $number) {
+  query fetchBoard($boardId: ID!) {
+    fetchBoard(boardId: $boardId) {
+        _id
         writer
         title
         contents
@@ -23,8 +18,12 @@ export default function FreeBoardRouted(){
     const router = useRouter()
 
     const { data } = useQuery(FETCH_BOARD, { 
-        variables: { number: Number(router.query.aaa) } 
+        variables: { boarderId: router.query.aaa} 
     });
+
+    const onclickMoveToEdit =() => {
+        router.push('01-01-board/${router.query.aaa}/edit')
+    }
 
     return (
         <Wrapper>
@@ -45,7 +44,7 @@ export default function FreeBoardRouted(){
             </MyBody>
             <PageBottom>
                 <MyBtn onclick={true}>목록으로</MyBtn>
-                <MyBtn onclick={true}>수정하기</MyBtn>
+                <MyBtn onclick={onclickMoveToEdit}>수정하기</MyBtn>
                 <MyBtn onclick={true}>삭제하기</MyBtn>
             </PageBottom>
         </Wrapper>

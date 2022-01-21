@@ -29,7 +29,7 @@ export default function ProductDetailPage(){
             <div>Name: {data?.fetchProduct?.name}</div>
             <div>Detail: {data?.fetchProduct?.detail}</div>
             <div>Price: {data?.fetchProduct?.price}</div>
-            <button onClickMoveToEdit={onClickMoveToEdit}>수정하러 이동하기</button>
+            <button onClick={onClickMoveToEdit}>수정하러 이동하기</button>
         </>
     )
 }

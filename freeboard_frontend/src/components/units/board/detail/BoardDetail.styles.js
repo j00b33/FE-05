@@ -95,21 +95,21 @@ export const PageBottom = styled.div`
 
 export const MyBtn = styled.button`
     display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
-width: 179px;
-height: 45px;
+    width: 179px;
+    height: 45px;
 
-background: #FFFFFF;
-border: 1px solid #BDBDBD;
-box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
 
-border-radius: 10px;
-cursor: pointer;
+    border-radius: 10px;
+    cursor: pointer;
 
-:hover {
+    :hover {
     background-color: lightsteelblue;
     border-color: white;
     color: white;

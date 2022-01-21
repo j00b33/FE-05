@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 export let Your__Error = styled.span`
     color: red;
     font-size: 12px;
 `
 
-export const OutWrapper = styled.div`
+export const Wrapper = styled.div`
     width: 1200px;
     margin: 100px;
 
@@ -14,12 +14,13 @@ export const OutWrapper = styled.div`
     padding-left: 102px;
     padding-right: 102px;
 
-    box-shadow: 0px 4px 20px grey;
-    border: 1px solid black;
-    border: none;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 20px grey;
+    border: 1px solid black;
+    border: none;
 `
 
 export const Title = styled.div`
@@ -29,19 +30,19 @@ export const Title = styled.div`
     padding-bottom: 40px;
 `
 
+
 export const AccountSection = styled.div`
     display:flex;
     flex-direction:row;
-    justify-content:space-between;
+    justify-content: space-between;
     width: 996px;
     padding-bottom: 30px;
 `
-
 export const InputWrapper = styled.div `
     display: flex;
     flex-direction: column;
+    /* width: 486px; */
     padding-top: 40px;
-    width: 996px;
 `
 
 export const Label = styled.div`
@@ -80,7 +81,7 @@ export const Contents = styled.input `
     height: 480px;
     font-size: 16px;
     border: 1px solid #BDBDBD;
-`
+    `
 
 export const ZipWrapper = styled.div `
     display: flex;
@@ -212,15 +213,10 @@ export const MyBtn = styled.button`
     justify-content: center;
     align-items: center;
 
-    border-color: black;
-    background-color: grey;
+    background-color: #FFD600;
     color: black; 
 
     cursor: pointer;
 
-    :hover {
-    background-color: gold;
-    border-color: black;
-    color: white;
-  }
+    background-color: ${(props) => props.isActive === true ? "gold" : "none"};
 `

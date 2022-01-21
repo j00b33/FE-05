@@ -24,19 +24,24 @@ export default function ProductWrite(props){
                 createProductInput:{
                     name: myName,
                     detail: myDetail,
-                    price: myPrice
+                    price: Number(myPrice)
                 }
             } 
-        })
-        router.push(`/08-Product/${result.data.createProduct.ppp}`)
+        }) 
+        router.push(`/08-Product/${result.data.createProduct._id}`)
     }
 
     const onClickEdit = async() => {
         console.log('수정하기를 클릭하셨군요!')
         const result = await updateProduct({
-            variables:{ _id : Number(router.query.ppp), name: myName, detail: myDetail, price: Numeber(myPrice)}
+            variables:{ productId : router.query.ppp, updateProductInput: {
+                name: myName, 
+                detail: myDetail, 
+                price: Number(myPrice)
+            }}
         })
-        router.push(`/08-Product/${router.query.ppp}/edit`)
+        console.log(result)
+        router.push(`/08-Product/${router.query.ppp}`)
     }
 
 
@@ -68,7 +73,7 @@ export default function ProductWrite(props){
 
     return(
         <ProductWriteUI 
-        onClickwrite={onClickWrite}
+        onClickWrite={onClickWrite}
         onClickEdit={onClickEdit}
         onChangeMySeller = {onChangeMySeller}
         onChangeMyName={onChangeMyName}
