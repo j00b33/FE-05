@@ -7,12 +7,15 @@ export default function BoardUIPresenter(props){
                     <F.AccountSection>
                         <F.InputWrapper>
                             <F.Label>작성자</F.Label>
-                            <F.Writer tyep="text" placeholder="이름을 적어주세요" onChange={props.onChangeMyWriter}></F.Writer><br/>
+                            <F.Writer type="text" placeholder="이름을 적어주세요" onChange={props.onChangeMyWriter}
+                            defaultValue = {props.isEdit ? props.onChangeMyWriter : ""}
+                            ></F.Writer><br/>
                             <F.Your__Error>{props.myWriterError}</F.Your__Error> 
                         </F.InputWrapper>
                         <F.InputWrapper>
                             <F.Label>비밀번호</F.Label>
-                            <F.Password type="password" placeholder="비밀번호를 입력해주세요" onChange={props.onChangeMyPw}></F.Password><br/>
+                            <F.Password type="password" placeholder="비밀번호를 입력해주세요" onChange={props.onChangeMyPw}
+                            ></F.Password><br/>
                             <F.Your__Error>{props.myPasswordError}</F.Your__Error> 
                         </F.InputWrapper>
                     </F.AccountSection>
@@ -20,13 +23,17 @@ export default function BoardUIPresenter(props){
 
                     <F.InputWrapper>
                         <F.Label>제목</F.Label>
-                        <F.Longbox type="text" placeholder="제목을 작성해주세요" onChange={props.onChangeMyTitle}></F.Longbox><br/>
+                        <F.Longbox type="text" placeholder="제목을 작성해주세요" onChange={props.onChangeMyTitle}
+                        defaultValue = {props.isEdit ? props.onChangeMyTitle : ""}
+                        ></F.Longbox><br/>
                         <F.Your__Error>{props.myTitleError}</F.Your__Error> 
                     </F.InputWrapper>
 
                     <F.InputWrapper>
                         <F.Label>내용</F.Label>
-                        <F.Contents type="text" placeholder="내용을 작성해주세요" onChange={props.onChangeMyContents}></F.Contents><br/>
+                        <F.Contents type="text" placeholder="내용을 작성해주세요" onChange={props.onChangeMyContents}
+                        defaultValue = {props.isEdit ? props.onChangeMyContents : ""}
+                        ></F.Contents><br/>
                         <F.Your__Error>{props.myContentsError}</F.Your__Error>
                     </F.InputWrapper>
 
@@ -72,7 +79,11 @@ export default function BoardUIPresenter(props){
                     </F.OptionWrapper>
 
             <F.ButtonWrapper>
-                <F.MyBtn onClick={props.onClickSubmit} cc={props.isActive}>등록하기</F.MyBtn>
+                <F.MyBtn 
+                // onClick={props.onClickSubmit} cc={props.isActive}
+                onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+                // isActive={props.isEdit? true : props.isActive}
+                >등록하기</F.MyBtn>
             </F.ButtonWrapper> 
 
         </F.Wrapper>

@@ -1,27 +1,18 @@
-import axios from 'axios'
 import {useState} from 'react'
 import {useMutation} from '@apollo/client'
 import { useRouter } from 'next/router'
-import {CREATE_BOARD} from './BoardWrite.queries'
+import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import BoardUIPresenter from './BoardWrite.presenter'
-// import {Wrapper, Title, 
-//     AccountSection, Label, Writer, Password,
-//     Longbox, Contents, InputWrapper,
-//     AddressBtn, ZipcodeWrapper, Zipcode, ZipWrapper,
-//     ImageWrapper, GreyBoxes, Box,BoxWord, 
-//     OptionWrapper, RadioWrapper, RadioButton, ButtonWrapper, MyBtn, Your__Error} 
-//     from '../../../../../styles/emotion';
 
-
-export default function BoardContain(){
+export default function BoardContain(props){
     const [isActive, setIsActive]=useState(false)
 
     const router = useRouter()
 
-    const[writer, setWriter] = useState("");
-    const[pw, setPw] = useState("");                            
-    const[title, setTitle] = useState("");
-    const[contents, setContents] = useState("");
+    const[myWriter, setMyWriter] = useState("");
+    const[myPassword, setMyPassword] = useState("");                            
+    const[myTitle, setMyTitle] = useState("");
+    const[myContents, setMyContents] = useState("");
 
     const [myWriterError, setMyWriterError] = useState("");
     const [myPasswordError, setMyPasswordError] = useState("");
@@ -31,72 +22,98 @@ export default function BoardContain(){
     const [createBoard] = useMutation(CREATE_BOARD)
 
     function onChangeMyWriter(event){
-        setWriter(event.target.value);
-        if(writer.length>1){
+        setMyWriter(event.target.value);
+        if(myWriter.length>1){
             setMyWriterError("")
             setIsActive(true)
-        }
+        }else {
+            setIsActive(false)
+          }
     } 
     function onChangeMyPw(event){
-        setPw(event.target.value);
-        if(pw.length>7){
+        setMyPassword(event.target.value);
+        if(myPassword.length>7){
             setMyPasswordError("")
             setIsActive(true)
-    }
+    }else {
+        setIsActive(false)
+      }
 }
     
     function onChangeMyTitle(event){
-        setTitle(event.target.value);
-        if(title.length>0){
+        setMyTitle(event.target.value);
+        if(myTitle.length>0){
             setMyTitleError("")
             setIsActive(true)
-    }
+    }else {
+        setIsActive(false)
+      }
 }
 
     function onChangeMyContents(event){
-        setContents(event.target.value);
-        if(contents.length>9){
+        setMyContents(event.target.value);
+        if(myContents.length>9){
             setMyContentsError("")
             setIsActive(true)
-    }
+    }else {
+        setIsActive(false)
+      }
 }
 
     const onClickSubmit = async () => {
-        if (writer.length<2) {
+        if (myWriter.length<2) {
             setMyWriterError("* 성을 포함하여 정확한 이름을 입력해주세요");
         } 
-        if (pw.length<8) {
+        if (myPassword.length<8) {
             setMyPasswordError("* 비밀번호를 8자 이상 입력해주세요");
         }
-        if (title.length<1) {
+        if (myTitle.length<1) {
             setMyTitleError("* 제목을 한 글자 이상 입력해주세요");
         }
-        if (contents.length<10) {
+        if (myContents.length<10) {
             setMyContentsError("* 내용을 10자 이상 입력해주세요");
         }
-        if (writer.length>1 
-            && pw.length>7
-            && title.length>0
-            && contents.length>9) {
+        if (myWriter.length>1 
+            && myPassword.length>7
+            && myTitle.length>0
+            && myContents.length>9) {
             alert("게시물이 등록됐습니다");
-
-
-            
             const result = await createBoard({
-                variables: {createBoardInput:{
-                    writer: writer,
-                    password: pw,
-                    title: title,
-                    contents: contents
-                }
-            }
-            })
+                variables: {
+                    createBoardInput: {
+                      writer: myWriter,
+                      password: myPassword,
+                      title: myTitle,
+                      contents: myContents,
+                    },
+                  },
+                })
 
     router.push(`/01-01-board/${result.data.createBoard._id}`)
 
         }
     }
 
+
+    async function onClickUpdate(){
+        interface IMyUpdateBoardInput{
+            title?:string,
+            contents?:string
+        }
+
+        const myUpdateBoardInput: IMyUpdateBoardInput = {}
+      if(myTitle) myUpdateBoardInput.title = myTitle
+      if(myContents) myUpdateBoardInput.contents = myContents
+      await updateBoard({
+        variables: {
+          boardId: router.query.aaa,
+          password: myPassword,
+          updateBoardInput: myUpdateBoardInput
+        },
+      });
+      alert("수정이 완료되었습니다.")
+      router.push(`/boards/${router.query.aaa}`);
+    }
     return (
        <BoardUIPresenter
        myWriterError={myWriterError}

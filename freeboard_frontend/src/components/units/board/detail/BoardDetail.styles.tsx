@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
+export const MyWrapper = styled.div`
     width: 1200px;
     /* height: 1847px; */
     margin: 100px;
@@ -28,7 +28,7 @@ export const MyHeader = styled.div`
     padding-bottom: 30px;
 `
 
-export const ProflePic = styled.div`
+export const ProfilePic = styled.div`
     width: 46px;
     height: 46px;
 `
@@ -86,11 +86,14 @@ export const MainVid = styled.div`
     height: 240px;
 `
 export const PageBottom = styled.div`
+    padding-left: 400px;
+
     width: 800px;
     height: 45px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
 `
 
 export const MyBtn = styled.button`

@@ -1,9 +1,9 @@
-import * as D from './BoardDetail.styles'
-export default function BoardListUIPage(){
+import * as D from './BoardList.Styles'
+export default function BoardListUIPage(props){
 
 return(
     <D.Wrapper>
-        <D.HeaderLine></D.HeaderLine>
+        <D.HeaderLine/>
             <D.HeadRow>
                 <D.HeadType>번호</D.HeadType>
                 <D.HeadType>제목</D.HeadType>
@@ -12,17 +12,22 @@ return(
             </D.HeadRow>
 
             
-        {data?.fetchBoards?.map((el)=>(
+        {props.data?.fetchBoards?.map((el)=>(
             <D.Row key={el.number}>
                 <D.DivisionLine></D.DivisionLine>
                 <D.Column>
                     <D.MyNumber>{el.number}</D.MyNumber>
-                    <D.MyTitle>{el.title}</D.MyTitle>
+                    <D.MyTitle onClick={props.onClickMoveToBoardDetail}>{el.title}</D.MyTitle>
                     <D.MyWriter>{el.writer}</D.MyWriter>
                     <D.MyDate>{el.createdAt.slice(0,10)}</D.MyDate>             
                 </D.Column>
             </D.Row>
         ))}
+        <D.ListButton onClick={props.onClickMoveToBoardNew}>
+            <D.Button>
+                게시물 등록하기
+            </D.Button>
+        </D.ListButton>
     </D.Wrapper>
 )
 }

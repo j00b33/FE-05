@@ -117,3 +117,22 @@ function solution(array, commands) {
     })
     return answer;
 }
+
+
+
+
+
+//  reduce(callback[, initialValue])
+// - 배열의 각 요소를 순회, callback함수의 실행값을 누적 -> 하나의 결과값 반환
+
+// - 받는 인자는 4가지(순서대로)
+//     - Accumulator : callback 함수의 반환값 누적
+//     - Current value : 배열의 현재 요소
+//     - Index : 배열의 현재 요소의 인덱스
+//     - Array : 호출한 배열
+
+// - initalvalue의 초기값을 제공안하면 accumulator에 값이 배열의 첫번째 요소가 되는것 (아까 0은 뭐냐고 물어보던 부분이 이부분) 즉, 더하기를 예로 들면 배열의 요소 들을 더 한값에 지정값을 더해 줄수 있다고 생각하면 편함
+
+
+// Callback 함수 반환 값은 accumulator에 배열을 끝까지 순회 할때까지 계속 누적 
+

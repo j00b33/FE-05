@@ -24,8 +24,6 @@ export const HeadType = styled.div`
     display: flex;
     font-weight: 500;
     font-size: 18px;
-    
-
 `
 
 export const Row = styled.div`
@@ -58,18 +56,34 @@ export const HeadRow = styled.div`
     height: 40px;
 `
 
-export const MyWriter = styled.div`
-    padding-right: 30px;
+export const MyNumber = styled.div`
 `
 
 export const MyTitle = styled.div`
-    padding-right: 10px;
+`
+
+export const MyWriter = styled.div`
 `
 
 export const MyDate = styled.div`
-    padding-right: 110px;
 `
 
-export const MyNumber = styled.div`
-    padding-left: 130px;
+
+export const ListButton = styled.div`
+    
+`
+
+export const Button = styled.button`
+     width: 171px;
+     height: 52px;
+     background-color: white;
+     border-radius: 15px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-evenly;
+     align-items: center;
+     cursor: pointer;
+     :hover {
+     background-color: #f5f2fc;
+ }
 `
