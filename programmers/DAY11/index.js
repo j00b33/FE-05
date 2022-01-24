@@ -31,7 +31,7 @@ function solution(s) {
         }
         else {
             answer += idx%2===0
-            //짝수 인뎃그라면 대문자로 추가
+            //짝수 인덱스라면 대문자로 추가
             ? s[i].toUpperCase()
             //홀수 인덱스라면 소문자로 추가
             : s[i].toLowerCase()
@@ -41,3 +41,16 @@ function solution(s) {
     return answer
 }
 
+//method 사용하기
+function solution(s) {
+    const answer = s.split(" ")
+                    .map ( word => {
+                        return word.split("")
+                        .map((letter, i) => {
+                            return i%2 ===0
+                            ? letter.toUppercase()
+                            : letter.toLowerCase()
+                        }).join("")
+                    })
+                    console.log(answer)
+}
