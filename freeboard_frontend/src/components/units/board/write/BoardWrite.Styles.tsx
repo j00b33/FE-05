@@ -205,6 +205,10 @@ export const ButtonWrapper = styled.div`
     padding-bottom: 30px;
 `
 
+interface IProps {
+    isActive : boolean
+}
+
 export const MyBtn = styled.button`
     width: 179px;
     height: 52px;
@@ -213,10 +217,9 @@ export const MyBtn = styled.button`
     justify-content: center;
     align-items: center;
 
-    background-color: #FFD600;
     color: black; 
 
     cursor: pointer;
 
-    background-color: ${(props) => props.isActive === true ? "gold" : "none"};
+    background-color: ${(props: IProps) => props.isActive === true ? "#6891b8fc" : "none"};
 `

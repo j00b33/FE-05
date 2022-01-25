@@ -51,6 +51,8 @@ function solution(s) {
                             ? letter.toUppercase()
                             : letter.toLowerCase()
                         }).join("")
-                    })
-                    console.log(answer)
+                    }).join(" ")
+        return answer
 }
+
+//MDN 에서 split이랑 Join 한번 읽어보기

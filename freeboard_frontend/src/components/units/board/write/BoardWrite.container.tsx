@@ -1,11 +1,9 @@
 import {useState} from 'react'
-import {gql, useMutation} from '@apollo/client'
+import {useMutation} from '@apollo/client'
 import { useRouter } from 'next/router'
 import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import BoardUIPresenter from './BoardWrite.presenter'
-
-
-
+import 'antd/dist/antd.css'
 
 export default function BoardContain(props){
     const [isActive, setIsActive]=useState(false)
@@ -16,6 +14,8 @@ export default function BoardContain(props){
     const[myPassword, setMyPassword] = useState("");                            
     const[myTitle, setMyTitle] = useState("");
     const[myContents, setMyContents] = useState("");
+
+    const [myYoutube, setMyYoutube] = useState("")
 
     const [myWriterError, setMyWriterError] = useState("");
     const [myPasswordError, setMyPasswordError] = useState("");
@@ -64,6 +64,10 @@ export default function BoardContain(props){
       }
 }
 
+    function onChangeYoutubeUrl(event){
+        setMyYoutube(event.target.value)
+    }
+
     const onClickSubmit = async () => {
         if (myWriter.length<2) {
             setMyWriterError("* 성을 포함하여 정확한 이름을 입력해주세요");
@@ -89,6 +93,7 @@ export default function BoardContain(props){
                       password: myPassword,
                       title: myTitle,
                       contents: myContents,
+                      youtubeUrl: myYoutube
                     },
                   },
                 })
@@ -97,26 +102,34 @@ export default function BoardContain(props){
 
         }
     }
-
-    //여기서부터 다시 생각해보기
-    async function onClickUpdate(){
-        interface IMyUpdateBoardInput{
-            title?:string,
-            contents?:string
+    const onClickUpdate = async () => {
+        if (!myTitle && !myContents && !myYoutube){
+            alert("하나는 수정해야합니다")
         }
-        const myUpdateBoardInput: IMyUpdateBoardInput = {}
-      if(myTitle) myUpdateBoardInput.title = myTitle
-      if(myContents) myUpdateBoardInput.contents = myContents
+        if (!myPassword){
+            alert("비밀번호를 입력해주세요")
+        }
+
+        interface IMyUpdateBoardInput {
+            title?: string
+            contents?: string
+            youtubeUrl?: string
+          }
+          const myUpdateBoardInput: IMyUpdateBoardInput = {}
+          if(myTitle) myUpdateBoardInput.title = myTitle
+          if(myContents) myUpdateBoardInput.contents = myContents
+          if(myYoutube) myUpdateBoardInput.youtubeUrl = myYoutube
+    
       await updateBoard({
         variables: {
-          boardId: router.query.aaa,
+          boardId: router.query.boardDetail,
           password: myPassword,
           updateBoardInput: myUpdateBoardInput
         },
       });
-        
       alert("수정이 완료되었습니다.")
-      router.push(`/boards/${router.query.aaa}`);}
+      router.push(`/01-01-board/${router.query.boardDetail}`);
+    }
     
     return (
        <BoardUIPresenter
@@ -129,10 +142,13 @@ export default function BoardContain(props){
        onChangeMyPw={onChangeMyPw}
        onChangeMyTitle={onChangeMyTitle}
        onChangeMyContents={onChangeMyContents}
-       onClickSubmit={onClickSubmit}
-       
-       isActive={isActive}
+       onChangeYOutubeUrl={onChangeYoutubeUrl}
 
+       onClickSubmit={onClickSubmit}
+       onClickUpdate={onClickUpdate}
+       
+       data={props.data}
+       isActive={isActive}
        isEdit={props.isEdit}
        />
     )

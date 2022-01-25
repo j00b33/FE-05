@@ -7,7 +7,7 @@ export default function BoardDetailUIPage(props){
             <D.MyHeader>
                     <D.HeaderLine>
                     <D.MyWriter>{props.data?.fetchBoard?.writer}</D.MyWriter>
-                    <D.MyDate>{props.data?.fetchBoard?.createdAt}</D.MyDate>
+                    <D.MyDate>{props.data?.fetchBoard?.createdAt.slice(0,10)}</D.MyDate>
                 </D.HeaderLine>
 
             </D.MyHeader>                
@@ -21,8 +21,8 @@ export default function BoardDetailUIPage(props){
         </D.MyWrapper>
 
             <D.PageBottom>
-                <D.MyBtn onClick={props.onClickMoveToList}>목록으로</D.MyBtn>
-                <D.MyBtn onClick={props.onclickMoveToEdit}>수정하기</D.MyBtn>
+                <D.MyBtn onClick={props.onClickMovetoList}>목록으로</D.MyBtn>
+                <D.MyBtn onClick={props.onClickMoveToEdit}>수정하기</D.MyBtn>
                 <D.MyBtn onClick={props.onClickDelete}>삭제하기</D.MyBtn>
             </D.PageBottom>
     </div>

@@ -86,9 +86,9 @@ export const MainVid = styled.div`
     height: 240px;
 `
 export const PageBottom = styled.div`
-    padding-left: 400px;
+    padding-left: 380px;
 
-    width: 800px;
+    width: 1000px;
     height: 45px;
     display: flex;
     flex-direction: row;

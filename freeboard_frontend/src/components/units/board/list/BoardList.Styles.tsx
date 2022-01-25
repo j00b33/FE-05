@@ -40,11 +40,11 @@ export const Column = styled.div`
     color: #4F4F4F;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 1200px;
 
     padding-top: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
 `
 
 export const HeadRow = styled.div`
@@ -60,6 +60,10 @@ export const MyNumber = styled.div`
 `
 
 export const MyTitle = styled.div`
+    cursor: pointer;
+    :hover {
+        color: #6084a7fd;
+    }
 `
 
 export const MyWriter = styled.div`
@@ -84,6 +88,7 @@ export const Button = styled.button`
      align-items: center;
      cursor: pointer;
      :hover {
-     background-color: #f5f2fc;
+     background-color: #748397;
+     color: white;
  }
 `

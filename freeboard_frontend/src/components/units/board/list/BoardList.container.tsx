@@ -12,7 +12,7 @@ export default function BoardList() {
   }
 
   function onClickMoveToBoardDetail(event) {
-    router.push(`/01-01-board/${event.target.id}`);
+    router.push(`/01-01-board/${event.target._id}`)
   }
 
   return (
