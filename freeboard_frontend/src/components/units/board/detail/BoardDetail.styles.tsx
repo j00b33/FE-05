@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import ReactPlayer from 'react-player'
 
+
+
 export const MyWrapper = styled.div`
     width: 1200px;
     /* height: 1847px; */
@@ -45,6 +47,7 @@ export const MyWriter = styled.div`
     padding-bottom: 10px;
 `
 
+
 export const MyDate = styled.div`
     font-weight: normal;
     font-size: 16px;
@@ -76,6 +79,7 @@ export const MyContents = styled.div`
     font-family: Noto Sans CJK KR;
     font-size: 20px;
 `
+
 export const MyYoutube = styled(ReactPlayer)`
   margin: auto;
 

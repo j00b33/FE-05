@@ -1,4 +1,6 @@
 import * as C from './BoardComment.styles'
+import { Modal } from "antd";
+
 export default function BoardCommentUIPage(props){
     return(
         <C.Wrapper>
@@ -23,6 +25,17 @@ export default function BoardCommentUIPage(props){
             <C.SubmitBtn onClick={props.onClickSubmit}>등록</C.SubmitBtn>
             </C.CreateC>
 
+
+            
+                
+            {props.isOpen && (
+                    <Modal visible={true} onOk={props.onClickDelete}>
+                        <div>비밀번호 입력</div>
+                        <C.PInput type="password" onChange={props.onChangeDeletePassword}/>
+                    </Modal>
+            )}
+
+
             {props.data?.fetchBoardComments.map((el) => (
             <C.Comments key={el._id}>
                 <C.WrittenStar value={el?.rating} disabled/>
@@ -32,7 +45,7 @@ export default function BoardCommentUIPage(props){
             
                 <C.Update>
                     <C.CommentEdit onClick={props.onclickEditCom}>수정</C.CommentEdit>
-                    <C.Delete id={el._id} onClick={props.onClickDeleteCom}>삭제</C.Delete>
+                    <C.Delete id={el._id} onClick={props.onClickOpenDeleteModal}>삭제</C.Delete>
                 </C.Update>
             </C.Comments>
             ))}

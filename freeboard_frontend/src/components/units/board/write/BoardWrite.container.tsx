@@ -5,11 +5,11 @@ import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import BoardUIPresenter from './BoardWrite.presenter'
 import { Modal } from "antd";
 import 'antd/dist/antd.css'
-import DaumPostcode from 'react-daum-postcode';
 
 export default function BoardContain(props){
     const [isActive, setIsActive]=useState(false)
 
+    const [isOpen, setIsOpen] = useState(false)
     const router = useRouter()
 
     const[myWriter, setMyWriter] = useState("");
@@ -40,12 +40,15 @@ export default function BoardContain(props){
             setIsActive(false)
           }
     } 
+
     function onChangeMyPw(event){
         setMyPassword(event.target.value);
         if(myPassword.length>7){
             setMyPasswordError("")
             setIsActive(true)
-    }else {
+    }
+    
+    else {
         setIsActive(false)
       }
     }
@@ -70,31 +73,28 @@ export default function BoardContain(props){
       }
     }
 
-    function onChangeYoutubeUrl(event: ChangeEvent<HTMLInputElement>){
+    function onChangeYoutubeUrl(event){
         setYoutubeUrl(event.target.value)
     }
 
-    function onClickAddress (event){
-        setAddressDetail(event.target.value)
-    }
-        const [isModalVisible, setIsModalVisible] = useState(false);
-        const showModal = () => {
-            setIsModalVisible(true);
-        };
+    function onClickAddressSearch (event){
+        console.log("확인")
+        setIsOpen(true) }
 
-        const handleOk = () => {
-            setIsModalVisible(false);
-        };
+    function onChangeAddressDetail(event){
+        setAddressDetail(event.target.value) }
 
-        const handleCancel = () => {
-            setIsModalVisible(false);
-        };
-
-        const onCompleteDaumPostCode = (data: any) =>{
+        const onCompleteAddressSearch = (data: any) =>{
+            //이걸 클릭했을떄 내가 어떤 주소를 클릭했는지 데이터가 들어옴 
             setAddress(data.address)
-            setZonecode(data.zonecode)
-            setIsModalVisible(false)
-    }
+            setZipcode(data.zonecode)
+            setIsOpen(false)
+            //modal complete되면 다시 닫아줘야함
+            //state바뀌면 전체 component가 다 새롭게 다시 만들어지는데 이때 false로 그려지게 됨
+            //그래서 우리가 느끼기엔 모달이 나왔다가 사라진거처럼 사실은 false인 상태로 다시 그려진 것
+            //사라진게 아니라 아예 다시 새롭게 됐을때 그려지지 않은것
+    
+}
     
 
     const onClickSubmit = async () => {
@@ -133,7 +133,6 @@ export default function BoardContain(props){
                 })
 
     router.push(`/01-01-board/${result.data.createBoard._id}`)
-            
         }
     }
     const onClickUpdate = async () => {
@@ -147,12 +146,25 @@ export default function BoardContain(props){
         interface IMyUpdateBoardInput {
             title?: string
             contents?: string
-            youtubeUrl?: string
-          }
+            youtubeUrl?: string,
+            boardAddress?: {
+            zipcode?: String
+            address?: String
+            addressDetail?: String
+            }
+        }
+
           const myUpdateBoardInput: IMyUpdateBoardInput = {}
           if(myTitle) myUpdateBoardInput.title = myTitle
           if(myContents) myUpdateBoardInput.contents = myContents
           if(youtubeUrl) myUpdateBoardInput.youtubeUrl = youtubeUrl
+          if (zipcode || address || addressDetail) {  //셋중에 하나라도 변경사항이 생기면 아래 괄호 안의 코드가 실행이 됨
+            myUpdateBoardInput.boardAddress = {};
+            if (zipcode) myUpdateBoardInput.boardAddress.zipcode = zipcode;
+            if (address) myUpdateBoardInput.boardAddress.address = address;
+            if (addressDetail)
+              myUpdateBoardInput.boardAddress.addressDetail = addressDetail;
+          }
     
           try{
       await updateBoard({
@@ -183,20 +195,21 @@ export default function BoardContain(props){
        onChangeYoutubeUrl={onChangeYoutubeUrl}
 
        onClickSubmit={onClickSubmit}
+
        onClickUpdate={onClickUpdate}
+
+       onChangeAddressDetail={onChangeAddressDetail}
+       onClickAddressSearch={onClickAddressSearch}
+       isOpen={isOpen}
        
        data={props.data}
        isActive={isActive}
        isEdit={props.isEdit}
 
+       zipcode={props.zipcode}
+       address={props.address}
 
-
-
-       isModalVisible={props.isModalVisible}
-       showModal={props.showModal}
-       handleOk={props.handleOk}
-       handleCance={props.handleCancel}
-       onCompleteDaumPostCode={props.onCompleteDaumPostCode}
+       onCompleteAddressSearch={onCompleteAddressSearch}
        />
     )
 

@@ -17,27 +17,14 @@ export default function BoardCommentPage(){
     const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
     const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
 
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedId, setSelectedId] = useState("")
+
+
     const [myWriter, setMyWriter] = useState("");
     const [myPassword, setMyPassword] = useState("");
     const [myContents, setMyContents] = useState("");
     const [star, setStar] = useState(0)
-
-  //modal password
-    const [isModalVisible, setIsModalVisible] = useState(false);
-
-    const showModal = () => {
-        setIsModalVisible(true);
-      };
-    
-      const handleOk = () => {
-        setIsModalVisible(false);
-        //ok 누르면 창이 사라짐
-      };
-    
-      const handleCancel = () => {
-        setIsModalVisible(false);
-      };
-
 
     function onChangeMyWriter(event){
         setMyWriter(event.target.value);
@@ -54,7 +41,7 @@ export default function BoardCommentPage(){
     function onChangeStar (value) {
         setStar(value)
     }
-    
+
     async function onClickSubmit() {
         if (myWriter && myPassword && myContents){
         await createBoardComment({
@@ -80,36 +67,43 @@ export default function BoardCommentPage(){
         }
     }
 
-    async function onClickDeleteCom(event){
-        // <Modal title="Password" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        // Enter Your Password: <input type="password" onChange={onChangeMyPassword}/>
-        // </Modal> -->presenter 넘겨  
-        const myPassword = prompt("비밀번호를 입력하세요.");
+
+    function onChangeDeletePassword(event) {
+        setMyPassword(event.target.value);
+      }
+    
+    function onClickOpenDeleteModal(event){
+        setIsOpen(true)
+        setSelectedId(event.target.id)
+    }
+
+    async function onClickDelete(event){
         try{
         await deleteBoardComment({
             variables: {
                 password: myPassword,
-                boardCommentId: event.target.id
+                boardCommentId: selectedId
             },
             refetchQueries : [{
                 query: FETCH_BOARD_COMMENTS,
                 variables: {boardId: router.query.boardDetail}
             }]
         })
-        }catch(error){
-            alert(error.message)
+        setIsOpen(false)
+    }catch(error){
+        alert(error.message)
         }
     }
 
 
-    async function onclickEditCom(){
-        await updateBoardComment({
-            variables: {
-                updateBoardCommentInput: myContents,
-                password: myPassword
-            }
-        })
-    }
+    // async function onclickEditCom(){
+    //     await updateBoardComment({
+    //         variables: {
+    //             updateBoardCommentInput: myContents,
+    //             password: myPassword
+    //         }
+    //     })
+    // }
 
 
 
@@ -127,8 +121,12 @@ export default function BoardCommentPage(){
         onChangeMyContents={onChangeMyContents}
         onChangeStar={onChangeStar}
 
-        onClickDeleteCom={onClickDeleteCom}
-        onclickEditCom={onclickEditCom}
+        // onclickEditCom={onclickEditCom}
+
+        onClickDelete={onClickDelete}
+        onClickOpenDeleteModal={onClickOpenDeleteModal}
+        onChangeDeletePassword={onChangeDeletePassword}
+        isOpen={isOpen}
         />
     )
 }

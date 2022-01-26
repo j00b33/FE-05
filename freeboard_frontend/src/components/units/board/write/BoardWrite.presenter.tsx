@@ -1,10 +1,15 @@
 import * as F from './BoardWrite.Styles'
-import { Modal, Button } from 'antd';
+import { Modal} from 'antd';
 import DaumPostcode from 'react-daum-postcode';
 
 export default function BoardUIPresenter(props){
     return(
         <F.Wrapper>
+            {props.isOpen &&(
+                <Modal visible={true}>
+                <DaumPostcode onComplete={props.onCompleteAddressSearch}/>
+                </Modal>
+            )}
             <F.Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</F.Title>
                     <F.AccountSection>
                         <F.InputWrapper>
@@ -25,7 +30,6 @@ export default function BoardUIPresenter(props){
                             <F.Your__Error>{props.myPasswordError}</F.Your__Error> 
                         </F.InputWrapper>
                     </F.AccountSection>
-                    
 
                     <F.InputWrapper>
                         <F.Label>제목</F.Label>
@@ -50,25 +54,32 @@ export default function BoardUIPresenter(props){
                         <F.ZipcodeWrapper>
                             <F.Zipcode placeholder="00000"
                             readOnly
-                            value={props.zipcode ||
-                            props.data?.fetchBoard.boardAddress?.zipcode || ""}
+                            value={props.zipcode|| 
+                                 props.data?.fetchBoard.boardAddress?.zipcode} 
+                            //value 보여주고 받아온게 없으면 이걸 보여줘
                             />
-                            <F.AddressBtn onClick={props.onClickAddress}>
+                            <F.AddressBtn onClick={props.onClickAddressSearch}>
                             우편번호 검색</F.AddressBtn>
                             {props.isModalVisible && (<Modal title="Address" visible={true} onOk={props.handleOk} onCancel={props.handleCancel}>
-                            <DaumPostcode onComplete={props.onCompleteDaumPostCode}/>
                             </Modal>)}
                         </F.ZipcodeWrapper>
-                        <F.Longbox/>
-                        <F.Longbox/>
+                        <F.AddressDetail
+                            readOnly = {true}
+                            value={ props.address || props.data?.fetchBoard.boardAddress?.address}
+                            //우리가 클릭해서 선택한 주소가 있으면 보여주고 없으면 fetchBoard로 받아온 address를 받아줘
+                            //이때 우리가 아직 선택한게 없다면 value가 없을테니까 공백이 보여지게 되는거임
+                        />
+                        <F.AddressDetail
+                            onChange={props.onChangeAddressDetail}
+                             defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+                        />
                     </F.ZipWrapper>
 
                     <F.InputWrapper>
                         <F.Label>유튜브</F.Label>
                         <F.Youtube placeholder="링크를 복사해주세요"
                         onChange={props.onChangeYoutubeUrl}
-                        defaultValue={props.data?.fetchBoard.youtubeUrl}
-                        />
+                        defaultValue={props.data?.fetchBoard.youtubeUrl}/>
                     </F.InputWrapper>
 
                     <F.ImageWrapper>

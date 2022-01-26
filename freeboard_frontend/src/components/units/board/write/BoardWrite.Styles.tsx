@@ -64,8 +64,14 @@ export const Password = styled.input`
     font-size: 16px;
     border: 1px solid #BDBDBD;
 `
-
 export const Longbox = styled.input`
+    width: 996px;
+    height: 52px;
+    border: 1px solid #BDBDBD;
+    /* box-sizing: border-box; */
+    font-size: 16px;
+`
+export const AddressDetail = styled.input`
     width: 996px;
     height: 52px;
     border: 1px solid #BDBDBD;

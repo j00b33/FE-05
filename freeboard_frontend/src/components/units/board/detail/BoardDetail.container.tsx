@@ -6,7 +6,6 @@ import BoardCommentPage from '../comments/BoardComment.container'
 import { Modal } from "antd";
 
 
-
 export default function BoardDetailPage(){
     const router = useRouter()
     const [deleteBoard] = useMutation(DELETE_BOARD)

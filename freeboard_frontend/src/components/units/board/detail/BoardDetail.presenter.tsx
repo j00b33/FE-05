@@ -1,15 +1,23 @@
 import * as D from './BoardDetail.styles'
-
+import { Tooltip } from 'antd';
 
 export default function BoardDetailUIPage(props){
     return (
     <div>
         <D.MyWrapper>
             <D.MyHeader>
-                    <D.HeaderLine>
+                <D.HeaderLine>
                     <D.MyWriter>{props.data?.fetchBoard?.writer}</D.MyWriter>
                     <D.MyDate>{props.data?.fetchBoard?.createdAt.slice(0,10)}</D.MyDate>
                 </D.HeaderLine>
+
+                <Tooltip 
+                color="#535fa1" font-size="16px" 
+                title={`${props.data?.fetchBoard.boardAddress?.address} 
+                ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+                >
+                <span>주소</span>
+                </Tooltip>
 
             </D.MyHeader>                
             <D.DivisionL/>
@@ -24,10 +32,7 @@ export default function BoardDetailUIPage(props){
                         height= "240px"
                     />
                 )}
-                
-                
             </D.MyBody>
-            
         </D.MyWrapper>
 
             <D.PageBottom>

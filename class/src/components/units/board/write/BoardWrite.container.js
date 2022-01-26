@@ -23,7 +23,6 @@ export default function BoardWrite(){
         const [myTitle, setMyTitle] = useState("")
         const [myContents, setMyContnets] = useState("")
 
-    
         const [aaa, setAaa] = useState("")
         const [qqq] = useMutation(CREATE_BOARD)
     
@@ -36,12 +35,13 @@ export default function BoardWrite(){
             console.log(result.data.createBoard.message)
             setAaa(result.data.createBoard.message)
         }
-    
+
         const onChangeMyWriter = (event) => {
             setMyWriter(event.target.value)     //하나하나 입력할떄마다 저장이 됨 이떄 myWriter는 저장 전임 (초기값인 빈 공백상태)
             if (event.target.value && myTitle && myContents){
                 setIsActive(true)
             }
+
         }
         const onChangeMyTitle = (event) => {
             setMyTitle(event.target.value)
@@ -55,8 +55,7 @@ export default function BoardWrite(){
                 setIsActive(true)
             }
         }
-
-
+        
         return (
             //여기에 AAAABBBB 써도 import 가능함 
            <BoardWriteUI
@@ -68,7 +67,6 @@ export default function BoardWrite(){
                 isActive={isActive}
            />
         )
-       
     }
     //setState 비동기로 됨
     // 이건 마지막에 한꺼번에 몰아서 하기 때문에 setState도 비동기로 작동한다

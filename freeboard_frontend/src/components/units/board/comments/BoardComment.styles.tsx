@@ -39,8 +39,6 @@ export const Star = styled(Rate)`
     flex-direction: row;
 `
 
-
-
 export const MyComment = styled.div`
     width: 1200px;
     height: 161px;
@@ -48,8 +46,8 @@ export const MyComment = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
 `
+
 export const MyWriting = styled.input`
     color: grey;
     font-size: 16px;
@@ -125,4 +123,4 @@ export const CommentEdit = styled.div`
 
 export const Delete = styled.div`
     cursor: pointer;
-`
+` 
