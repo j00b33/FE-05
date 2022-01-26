@@ -14,7 +14,7 @@ const FRUITS = [
 export default function MapFruitsPage(){
 
     const evens = FRUITS.filter((el)=> (el.number%2===0))
-    .map((el)=>(<div>{el.number} {el.title}</div>))
+    .map((el)=>(<div key={el.number}>{el.number} {el.title}</div>))
 
     return(
         <div>{evens}</div>

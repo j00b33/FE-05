@@ -1,4 +1,5 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
+import {Rate} from 'antd';
 
 export const Wrapper = styled.div`
     width: 1200px;
@@ -24,7 +25,7 @@ export const InputWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 430px;
+    width: 550px;
     padding-bottom: 30px;
 `
 export const PInput = styled.input`
@@ -33,6 +34,12 @@ export const PInput = styled.input`
     border: 1px solid black;
     border-radius: 20px;
 `
+export const Star = styled(Rate)`
+    display: flex;
+    flex-direction: row;
+`
+
+
 
 export const MyComment = styled.div`
     width: 1200px;
@@ -75,15 +82,19 @@ export const SubmitBtn = styled.div`
 export const Comments = styled.div`
     border: none;
     width: 1200px;
-    height: 114px;
+    height: 130px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 `
 
+export const WrittenStar = styled(Rate)`
+    padding-top: 30px;
+`
+
+
 export const Writer = styled.div`
-    padding-top: 20px;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 16px;
 `
 
@@ -93,6 +104,25 @@ export const WriterComment = styled.div`
 `
 
 export const DivisionLine = styled.div`
-    width: 1200px;
-    border: 1px solid #6182a8;
+    width: 1000px;
+    border: 1px solid #809cbd;
+`
+
+export const Update = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 70px;
+
+    font-size: 16px;
+    color: grey;
+`
+
+export const CommentEdit = styled.div`
+    cursor: pointer;
+`
+
+export const Delete = styled.div`
+    cursor: pointer;
 `

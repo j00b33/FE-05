@@ -44,7 +44,7 @@
   },
   "lint-staged": {
     "**/*.{ts, tsx}": [
-      "npx eslint '**/*.{ts, tsx}'"
+      "npx eslint ."
     ]
   }
 }

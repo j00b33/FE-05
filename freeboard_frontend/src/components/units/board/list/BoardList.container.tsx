@@ -6,13 +6,14 @@ import { useRouter } from "next/router";
 export default function BoardList() {
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARDS);
-
+console.log(data)
   function onClickMoveToBoardNew() {
     router.push("/01-01-board/new");
   }
 
   function onClickMoveToBoardDetail(event) {
-    router.push(`/01-01-board/${event.target._id}`)
+    // console.log(event.target.id)
+    router.push(`/01-01-board/${event.target.id}`)
   }
 
   return (

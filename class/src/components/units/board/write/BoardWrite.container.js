@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 // qqq 로 요청해도 API axios 받아오기 가능해짐
 import {useState} from 'react'
 import { useMutation} from '@apollo/client'

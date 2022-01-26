@@ -1,5 +1,6 @@
 import {useRouter} from 'next/router'
 import {useQuery} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 const FETCH_PRODUCT = gql`
 query fetchProduct($productId: ID){

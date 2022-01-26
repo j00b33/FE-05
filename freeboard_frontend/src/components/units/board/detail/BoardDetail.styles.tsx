@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactPlayer from 'react-player'
 
 export const MyWrapper = styled.div`
     width: 1200px;
@@ -24,7 +25,7 @@ export const MyHeader = styled.div`
     /* display: flex;
     flex-direction: row;
     justify-content: space-evenly; */
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 30px;
 `
 
@@ -52,7 +53,7 @@ export const MyDate = styled.div`
 
 export const DivisionL = styled.div`
     width: 996px;
-    border: 1px solid #BDBDBD;
+    border: 1px solid #5e85a8;
 `
 
 export const MyBody = styled.div`
@@ -68,16 +69,21 @@ export const MyTitle = styled.div`
     font-weight: 700;
     font-size: 36px;
     padding-bottom: 40px;
+    color: #35618a;
 `
 
 export const MyContents = styled.div`
     font-family: Noto Sans CJK KR;
     font-size: 20px;
 `
+export const MyYoutube = styled(ReactPlayer)`
+  margin: auto;
+
+`
 
 export const MainPic = styled.img `
-    width: 996px;
-    height: 480px;
+    width: 900px;
+    height: 400px;
     padding-bottom: 50px;
 `
 

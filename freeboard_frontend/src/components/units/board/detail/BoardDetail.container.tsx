@@ -3,6 +3,8 @@ import {useRouter} from 'next/router'
 import {useQuery, useMutation} from '@apollo/client'
 import {FETCH_BOARD, DELETE_BOARD} from './BoardDetail.queries'
 import BoardCommentPage from '../comments/BoardComment.container'
+import { Modal } from "antd";
+
 
 
 export default function BoardDetailPage(){
@@ -25,7 +27,7 @@ export default function BoardDetailPage(){
         await deleteBoard({
             variables: {boardId: String(router.query.boardDetail)}
         })
-        alert("게시글이 삭제되었습니다")
+        Modal.success({ content: "게시글이 삭제되었습니다" });
         router.push("/01-01-board/list")
     }
 

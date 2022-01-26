@@ -3,7 +3,9 @@ import {useMutation} from '@apollo/client'
 import { useRouter } from 'next/router'
 import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import BoardUIPresenter from './BoardWrite.presenter'
+import { Modal } from "antd";
 import 'antd/dist/antd.css'
+import DaumPostcode from 'react-daum-postcode';
 
 export default function BoardContain(props){
     const [isActive, setIsActive]=useState(false)
@@ -15,12 +17,16 @@ export default function BoardContain(props){
     const[myTitle, setMyTitle] = useState("");
     const[myContents, setMyContents] = useState("");
 
-    const [myYoutube, setMyYoutube] = useState("")
-
     const [myWriterError, setMyWriterError] = useState("");
     const [myPasswordError, setMyPasswordError] = useState("");
     const [myTitleError, setMyTitleError] = useState("");
     const [myContentsError, setMyContentsError] = useState("");
+
+    const [youtubeUrl, setYoutubeUrl] = useState("");
+
+    const [zipcode, setZipcode] = useState("");
+    const [address, setAddress]= useState("")
+    const [addressDetail, setAddressDetail] = useState("")
 
     const [createBoard] = useMutation(CREATE_BOARD)
     const [updateBoard] = useMutation(UPDATE_BOARD)
@@ -42,7 +48,7 @@ export default function BoardContain(props){
     }else {
         setIsActive(false)
       }
-}
+    }
     
     function onChangeMyTitle(event){
         setMyTitle(event.target.value);
@@ -62,11 +68,34 @@ export default function BoardContain(props){
     }else {
         setIsActive(false)
       }
-}
-
-    function onChangeYoutubeUrl(event){
-        setMyYoutube(event.target.value)
     }
+
+    function onChangeYoutubeUrl(event: ChangeEvent<HTMLInputElement>){
+        setYoutubeUrl(event.target.value)
+    }
+
+    function onClickAddress (event){
+        setAddressDetail(event.target.value)
+    }
+        const [isModalVisible, setIsModalVisible] = useState(false);
+        const showModal = () => {
+            setIsModalVisible(true);
+        };
+
+        const handleOk = () => {
+            setIsModalVisible(false);
+        };
+
+        const handleCancel = () => {
+            setIsModalVisible(false);
+        };
+
+        const onCompleteDaumPostCode = (data: any) =>{
+            setAddress(data.address)
+            setZonecode(data.zonecode)
+            setIsModalVisible(false)
+    }
+    
 
     const onClickSubmit = async () => {
         if (myWriter.length<2) {
@@ -85,29 +114,34 @@ export default function BoardContain(props){
             && myPassword.length>7
             && myTitle.length>0
             && myContents.length>9) {
-            alert("게시물이 등록됐습니다");
-            const result = await createBoard({
+                Modal.success({ content: "게시물이 등록되었습니다" })
+                const result = await createBoard({
                 variables: {
                     createBoardInput: {
                       writer: myWriter,
                       password: myPassword,
                       title: myTitle,
                       contents: myContents,
-                      youtubeUrl: myYoutube
+                      youtubeUrl: youtubeUrl,
+                      boardAddress:{
+                          zipcode: zipcode,
+                          address: address, 
+                          addressDetail: addressDetail
+                      }
                     },
                   },
                 })
 
     router.push(`/01-01-board/${result.data.createBoard._id}`)
-
+            
         }
     }
     const onClickUpdate = async () => {
-        if (!myTitle && !myContents && !myYoutube){
-            alert("하나는 수정해야합니다")
+        if (!myTitle && !myContents && !youtubeUrl){
+            Modal.error({ content: "하나는 수정해야합니다" })
         }
         if (!myPassword){
-            alert("비밀번호를 입력해주세요")
+            Modal.error({ content: "비밀번호를 입력해주세요" })
         }
 
         interface IMyUpdateBoardInput {
@@ -118,8 +152,9 @@ export default function BoardContain(props){
           const myUpdateBoardInput: IMyUpdateBoardInput = {}
           if(myTitle) myUpdateBoardInput.title = myTitle
           if(myContents) myUpdateBoardInput.contents = myContents
-          if(myYoutube) myUpdateBoardInput.youtubeUrl = myYoutube
+          if(youtubeUrl) myUpdateBoardInput.youtubeUrl = youtubeUrl
     
+          try{
       await updateBoard({
         variables: {
           boardId: router.query.boardDetail,
@@ -127,9 +162,12 @@ export default function BoardContain(props){
           updateBoardInput: myUpdateBoardInput
         },
       });
-      alert("수정이 완료되었습니다.")
+      Modal.success({ content: "수정이 완료되었습니다" })
       router.push(`/01-01-board/${router.query.boardDetail}`);
+    }catch(error){
+        Modal.error({content: "수정에 오류가 생겼습니다"})
     }
+}
     
     return (
        <BoardUIPresenter
@@ -142,7 +180,7 @@ export default function BoardContain(props){
        onChangeMyPw={onChangeMyPw}
        onChangeMyTitle={onChangeMyTitle}
        onChangeMyContents={onChangeMyContents}
-       onChangeYOutubeUrl={onChangeYoutubeUrl}
+       onChangeYoutubeUrl={onChangeYoutubeUrl}
 
        onClickSubmit={onClickSubmit}
        onClickUpdate={onClickUpdate}
@@ -150,6 +188,15 @@ export default function BoardContain(props){
        data={props.data}
        isActive={isActive}
        isEdit={props.isEdit}
+
+
+
+
+       isModalVisible={props.isModalVisible}
+       showModal={props.showModal}
+       handleOk={props.handleOk}
+       handleCance={props.handleCancel}
+       onCompleteDaumPostCode={props.onCompleteDaumPostCode}
        />
     )
 

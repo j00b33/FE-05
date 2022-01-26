@@ -127,6 +127,14 @@ export const AddressBtn = styled.button`
     cursor: pointer;
 `
 
+export const Youtube = styled.input`
+    width: 996px;
+    height: 52px;
+    border: 1px solid #BDBDBD;
+    /* box-sizing: border-box; */
+    font-size: 16px;
+`
+
 export const ImageWrapper = styled.div`
     width: 996px;
     height: 118px;

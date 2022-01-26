@@ -2,6 +2,9 @@
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client'
 import {AppProps} from 'next/app'
 import 'antd/dist/antd.css'
+import {Global} from '@emotion/react'
+import Layout from '../src/components/commons/layout'
+import globalStyles from '../src/commons/styles/globalstlyes'
 
 function MyAPP({Component, pageProps}: AppProps){
 
@@ -13,9 +16,12 @@ function MyAPP({Component, pageProps}: AppProps){
     })
 
   return ( 
-        <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+        <Global styles={globalStyles}/>
+        <Layout>
             <Component {...pageProps}/>
-        </ApolloProvider>
+        </Layout>
+    </ApolloProvider>
     )
 }
 

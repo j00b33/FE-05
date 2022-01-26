@@ -22,9 +22,9 @@ export default function RestGet(){
     //같은 이름이 있을땐 위에것이 아래것을 덮어씌우기 때문에 예상치 못한 에러가 발생할 수 있음
     //--> 이를 막기 위해 화살표 함수
 
-    function zzz(){
-        console.log("asdfasdfasdf")
-    }
+    // function zzz(){
+    //     console.log("asdfasdfasdf")
+    // }
 
 
 

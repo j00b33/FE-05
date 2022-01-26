@@ -1,5 +1,6 @@
 import * as D from './BoardDetail.styles'
 
+
 export default function BoardDetailUIPage(props){
     return (
     <div>
@@ -16,6 +17,15 @@ export default function BoardDetailUIPage(props){
                 <D.MyTitle>{props.data?.fetchBoard?.title}</D.MyTitle>
                 <D.MainPic src='/images/boardpic/mainpic.png'/>
                 <D.MyContents>{props.data?.fetchBoard?.contents}</D.MyContents>
+                {props.data?.fetchBoard.youtubeUrl && (
+                    <D.MyYoutube
+                        url={props.data?.fetchBoard.youtubeUrl}
+                        width= "486px"
+                        height= "240px"
+                    />
+                )}
+                
+                
             </D.MyBody>
             
         </D.MyWrapper>

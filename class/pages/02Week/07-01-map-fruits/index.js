@@ -17,7 +17,7 @@ export default function MapFruitsPage(){
     
     // const bbb = ["나의레드향", "나의샤인머스켓","나의산청딸기"].map((el) => (<div>{el}</div>))
 
-    const ccc = FRUITS.map((el)=>(<div>{el.number} {el.title}</div>))
+    const ccc = FRUITS.map((el)=>(<div key={el.number} >{el.number} {el.title}</div>))
                                     //html 문자열로 됨 js로 바꾸려면 중괄호 안으로 감싸줘야함 
     return(
         <div>{ccc}</div>

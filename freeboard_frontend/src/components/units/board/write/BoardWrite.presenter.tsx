@@ -1,4 +1,6 @@
 import * as F from './BoardWrite.Styles'
+import { Modal, Button } from 'antd';
+import DaumPostcode from 'react-daum-postcode';
 
 export default function BoardUIPresenter(props){
     return(
@@ -46,8 +48,16 @@ export default function BoardUIPresenter(props){
                     <F.ZipWrapper>
                         <F.Label>주소</F.Label>
                         <F.ZipcodeWrapper>
-                            <F.Zipcode placeholder="00000"></F.Zipcode>
-                            <F.AddressBtn>우편번호 검색</F.AddressBtn>
+                            <F.Zipcode placeholder="00000"
+                            readOnly
+                            value={props.zipcode ||
+                            props.data?.fetchBoard.boardAddress?.zipcode || ""}
+                            />
+                            <F.AddressBtn onClick={props.onClickAddress}>
+                            우편번호 검색</F.AddressBtn>
+                            {props.isModalVisible && (<Modal title="Address" visible={true} onOk={props.handleOk} onCancel={props.handleCancel}>
+                            <DaumPostcode onComplete={props.onCompleteDaumPostCode}/>
+                            </Modal>)}
                         </F.ZipcodeWrapper>
                         <F.Longbox/>
                         <F.Longbox/>
@@ -55,9 +65,9 @@ export default function BoardUIPresenter(props){
 
                     <F.InputWrapper>
                         <F.Label>유튜브</F.Label>
-                        <F.Longbox placeholder="링크를 복사해주세요"
+                        <F.Youtube placeholder="링크를 복사해주세요"
                         onChange={props.onChangeYoutubeUrl}
-                        defaultValue={props.data?.fecthBoard.youtubeUrl}
+                        defaultValue={props.data?.fetchBoard.youtubeUrl}
                         />
                     </F.InputWrapper>
 
