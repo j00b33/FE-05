@@ -1,5 +1,3 @@
-// import ' ../styles/globals.css'
-
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client'
 
 function MyAPP({Component, pageProps}){
@@ -11,7 +9,10 @@ function MyAPP({Component, pageProps}){
 
     return ( 
         <ApolloProvider client={client}>
+            <Glibal styke={globalStyles}/>
+            <Layout>
             <Component {...pageProps}/>
+            </Layout>
         </ApolloProvider>
     )
 }

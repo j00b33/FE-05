@@ -4,12 +4,12 @@ import {AppProps} from 'next/app'
 import 'antd/dist/antd.css'
 import {Global} from '@emotion/react'
 import Layout from '../src/components/commons/layout'
-import globalStyles from '../src/commons/styles/globalstlyes'
+import {globalStyles} from '../src/commons/styles/globalstlyes'
 
 function MyAPP({Component, pageProps}: AppProps){
 
     const client = new ApolloClient({
-        uri: "http://example.codebootcamp.co.kr/graphql", 
+        uri: "http://backend05.codebootcamp.co.kr/graphql", 
         cache: new InMemoryCache()
         //"링크"에서 받아온 데이터들을 따로 저장공간을 만들어서 저장을 해둠
         

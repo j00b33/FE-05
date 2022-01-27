@@ -53,9 +53,9 @@ export default function BoardUIPresenter(props){
                         <F.Label>주소</F.Label>
                         <F.ZipcodeWrapper>
                             <F.Zipcode placeholder="00000"
-                            readOnly
+                            readOnly={true}
                             value={props.zipcode|| 
-                                 props.data?.fetchBoard.boardAddress?.zipcode} 
+                                 props.data?.fetchBoard.boardAddress?.zipcode || ""} 
                             //value 보여주고 받아온게 없으면 이걸 보여줘
                             />
                             <F.AddressBtn onClick={props.onClickAddressSearch}>
@@ -65,13 +65,13 @@ export default function BoardUIPresenter(props){
                         </F.ZipcodeWrapper>
                         <F.AddressDetail
                             readOnly = {true}
-                            value={ props.address || props.data?.fetchBoard.boardAddress?.address}
+                            value={ props.address || props.data?.fetchBoard.boardAddress?.address || ""}
                             //우리가 클릭해서 선택한 주소가 있으면 보여주고 없으면 fetchBoard로 받아온 address를 받아줘
                             //이때 우리가 아직 선택한게 없다면 value가 없을테니까 공백이 보여지게 되는거임
                         />
                         <F.AddressDetail
                             onChange={props.onChangeAddressDetail}
-                             defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+                             defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail || ""}
                         />
                     </F.ZipWrapper>
 
