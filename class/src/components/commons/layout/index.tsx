@@ -11,11 +11,10 @@ interface IProps {
 }
 
 const LayoutSidebar = styled.div`
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 600px;
     background-color: grey;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-`
+    `
 
 const LayoutBody = styled.div`
     

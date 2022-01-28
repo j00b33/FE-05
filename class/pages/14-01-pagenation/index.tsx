@@ -13,18 +13,20 @@ const FETCH_BOARDS = gql`
 export default function PageNationPage(){
 
     const {data, refetch} = useQuery(FETCH_BOARDS,{
+        //refetch라는 기능 자체도 받아올 수 있음
         variables: {page : 1}
     })
 
     const onClickPage = (event) =>{
         refetch({ page: Number(event.target.id)})
+        //내가 클릭한 해당 페이지를 refetch ({이 괄호 안 자체가 variables 입력 공간})
         //refetch 하면 최종적으로 {data}가 바뀜
     }
 
     return(
         <div>
             <h1>Page Nation Practice</h1>
-            {data?.fetchBoards?.map((el) =>(
+            {data?.fetchBoards?.map((el) =>(  
                 <div key={el._id}>{el.title} {el.writer}</div>
             ))}
 
@@ -34,14 +36,15 @@ export default function PageNationPage(){
                 </span>
             ))}
             
-            {/* 
-            //이렇게 따로따로 다 해줘도 되긴 하지만 더 간략하게 하기 위해서 윗방법 사용
-            <span onClick={onClickPage} id="1"> 1 </span>
+        
+            {/* <span onClick={onClickPage} id="1"> 1 </span>
             <span onClick={onClickPage} id="2"> 2 </span>
-            <span onClick={onClickPage} id="3"> 3 </span>
-            */}
+            <span onClick={onClickPage} id="3"> 3 </span> */}
+           
         </div>
 
     )
 
 }
+
+                        //id에 들어가는 숫자가 fetchBoards의 아이디 그 특정 리스트를 받아오는 10개 페이지 아이디

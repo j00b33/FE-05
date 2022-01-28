@@ -38,3 +38,4 @@ export const UPDATE_BOARD_COMMENT = gql`
         }
     }
 `
+

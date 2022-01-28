@@ -27,6 +27,8 @@ export default function PageNationNextPage(){
 
     const onClickPrevPage = () => {
         setStartPage(prev => prev - 10)
+        //전 값에서 10을 빼주면 그게 startPage값
+        // === startPage - 1 이랑 같은 기능
     }
 
     const onClickNextPage = () => {
@@ -49,13 +51,6 @@ export default function PageNationNextPage(){
             ))}
 
             <span onClick={onClickNextPage}>다음페이지</span>
-            
-            {/* 
-            //이렇게 따로따로 다 해줘도 되긴 하지만 더 간략하게 하기 위해서 윗방법 사용
-            <span onClick={onClickPage} id="1"> 1 </span>
-            <span onClick={onClickPage} id="2"> 2 </span>
-            <span onClick={onClickPage} id="3"> 3 </span>
-            */}
         </div>
 
     )

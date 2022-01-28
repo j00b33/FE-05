@@ -62,7 +62,7 @@ export const SubmitBtn = styled.div`
     height: 161px; 
     color: white;
     background-color: #6281aa;
-    border: 3px solid black;
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: center;

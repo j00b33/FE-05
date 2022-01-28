@@ -77,22 +77,21 @@ export default function BoardContain(props){
         setYoutubeUrl(event.target.value)
     }
 
-    function onClickAddressSearch (event){
-        console.log("확인")
+    function onClickAddressSearch (){
         setIsOpen(true) }
 
     function onChangeAddressDetail(event){
         setAddressDetail(event.target.value) }
 
-        const onCompleteAddressSearch = (data: any) =>{
-            //이걸 클릭했을떄 내가 어떤 주소를 클릭했는지 데이터가 들어옴 
-            setAddress(data.address)
-            setZipcode(data.zonecode)
-            setIsOpen(false)
-            //modal complete되면 다시 닫아줘야함
-            //state바뀌면 전체 component가 다 새롭게 다시 만들어지는데 이때 false로 그려지게 됨
-            //그래서 우리가 느끼기엔 모달이 나왔다가 사라진거처럼 사실은 false인 상태로 다시 그려진 것
-            //사라진게 아니라 아예 다시 새롭게 됐을때 그려지지 않은것
+    const onCompleteAddressSearch = (data: any) =>{
+        //이걸 클릭했을떄 내가 어떤 주소를 클릭했는지 데이터가 들어옴 
+        setAddress(data.address)
+        setZipcode(data.zonecode)
+        setIsOpen(false)
+        //modal complete되면 다시 닫아줘야함
+        //state바뀌면 전체 component가 다 새롭게 다시 만들어지는데 이때 false로 그려지게 됨
+        //그래서 우리가 느끼기엔 모달이 나왔다가 사라진거처럼 사실은 false인 상태로 다시 그려진 것
+        //사라진게 아니라 아예 다시 새롭게 됐을때 그려지지 않은것
     
 }
     
