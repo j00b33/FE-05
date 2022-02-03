@@ -1,5 +1,5 @@
-import Boards from "../../src/components/units/14-05-boards-pagenation/Board";
-import Pagination from "../../src/components/units/14-05-boards-pagenation/Pagination";
+import Boards from "../../../src/components/units/14-05-boards-pagenation/Board";
+import Pagination from "../../../src/components/units/14-05-boards-pagenation/Pagination";
 import { gql, useQuery } from "@apollo/client";
 
 const FETCH_BOARDS = gql`

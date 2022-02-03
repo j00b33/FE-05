@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 
 export default function LayoutFooter(){
     return(
-        <Wrapper>Footer Area</Wrapper>
+        <Wrapper></Wrapper>
 
     )
 }

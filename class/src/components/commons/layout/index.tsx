@@ -43,7 +43,7 @@ export default function Layout(props: IProps){
             <LayoutBanner/>
             <LayoutNavigation/>
         <BodyWrapper>
-            <LayoutSidebar>Side Bar Area</LayoutSidebar>
+            <LayoutSidebar></LayoutSidebar>
             <LayoutBody>{props.children}</LayoutBody>
         </BodyWrapper>
             <LayoutFooter/>

@@ -1,5 +1,5 @@
-import Child1 from "../../src/components/units/14-lifting-state-up/Child1"
-import Child2 from "../../src/components/units/14-lifting-state-up/Child2"
+import Child1 from "../../../src/components/units/14-lifting-state-up/Child1"
+import Child2 from "../../../src/components/units/14-lifting-state-up/Child2"
 import { useState } from "react"
 
 export  default function LiftingStateUpPage(){

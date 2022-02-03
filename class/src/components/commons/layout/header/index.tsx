@@ -8,6 +8,6 @@ const Wrapper = styled.div`
 
 export default function LayoutHeader(){
     return(
-        <Wrapper>Header Area</Wrapper>
+        <Wrapper></Wrapper>
     )
 }

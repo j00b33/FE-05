@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 
 export default function LayoutNavigation(){
     return(
-        <Wrapper>Navigation Area</Wrapper>
+        <Wrapper></Wrapper>
 
     )
 }

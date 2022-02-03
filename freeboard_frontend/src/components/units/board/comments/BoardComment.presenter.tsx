@@ -4,14 +4,13 @@ import  {RiDeleteBinLine} from 'react-icons/ri'
 import {GrEdit} from 'react-icons/gr'
 import InfiniteScroll from 'react-infinite-scroller';
 
-
 export default function BoardCommentUIPage(props){
     return(
         <C.Wrapper>
             
             <C.MyTitle>Comments</C.MyTitle>
 
-                <C.InputWrapper>
+                <C.InputWrapper> 
                     <C.PInput type="text" placeholder="Writer" 
                     onChange={props.onChangeMyWriter}
                     />
