@@ -71,8 +71,10 @@ const  Settings = styled(RiSettings2Line)`
 
 
 const onClickTitle = () => {
-    Router.push(`/01-01-board/list`)
+    Router.push("/")
 }
+
+
 
 export default function LayoutHeader(){
     return(

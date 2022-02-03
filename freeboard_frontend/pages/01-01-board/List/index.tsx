@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import Pagination from '../../../src/components/commons/pagination/01/pagination.container'
-import BoardListPage from '../../../src/components/units/board/list/BoardList.container'
+import BoardListPage from '../../../src/components/board/units/list/BoardList.container'
 
 const FETCH_BOARDS_COUNT = gql`
     query fetchBoardsCount {

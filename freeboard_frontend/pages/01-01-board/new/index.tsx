@@ -1,4 +1,4 @@
-import BoardContain from '../../../src/components/units/board/write/BoardWrite.container'
+import BoardContain from "../../../src/components/board/units/write/BoardWrite.container"
 
 export default function FreeBoard(){
     return <BoardContain isEdit={false}/>

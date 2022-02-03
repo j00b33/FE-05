@@ -28,19 +28,23 @@ const Inner = styled.div`
         color: white;
     }
 `
-const onClickInner = () =>{
+const onClickBoard = () =>{
     Router.push(`/01-01-board/new`)
+}
+
+const onClickList = () => {
+    Router.push(`/01-01-board/list`)
 }
 
 export default function LayoutNavigation(){
     return(
         <Wrapper>
             <InnerWrapper>
-                <Inner onClick={onClickInner}>Freeboard</Inner>
+                <Inner onClick={onClickBoard}>Freeboard</Inner>
                 {"  /  "}
                 <Inner>Market</Inner>
                 {"  /  "}
-                <Inner>My Page</Inner>
+                <Inner onClick={onClickList}>List</Inner>
             </InnerWrapper>
         </Wrapper>
 

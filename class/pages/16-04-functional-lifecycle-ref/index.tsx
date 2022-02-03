@@ -29,6 +29,8 @@ export default function FunctionLifeCycleRefPage () {
         inputRef.current?.focus()
         //해당하는 태그를 찾을 수 있고 그 태그에 포커스를 맞추는것
 
+       
+
         return () => {
             //이 부분은 componentWillunmount와 동일
             console.log("여기서 나갈래옹")
@@ -40,7 +42,11 @@ export default function FunctionLifeCycleRefPage () {
             //--> refresh 해도 최초 한번은 실행이 됨
         //뭐 하나라도 바뀌면 실행
         console.log("수정되고 다시 그려짐")
-    }) //--> count가 바뀌었을때만 실행됨 ()
+
+         // setCount((prev) => prev + 1)
+         // 무한루프 빠짐 DAY16 강의 3시간차 확인
+
+    },[count]) //--> count가 바뀌었을때만 실행됨 ()
 
 
 
@@ -55,7 +61,7 @@ export default function FunctionLifeCycleRefPage () {
         router.push("/")
     }
 
-    
+
 
     console.log("이 콘솔은 언제 실행이 될까옹")
     //componentDidMount
