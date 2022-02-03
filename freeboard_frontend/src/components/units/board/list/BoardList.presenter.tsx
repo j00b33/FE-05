@@ -34,6 +34,8 @@ return(
                     </D.Row>
                 ))}
             </D.InnerWrapper>
+            
+            
 
             <D.InnerWrapper>
                 <D.HeadType>Date</D.HeadType>
@@ -46,42 +48,7 @@ return(
             </D.InnerWrapper>
         </D.ListWrapper>
 
-
-
-{/* text */}
-        <D.TextList>
-            {props.startPage !== 1 && (
-            <D.NextPage onClick={props.onClickPrevPage}>
-            ＜
-            </D.NextPage> 
-            )}
-            
-            
-            {new Array(10).fill(1).map(
-                (_, index) => 
-                props.startPage + index <= props.lastPage &&(
-                        <D.Pages  
-                        key={index + props.startPage} 
-                        onClick={props.onClickPage}
-                        id={String(index + props.startPage)}
-                        className={index + props.startPage === props.currentPage ? "isNow" : ""}
-                        > 
-                            {` ${index + props.startPage} `}
-                        </D.Pages> 
-                )
-            )}
-        {props.startPage +  10 > props.lastPage || (
-            <D.NextPage onClick={props.onClickNextPage}>＞</D.NextPage> )}
-            </D.TextList> 
-
-
-
-
-        <D.ListButton onClick={props.onClickMoveToBoardNew}>
-            <D.Button>
-                게시물 등록하기
-            </D.Button>
-        </D.ListButton>
-    </D.Wrapper>
+        </D.Wrapper>
+        
 )
 }

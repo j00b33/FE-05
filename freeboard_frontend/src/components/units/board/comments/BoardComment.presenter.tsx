@@ -1,28 +1,32 @@
 import * as C from './BoardComment.styles'
 import { Modal } from "antd";
+import  {RiDeleteBinLine} from 'react-icons/ri'
+import {GrEdit} from 'react-icons/gr'
+import InfiniteScroll from 'react-infinite-scroller';
+
 
 export default function BoardCommentUIPage(props){
     return(
         <C.Wrapper>
             
-            <C.MyTitle>댓글</C.MyTitle>
+            <C.MyTitle>Comments</C.MyTitle>
 
                 <C.InputWrapper>
-                    <C.PInput type="text" placeholder="작성자" 
+                    <C.PInput type="text" placeholder="Writer" 
                     onChange={props.onChangeMyWriter}
                     />
-                    <C.PInput type="password" placeholder="비밀번호" onChange={props.onChangeMyPassword} value={props.myPassword}/>
+                    <C.PInput type="password" placeholder="Password" onChange={props.onChangeMyPassword} value={props.myPassword}/>
                     <C.Star onChange={props.onChangeStar}
                     value={props.star}
                     />
                 </C.InputWrapper>
             <C.CreateC>
                 <C.MyWriting type="text"
-                    placeholder='개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.'
+                    placeholder='Enter Your Comment Here.'
                     onChange={props.onChangeMyContents}
                     value={props.myContents}
                 ></C.MyWriting>
-            <C.SubmitBtn onClick={props.onClickSubmit}>등록</C.SubmitBtn>
+            <C.SubmitBtn onClick={props.onClickSubmit}>Comment</C.SubmitBtn>
             </C.CreateC>
 
 
@@ -30,12 +34,18 @@ export default function BoardCommentUIPage(props){
                 
             {props.isOpen && (
                     <Modal visible={true} onOk={props.onClickDelete}>
-                        <div>비밀번호 입력</div>
+                        <div>Enter Your Password</div>
                         <C.PInput type="password" onChange={props.onChangeDeletePassword}/>
                     </Modal>
             )}
 
-
+        <C.CommentsWrapper>
+        <InfiniteScroll
+            pageStart={0}
+            // loadMore={onLoadMore}
+            hasMore={true}
+            useWindow={false}
+        >
             {props.data?.fetchBoardComments.map((el) => (
             <C.Comments key={el._id}>
                 <C.WrittenStar value={el?.rating} disabled/>
@@ -44,11 +54,14 @@ export default function BoardCommentUIPage(props){
                 <C.DivisionLine></C.DivisionLine>
             
                 <C.Update>
-                    <C.CommentEdit onClick={props.onclickEditCom}>수정</C.CommentEdit>
-                    <C.Delete id={el._id} onClick={props.onClickOpenDeleteModal}>삭제</C.Delete>
+                    <C.CommentEdit onClick={props.onClickEditCom}><GrEdit/></C.CommentEdit>
+                    <C.Delete id={el._id} onClick={props.onClickOpenDeleteModal}><RiDeleteBinLine/></C.Delete>
                 </C.Update>
             </C.Comments>
             ))}
+        </InfiniteScroll>
+        </C.CommentsWrapper>
+        <C.CommentAlert> * Scroll to See More Comments * </C.CommentAlert>
         </C.Wrapper>
     )
 }

@@ -25,6 +25,7 @@ export default function Pagination(props){
     return (
         <div>
             <span onClick={onClickPrevPage}>이전</span>
+            
             {new Array(10).fill(1).map(
                 (_, index) => 
                     startPage + index <= props.lastPage &&(

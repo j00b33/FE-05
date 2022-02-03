@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import ReactPlayer from 'react-player'
+import {VscLocation} from 'react-icons/vsc'
+import {BiLike, BiDislike} from 'react-icons/bi'
 
 
 
@@ -24,27 +26,40 @@ export const MyWrapper = styled.div`
 
 export const MyHeader = styled.div`
     width: 996px;
-    /* display: flex;
+    
+    display: flex;
     flex-direction: row;
-    justify-content: space-evenly; */
+    align-items: space-evenly;
+
     padding-top: 50px;
     padding-bottom: 30px;
-`
 
-export const ProfilePic = styled.div`
-    width: 46px;
-    height: 46px;
 `
 
 export const HeaderLine = styled.div`
-    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    height: 50px;
 `
+
+export const LocationWrapper = styled.div`
+`
+
+export const AddressTool = styled(VscLocation)`
+    color: #b81a39;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+`
+
 
 export const MyWriter = styled.div`
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
     padding-bottom: 10px;
+    font-family: Cochin;
 `
 
 
@@ -52,11 +67,12 @@ export const MyDate = styled.div`
     font-weight: normal;
     font-size: 16px;
     color: #828282;
+    font-family: Cochin;
 `
 
 export const DivisionL = styled.div`
     width: 996px;
-    border: 1px solid #5e85a8;
+    border: 1px solid #b81a39;
 `
 
 export const MyBody = styled.div`
@@ -65,18 +81,17 @@ export const MyBody = styled.div`
     display: flex;
     flex-direction: column;
     align-items: space-evenly;
-    padding-top: 100px;
+    padding-top: 50px;
 `
 export const MyTitle = styled.div`
-    font-family: Noto Sans CJK KR;
+    font-family: Cochin;
     font-weight: 700;
     font-size: 36px;
     padding-bottom: 40px;
-    color: #35618a;
 `
 
 export const MyContents = styled.div`
-    font-family: Noto Sans CJK KR;
+    font-family: Cochin;
     font-size: 20px;
 `
 
@@ -86,8 +101,6 @@ export const MyYoutube = styled(ReactPlayer)`
 `
 
 export const MainPic = styled.img `
-    width: 900px;
-    height: 400px;
     padding-bottom: 50px;
 `
 
@@ -95,6 +108,54 @@ export const MainVid = styled.div`
     width: 486px;
     height: 240px;
 `
+//likes
+export const LikeWrapper =styled.div`
+    width: 100px;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
+export const Like = styled(BiLike)`
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    :hover {
+        color: #b81a39;
+    }
+`
+
+export const Dislike = styled(BiDislike)`
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    :hover {
+        color: #b81a39;
+    }
+`
+
+export const IconWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60px;
+`
+
+export const LikeCount = styled.div`
+    color: grey;
+    font-size: 14px;
+    font-family: Cochin;
+`
+
+export const DislikeCount = styled.div`
+    color: grey;
+    font-size: 14px;
+    font-family: Cochin;
+`
+
+//footer 
 export const PageBottom = styled.div`
     padding-left: 380px;
 
@@ -107,6 +168,8 @@ export const PageBottom = styled.div`
 `
 
 export const MyBtn = styled.button`
+    font-family: Cochin;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -115,16 +178,17 @@ export const MyBtn = styled.button`
     width: 179px;
     height: 45px;
 
-    background: #FFFFFF;
-    border: 1px solid #BDBDBD;
+    background: white;
+    color: black;
+    border: 1px solid #262626;
     box-sizing: border-box;
 
     border-radius: 10px;
     cursor: pointer;
 
     :hover {
-    background-color: lightsteelblue;
-    border-color: white;
+    background-color: #b81a39;
+    border-color: #262626;
     color: white;
   }
 `

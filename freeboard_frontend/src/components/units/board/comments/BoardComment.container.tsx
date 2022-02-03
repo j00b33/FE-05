@@ -6,9 +6,13 @@ import { useRouter } from "next/router";
 import { Modal} from 'antd';
 import 'antd/dist/antd.css'
 
-
 export default function BoardCommentPage(){
     const router = useRouter()
+
+    const [myWriter, setMyWriter] = useState("");
+    const [myPassword, setMyPassword] = useState("");
+    const [myContents, setMyContents] = useState("");
+    const [star, setStar] = useState(0)
 
     const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
     const { data } = useQuery(FETCH_BOARD_COMMENTS, {
@@ -18,13 +22,9 @@ export default function BoardCommentPage(){
     const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
 
     const [isOpen, setIsOpen] = useState(false)
+    const [password, setPassword] = useState("")
     const [selectedId, setSelectedId] = useState("")
 
-
-    const [myWriter, setMyWriter] = useState("");
-    const [myPassword, setMyPassword] = useState("");
-    const [myContents, setMyContents] = useState("");
-    const [star, setStar] = useState(0)
 
     function onChangeMyWriter(event){
         setMyWriter(event.target.value);
@@ -67,21 +67,20 @@ export default function BoardCommentPage(){
         }
     }
 
-
-    function onChangeDeletePassword(event) {
-        setMyPassword(event.target.value);
-      }
-    
     function onClickOpenDeleteModal(event){
         setIsOpen(true)
         setSelectedId(event.target.id)
     }
 
-    async function onClickDelete(event){
+    function onChangeDeletePassword(event) {
+        setPassword(event.target.value);
+      }
+
+    async function onClickDelete(){
         try{
         await deleteBoardComment({
             variables: {
-                password: myPassword,
+                password: password,
                 boardCommentId: selectedId
             },
             refetchQueries : [{
@@ -95,8 +94,7 @@ export default function BoardCommentPage(){
         }
     }
 
-
-    // async function onclickEditCom(){
+    // async function onClickEdit(){
     //     await updateBoardComment({
     //         variables: {
     //             updateBoardCommentInput: myContents,
@@ -104,8 +102,6 @@ export default function BoardCommentPage(){
     //         }
     //     })
     // }
-
-
 
     return(
         <BoardCommentUIPage
@@ -121,8 +117,6 @@ export default function BoardCommentPage(){
         onChangeMyContents={onChangeMyContents}
         onChangeStar={onChangeStar}
 
-        // onclickEditCom={onclickEditCom}
-
         onClickDelete={onClickDelete}
         onClickOpenDeleteModal={onClickOpenDeleteModal}
         onChangeDeletePassword={onChangeDeletePassword}
@@ -130,8 +124,3 @@ export default function BoardCommentPage(){
         />
     )
 }
-
-
-
-
-      

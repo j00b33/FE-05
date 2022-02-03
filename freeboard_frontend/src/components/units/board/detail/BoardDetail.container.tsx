@@ -1,7 +1,7 @@
 import BoardDetailUIPage from './BoardDetail.presenter'
 import {useRouter} from 'next/router'
 import {useQuery, useMutation} from '@apollo/client'
-import {FETCH_BOARD, DELETE_BOARD} from './BoardDetail.queries'
+import {FETCH_BOARD, DELETE_BOARD, LIKE_BOARD, DISLIKE_BOARD} from './BoardDetail.queries'
 import BoardCommentPage from '../comments/BoardComment.container'
 import { Modal } from "antd";
 
@@ -9,6 +9,9 @@ import { Modal } from "antd";
 export default function BoardDetailPage(){
     const router = useRouter()
     const [deleteBoard] = useMutation(DELETE_BOARD)
+    const [likeBoard] = useMutation(LIKE_BOARD)
+    const [dislikeBoard] = useMutation(DISLIKE_BOARD)
+
 
     const { data } = useQuery(FETCH_BOARD, { 
         variables: { boardId: String(router.query.boardDetail)}  
@@ -30,6 +33,25 @@ export default function BoardDetailPage(){
         router.push("/01-01-board/list")
     }
 
+    const onClickLike = () => {
+        likeBoard({
+            variables: {boardId: String(router.query.boardDetail)},
+            refetchQueries: [
+                {query: FETCH_BOARD, variables: 
+                    {boardId: String(router.query.boardDetail)}}
+            ]
+        })
+    }
+
+    const onClickDislike = () => {
+        dislikeBoard({
+            variables: {boardId: String(router.query.boardDetail)},
+            refetchQueries: [
+                {query: FETCH_BOARD, variables: { boardId: String(router.query.boardDetail)}}
+            ]
+        })
+    }
+
     return (
         <>
         <BoardDetailUIPage
@@ -37,6 +59,11 @@ export default function BoardDetailPage(){
         onClickMoveToEdit = {onClickMoveToEdit}
         onClickMovetoList = {onClickMovetoList}
         onClickDelete = {onClickDelete}
+        onClickLike={onClickLike}
+        onClickDislike={onClickDislike}
+
+        likeCount={data?.fetchBoard.likeCount}
+        dislikeCount={data?.fetchBoard.dislikeCount}
         />
         <BoardCommentPage/>
         </>

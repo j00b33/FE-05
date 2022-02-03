@@ -28,6 +28,7 @@ export const Title = styled.div`
     font-weight: bold;
     font-size: 36px;
     padding-bottom: 40px;
+    font-family: Cochin;
 `
 
 
@@ -49,6 +50,7 @@ export const Label = styled.div`
     font-weight: 500;
     font-size: 16px;
     color: black; 
+    font-family: Cochin;
 `
 
 export const Writer = styled.input`
@@ -56,6 +58,7 @@ export const Writer = styled.input`
     height: 52px;
     font-size: 16px;
     border: 1px solid #BDBDBD;
+    font-family: Cochin;
 `
 
 export const Password = styled.input`
@@ -63,6 +66,7 @@ export const Password = styled.input`
     height: 52px;
     font-size: 16px;
     border: 1px solid #BDBDBD;
+    font-family: Cochin;
 `
 export const Longbox = styled.input`
     width: 996px;
@@ -70,6 +74,7 @@ export const Longbox = styled.input`
     border: 1px solid #BDBDBD;
     /* box-sizing: border-box; */
     font-size: 16px;
+    font-family: Cochin;
 `
 export const AddressDetail = styled.input`
     width: 996px;
@@ -77,6 +82,7 @@ export const AddressDetail = styled.input`
     border: 1px solid #BDBDBD;
     /* box-sizing: border-box; */
     font-size: 16px;
+    font-family: Cochin;
 `
 
 export const Contents = styled.input `
@@ -87,6 +93,7 @@ export const Contents = styled.input `
     height: 480px;
     font-size: 16px;
     border: 1px solid #BDBDBD;
+    font-family: Cochin;
     `
 
 export const ZipWrapper = styled.div `
@@ -109,6 +116,7 @@ export const Zipcode= styled.input`
     width: 77px;
     height: 52px;
     font-size: 16px;
+    font-family: Cochin;
 
     border: 1px solid #BDBDBD;
 
@@ -129,6 +137,7 @@ export const AddressBtn = styled.button`
     background-color: black;
     color: white;
     font-size: 16px;
+    font-family: Cochin;
 
     cursor: pointer;
 `
@@ -139,6 +148,7 @@ export const Youtube = styled.input`
     border: 1px solid #BDBDBD;
     /* box-sizing: border-box; */
     font-size: 16px;
+    font-family: Cochin;
 `
 
 export const ImageWrapper = styled.div`
@@ -169,6 +179,7 @@ export const Box = styled.button`
 
     color: black;
     font-size: 12px;
+    font-family: Cochin;
 
     width: 78px;
     height: 78px;
@@ -176,7 +187,9 @@ export const Box = styled.button`
     cursor: pointer;
 `
 
-export const BoxWord = styled.div``
+export const BoxWord = styled.div`
+font-family: Cochin;
+`
 
 export const OptionWrapper = styled.div`
     display: flex;
@@ -199,13 +212,12 @@ export const RadioWrapper = styled.div`
 
     height: 24px;
     width: 159px;
+    font-family: Cochin;
 `
 
-export const RadioButton = styled.input `
+export const RadioButton = styled.input`
 `
 
-export const RadioLabel = styled.div`
-`
 
 export const ButtonWrapper = styled.div`
     width: 100%;
@@ -224,16 +236,21 @@ interface IProps {
 }
 
 export const MyBtn = styled.button`
+    font-family: Cochin;
     width: 179px;
     height: 52px;
+    color: black; 
+    font-size: 20px;
+
+    border-radius: 15px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    color: black; 
 
     cursor: pointer;
 
-    background-color: ${(props: IProps) => props.isActive === true ? "#6891b8fc" : "none"};
+    background-color: ${(props: IProps) => props.isActive === true ? "#b81a39" : "none"};
+    color: ${(props: IProps) => props.isActive === true ? "white" : "none"};
 `

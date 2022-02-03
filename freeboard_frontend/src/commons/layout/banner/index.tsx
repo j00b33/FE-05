@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
     height: 300px;
-    background-color: #525252;
+    background-color: #6e6e6e;
 `
 
 const ImageWrapper = styled.div`
@@ -19,6 +19,7 @@ const ImageWrapper = styled.div`
 
 const  Image = styled.img`
     width: 100%;
+    height: 100%;
 `
 
 const SliderCustom = styled(Slider)`
@@ -42,13 +43,13 @@ export default function LayoutBanner(){
         <Wrapper>
             <SliderCustom {...settings}>
             <ImageWrapper>
-              <Image src="/pic.png"/>
+              <Image src="/black.jpg"/>
             </ImageWrapper>
             <ImageWrapper>
-            <Image src="/pic2.png"/>
+            <Image src="/wine.jpg"/>
             </ImageWrapper>
             <ImageWrapper>
-            <Image src="/pic3.png"/>
+            <Image src="/grey.jpg"/>
             </ImageWrapper>
           </SliderCustom>
         </Wrapper>

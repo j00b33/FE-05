@@ -27,13 +27,12 @@ export default function BoardContain(props){
     const [zipcode, setZipcode] = useState("");
     const [address, setAddress]= useState("")
     const [addressDetail, setAddressDetail] = useState("")
-
     const [createBoard] = useMutation(CREATE_BOARD)
     const [updateBoard] = useMutation(UPDATE_BOARD)
 
     function onChangeMyWriter(event){
         setMyWriter(event.target.value);
-        if(myWriter.length>1){
+        if(myWriter !== ""){
             setMyWriterError("")
             setIsActive(true)
         }else {
@@ -55,7 +54,7 @@ export default function BoardContain(props){
     
     function onChangeMyTitle(event){
         setMyTitle(event.target.value);
-        if(myTitle.length>0){
+        if(myTitle !== ""){
             setMyTitleError("")
             setIsActive(true)
     }else {
@@ -65,7 +64,7 @@ export default function BoardContain(props){
 
     function onChangeMyContents(event){
         setMyContents(event.target.value);
-        if(myContents.length>9){
+        if(myContents !==""){
             setMyContentsError("")
             setIsActive(true)
     }else {
@@ -77,6 +76,8 @@ export default function BoardContain(props){
         setYoutubeUrl(event.target.value)
     }
 
+
+    //우편번호 받아오기
     function onClickAddressSearch (){
         setIsOpen(true) }
 
@@ -86,34 +87,43 @@ export default function BoardContain(props){
     const onCompleteAddressSearch = (data: any) =>{
         //이걸 클릭했을떄 내가 어떤 주소를 클릭했는지 데이터가 들어옴 
         setAddress(data.address)
-        setZipcode(data.zonecode)
+        setZipcode(String(data.zonecode))
         setIsOpen(false)
+
+        console.log(zipcode)
+        console.log(address)
         //modal complete되면 다시 닫아줘야함
         //state바뀌면 전체 component가 다 새롭게 다시 만들어지는데 이때 false로 그려지게 됨
         //그래서 우리가 느끼기엔 모달이 나왔다가 사라진거처럼 사실은 false인 상태로 다시 그려진 것
         //사라진게 아니라 아예 다시 새롭게 됐을때 그려지지 않은것
     
 }
+
+    const onToggleModal = () => {
+        setIsOpen(prev => !prev)
+    }
+
     
 
     const onClickSubmit = async () => {
-        if (myWriter.length<2) {
+        if (myWriter==="") {
             setMyWriterError("* 성을 포함하여 정확한 이름을 입력해주세요");
         } 
         if (myPassword.length<8) {
             setMyPasswordError("* 비밀번호를 8자 이상 입력해주세요");
         }
-        if (myTitle.length<1) {
+        if (myTitle==="") {
             setMyTitleError("* 제목을 한 글자 이상 입력해주세요");
         }
-        if (myContents.length<10) {
+        if (myContents==="") {
             setMyContentsError("* 내용을 10자 이상 입력해주세요");
         }
-        if (myWriter.length>1 
+        if (myWriter!==""
             && myPassword.length>7
-            && myTitle.length>0
-            && myContents.length>9) {
+            && myTitle!==""
+            && myContents!=="") {
                 Modal.success({ content: "게시물이 등록되었습니다" })
+                try{
                 const result = await createBoard({
                 variables: {
                     createBoardInput: {
@@ -130,9 +140,11 @@ export default function BoardContain(props){
                     },
                   },
                 })
-
-    router.push(`/01-01-board/${result.data.createBoard._id}`)
+        router.push(`/01-01-board/${result.data.createBoard._id}`)
+        }catch(error){
+            console.log(error.message)
         }
+    }
     }
     const onClickUpdate = async () => {
         if (!myTitle && !myContents && !youtubeUrl){
@@ -205,10 +217,13 @@ export default function BoardContain(props){
        isActive={isActive}
        isEdit={props.isEdit}
 
-       zipcode={props.zipcode}
-       address={props.address}
+       zipcode={zipcode}
+       address={address}
 
        onCompleteAddressSearch={onCompleteAddressSearch}
+
+       onToggleModal={onToggleModal}
+
        />
     )
 

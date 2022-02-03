@@ -17,7 +17,8 @@ const BodyWrapper =styled.div`
     padding-bottom: 150px;
 `
 
-const LayoutBody = styled.div``
+const LayoutBody = styled.div`
+`
 
 export  default function Layout(props:IProps){
     const router = useRouter()
