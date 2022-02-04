@@ -10,6 +10,8 @@ export const MyWrapper = styled.div`
     /* height: 1847px; */
     margin: 100px;
 
+    margin-left: 350px;
+
     padding-top:80px;
     padding-bottom: 100px;
     padding-left: 102px;
@@ -158,6 +160,8 @@ export const DislikeCount = styled.div`
 //footer 
 export const PageBottom = styled.div`
     padding-left: 380px;
+
+    margin-left: 260px;
 
     width: 1000px;
     height: 45px;

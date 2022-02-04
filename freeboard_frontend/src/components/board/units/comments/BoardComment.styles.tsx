@@ -9,6 +9,8 @@ export const Wrapper = styled.div`
     flex-direction: column;
     border: none;
 
+    margin-left: 300px;
+
     padding-top: 100px;
     padding-left: 100px;
 `

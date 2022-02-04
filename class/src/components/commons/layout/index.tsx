@@ -11,9 +11,9 @@ interface IProps {
 }
 
 const LayoutSidebar = styled.div`
-    width: 400px;
+    width: 300px;
     height: 600px;
-    background-color: grey;
+    background-color: #555555;
     `
 
 const LayoutBody = styled.div`
@@ -39,7 +39,6 @@ export default function Layout(props: IProps){
         <div>
             {isHiddenHeader && <LayoutHeader/>}
             <LayoutHeader/>
-            <LayoutFooter/>
             <LayoutBanner/>
             <LayoutNavigation/>
         <BodyWrapper>

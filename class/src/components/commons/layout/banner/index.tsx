@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 const Wrapper = styled.div`
-    height: 300px;
-    background-color: #b0d5d8;
+    height: 200px;
+    background-color: #a1cce7;
 `
 
 export default function LayoutBanner(){
