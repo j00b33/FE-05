@@ -9,11 +9,10 @@ export const Wrapper = styled.div`
     flex-direction: column;
     border: none;
 
-    margin-left: 300px;
-
     padding-top: 100px;
-    padding-left: 100px;
+    padding-left: 140px;
 `
+
 export const CreateC = styled.div`
     display: flex;
     flex-direction: row;
@@ -62,15 +61,15 @@ export const MyWriting = styled.input`
     color: grey;
     font-size: 164x;
     font-weight: 500;
-    width: 1000px;
-    height: 161px;
+    width: 950px;
+    height: 90px;
     border-radius: 16px;
     font-family: Cochin;
 `
 
 export const SubmitBtn = styled.div`
-    width: 80px;
-    height: 161px; 
+    width: 100px;
+    height: 90px; 
     color: #b81a39;
 
     background-color: white;

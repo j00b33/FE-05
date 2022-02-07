@@ -6,6 +6,8 @@ import {GiSafetyPin} from 'react-icons/gi'
 
 const Wrapper = styled.div`
     height: 120px;
+    width: 100%;
+
     background-color: white;
 
     display: flex;

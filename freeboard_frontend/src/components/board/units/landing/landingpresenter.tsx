@@ -24,29 +24,29 @@ export default function LandingUIPage(props){
         <L.ColumnWrapper>
         <L.ColumnOne>
             <L.SubWrapper>
-                <L.MainPic src="/picone.png"/>
+                <L.MainPic src="/landingpage/picone.png"/>
                 <L.MainPicDes>{"Find your favorite piercings in Pierce Peers"} </L.MainPicDes>
             </L.SubWrapper>
 
             <L.SubWrapper>
-                <L.MainPic src="/shopone.png"/>
+                <L.MainPic src="/landingpage/shopone.png"/>
                 <L.MainPicDes>{"You can find some amazing piercing shops"} </L.MainPicDes>
             </L.SubWrapper>
 
             <L.SubWrapper>
-                <L.MainPic src="/pictwo.png"/>
+                <L.MainPic src="/landingpage/pictwo.png"/>
                 <L.MainPicDes>{"What about your own unique piercings?"} </L.MainPicDes>
             </L.SubWrapper>
         </L.ColumnOne>
 
         <L.Columntwo>
             <L.SubWrapper>
-                <L.MainPic src="/hand.png"/>
+                <L.MainPic src="/landingpage/hand.png"/>
                 <L.MainPicDes>{"You can communicate with others to get information"} </L.MainPicDes>
             </L.SubWrapper>
 
             <L.SubWrapper>
-                <L.MainPic src="/epic.png"/>
+                <L.MainPic src="/landingpage/epic.png"/>
                 <L.MainPicDes>{"There are diverse types of piercings"} </L.MainPicDes>
             </L.SubWrapper>
         </L.Columntwo>

@@ -127,6 +127,8 @@ export const Footer = styled.div`
     flex-direction: row;
     justify-content: center;
 
+    width: 100%;
+
     height: 100px;
     margin-top: 100px;
 `
@@ -139,16 +141,13 @@ export const HomeButton = styled.div`
     font-size: 30px;
 
     background-color: black;
-    border: 4px solid #b81a39;
     color: white;
 
-    border-radius: 15px;
-    width: 500px;
+    width: 100%;
     height: 100px;
 
     cursor: pointer;
     :hover{
-        background-color: #b81a39;
-        border: 4px solid black;
+        color: #b81a39;
     }
 `

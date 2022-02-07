@@ -29,13 +29,12 @@ export default function BoardDetailUIPage(props){
 
             <D.MyBody>
                 <D.MyTitle>{props.data?.fetchBoard?.title}</D.MyTitle>
-                <D.MainPic src='/userInput.jpg'/>
+                <D.MainPic src='/boardpic/userInput.jpg'/>
                 <D.MyContents>{props.data?.fetchBoard?.contents}</D.MyContents>
                 {props.data?.fetchBoard.youtubeUrl && (
                     <D.MyYoutube
                         url={props.data?.fetchBoard.youtubeUrl}
-                        width= "486px"
-                        height= "240px"
+                        width= "300px"
                     />
                 )}
             </D.MyBody>

@@ -15,7 +15,6 @@ const BodyWrapper =styled.div`
     justify-content: center;
     /* padding-top: 100px;
     padding-bottom: 150px; */
-    width: 100%;
 `
 
 const Wrapper = styled.div`

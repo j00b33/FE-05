@@ -3,19 +3,13 @@ import ReactPlayer from 'react-player'
 import {VscLocation} from 'react-icons/vsc'
 import {BiLike, BiDislike} from 'react-icons/bi'
 
-
-
 export const MyWrapper = styled.div`
     width: 1200px;
-    /* height: 1847px; */
+    
     margin: 100px;
-
-    margin-left: 350px;
 
     padding-top:80px;
     padding-bottom: 100px;
-    padding-left: 102px;
-    padding-right: 102px;
 
     display: flex;
     flex-direction: column;
@@ -35,7 +29,6 @@ export const MyHeader = styled.div`
 
     padding-top: 50px;
     padding-bottom: 30px;
-
 `
 
 export const HeaderLine = styled.div`
@@ -99,7 +92,6 @@ export const MyContents = styled.div`
 
 export const MyYoutube = styled(ReactPlayer)`
   margin: auto;
-
 `
 
 export const MainPic = styled.img `
@@ -160,8 +152,6 @@ export const DislikeCount = styled.div`
 //footer 
 export const PageBottom = styled.div`
     padding-left: 380px;
-
-    margin-left: 260px;
 
     width: 1000px;
     height: 45px;

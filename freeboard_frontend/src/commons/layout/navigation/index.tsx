@@ -3,6 +3,8 @@ import Router from 'next/router'
 
 const Wrapper = styled.div`
     height: 60px;
+    width: 100%;
+    
     background-color: #b81a39;
     
     display: flex;
