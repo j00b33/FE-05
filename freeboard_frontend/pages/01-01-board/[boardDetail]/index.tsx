@@ -1,11 +1,11 @@
 import BoardDetailPage from "../../../src/components/board/units/detail/BoardDetail.container";
-import BoardCommentPage from "../../../src/components/board/units/comments/BoardComment.container";
+import image from "../../../src/components/board/units/write/BoardWrite.container";
 
 export default function BoardDetail() {
   return (
     <div>
       <BoardDetailPage />
-      {/* <BoardCommentPage/> */}
+      image={image}
     </div>
   );
 }

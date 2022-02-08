@@ -96,7 +96,7 @@ export default function BoardCommentPage() {
       });
       setIsOpen(false);
     } catch (error) {
-      Modal.error({ content: error.message });
+      Modal.error({ content: "Failed to delete the comment" });
     }
   }
 

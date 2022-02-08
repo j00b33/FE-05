@@ -153,38 +153,41 @@ export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
 
-  padding-top: 40px;
+  margin-top: 30px;
 `;
 
-export const GreyBoxes = styled.div`
-  width: 282px;
-  height: 78px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-export const Box = styled.button`
-  background-color: #bdbdbd;
+export const AddImage = styled.div`
+  background-color: grey;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  color: black;
-  font-size: 12px;
-  font-family: Cochin;
+  border-radius: 50px;
 
-  width: 78px;
-  height: 78px;
+  color: white;
+  font-size: 12px;
+
+  width: 70px;
+  height: 70px;
 
   cursor: pointer;
+
+  :hover {
+    background-color: #9e6161;
+  }
 `;
 
 export const BoxWord = styled.div`
   font-family: Cochin;
+  font-size: 15px;
+`;
+
+export const SmallImage = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
 `;
 
 export const OptionWrapper = styled.div`
@@ -192,7 +195,7 @@ export const OptionWrapper = styled.div`
   flex-direction: column;
   align-items: space-between;
   justify-content: flex-start;
-  padding-top: 60px;
+  margin-top: 30px;
 
   font-size: 16px;
 

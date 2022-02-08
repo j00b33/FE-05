@@ -115,20 +115,20 @@ export default function BoardUIPresenter(props) {
 
         <F.ImageWrapper>
           <F.Label>Add Photo</F.Label>
-          <F.GreyBoxes>
-            <F.Box>
-              <F.BoxWord>+</F.BoxWord>
-              <F.BoxWord>Upload</F.BoxWord>
-            </F.Box>
-            <F.Box>
-              <F.BoxWord>+</F.BoxWord>
-              <F.BoxWord>Upload</F.BoxWord>
-            </F.Box>
-            <F.Box>
-              <F.BoxWord>+</F.BoxWord>
-              <F.BoxWord>Upload</F.BoxWord>
-            </F.Box>
-          </F.GreyBoxes>
+          <F.AddImage onClick={props.onClickImage}>
+            <F.BoxWord>+</F.BoxWord>
+            {/* <F.BoxWord>Upload</F.BoxWord> */}
+            <F.SmallImage
+              src={`https://storage.googleapis.com/${props.image}`}
+            />
+          </F.AddImage>
+          <input
+            style={{ display: "none" }}
+            type="file"
+            ref={props.fileRef}
+            onChange={props.onChangeFile}
+            //화면에만 안보이는거
+          />
         </F.ImageWrapper>
 
         <F.OptionWrapper>
