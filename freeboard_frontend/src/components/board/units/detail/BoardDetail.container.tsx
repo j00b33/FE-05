@@ -48,6 +48,7 @@ export default function BoardDetailPage(props) {
     });
   };
 
+  console.log(data);
   const onClickDislike = () => {
     dislikeBoard({
       variables: { boardId: String(router.query.boardDetail) },
@@ -71,7 +72,6 @@ export default function BoardDetailPage(props) {
         onClickDislike={onClickDislike}
         likeCount={data?.fetchBoard.likeCount}
         dislikeCount={data?.fetchBoard.dislikeCount}
-        image={props.image}
       />
       <BoardCommentPage />
     </>

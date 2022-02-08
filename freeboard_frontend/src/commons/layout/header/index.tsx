@@ -80,8 +80,8 @@ export default function LayoutHeader() {
       <Menu.Item>
         <a href="/01-01-board/signup">Sign Up</a>
       </Menu.Item>
-      <Menu.Item disabled>
-        <a>Sign In</a>
+      <Menu.Item>
+        <a href="/01-01-board/signin">Sign In</a>
       </Menu.Item>
       <Menu.Item disabled>
         <a>My Page</a>

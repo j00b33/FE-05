@@ -35,7 +35,13 @@ export default function BoardDetailUIPage(props) {
 
         <D.MyBody>
           <D.MyTitle>{props.data?.fetchBoard?.title}</D.MyTitle>
-          <D.MainPic src={`https://storage.googleapis.com/${props.image}`} />
+
+          <D.PicWrapper>
+            <D.MainPic
+              src={`https://storage.googleapis.com/${props.data?.fetchBoard.images?.[0]}`}
+              width="450px"
+            />
+          </D.PicWrapper>
 
           <D.MyContents>{props.data?.fetchBoard?.contents}</D.MyContents>
           {props.data?.fetchBoard.youtubeUrl && (

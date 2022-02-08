@@ -90,6 +90,11 @@ export const MyContents = styled.div`
 export const MyYoutube = styled(ReactPlayer)`
   margin: auto;
 `;
+export const PicWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
 
 export const MainPic = styled.img`
   padding-bottom: 50px;

@@ -73,7 +73,7 @@ export default function BoardCommentPage() {
 
   function onClickOpenDeleteModal(event) {
     setIsOpen(true);
-    setSelectedId(event.target.id);
+    setSelectedId(event?.target.id);
   }
 
   function onChangeDeletePassword(event) {

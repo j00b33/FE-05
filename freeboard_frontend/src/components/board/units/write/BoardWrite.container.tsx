@@ -142,6 +142,7 @@ export default function BoardContain(props) {
               title: myTitle,
               contents: myContents,
               youtubeUrl: youtubeUrl,
+              images: image,
               boardAddress: {
                 zipcode: zipcode,
                 address: address,
