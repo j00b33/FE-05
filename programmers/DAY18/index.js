@@ -26,3 +26,4 @@ function solution(arr1, arr2) {
   });
   return answer;
 }
+//이중for문을 사용할 땐 map을 이중으로 사용하는게 도움이 됨
