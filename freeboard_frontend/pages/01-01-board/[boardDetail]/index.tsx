@@ -5,7 +5,6 @@ export default function BoardDetail() {
   return (
     <div>
       <BoardDetailPage />
-      image={image}
     </div>
   );
 }

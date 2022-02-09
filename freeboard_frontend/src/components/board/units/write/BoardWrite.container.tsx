@@ -216,7 +216,7 @@ export default function BoardContain(props) {
 
     try {
       const result = await uploadFile({ variables: { file } });
-      console.log(result.data?.uploadFile.url);
+      // console.log(result.data?.uploadFile.url);
       setImage(result.data?.uploadFile.url || "");
     } catch (error) {
       alert(error.message);
