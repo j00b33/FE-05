@@ -25,11 +25,13 @@
     "react-infinite-scroller": "^1.2.4",
     "react-player": "^2.9.0",
     "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/apollo-upload-client": "^17.0.0",
     "@types/react-infinite-scroller": "^1.2.2",
+    "@types/uuid": "^8.3.4",
     "babel-eslint": "^10.1.0",
     "eslint": "8.6.0",
     "eslint-config-next": "12.0.7",

@@ -72,6 +72,7 @@ export default function BoardDetailPage(props) {
         onClickDislike={onClickDislike}
         likeCount={data?.fetchBoard.likeCount}
         dislikeCount={data?.fetchBoard.dislikeCount}
+        keyword={props.keyword}
       />
       <BoardCommentPage />
     </>

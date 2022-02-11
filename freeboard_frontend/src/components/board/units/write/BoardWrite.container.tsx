@@ -54,7 +54,7 @@ export default function BoardContain(props) {
 
   function onChangeMyPw(event) {
     setMyPassword(event.target.value);
-    if (myPassword.length > 7) {
+    if (myPassword.length > 3) {
       setMyPasswordError("");
       setIsActive(true);
     } else {
@@ -117,18 +117,18 @@ export default function BoardContain(props) {
     if (myWriter === "") {
       setMyWriterError("* 성을 포함하여 정확한 이름을 입력해주세요");
     }
-    if (myPassword.length < 8) {
-      setMyPasswordError("* 비밀번호를 8자 이상 입력해주세요");
+    if (myPassword.length < 4) {
+      setMyPasswordError("* 비밀번호를 4자 이상 입력해주세요");
     }
     if (myTitle === "") {
       setMyTitleError("* 제목을 한 글자 이상 입력해주세요");
     }
     if (myContents === "") {
-      setMyContentsError("* 내용을 10자 이상 입력해주세요");
+      setMyContentsError("* 내용을 입력해주세요");
     }
     if (
       myWriter !== "" &&
-      myPassword.length > 7 &&
+      myPassword.length > 3 &&
       myTitle !== "" &&
       myContents !== ""
     ) {
