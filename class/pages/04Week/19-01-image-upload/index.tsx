@@ -3,7 +3,7 @@ import { useMutation, gql } from "@apollo/client";
 import {
   IMutation,
   IMutationUploadFileArgs,
-} from "../../src/commons/types/generated/types";
+} from "../../../src/commons/types/generated/types";
 
 const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {

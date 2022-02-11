@@ -3,7 +3,8 @@ import { ChangeEvent, useState, MouseEvent } from "react";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
-} from "../../src/commons/types/generated/types";
+} from "../../../src/commons/types/generated/types";
+import _ from "lodash";
 
 const FETCH_BOARDS = gql`
   query fetchBoards($search: String, $page: Int) {
@@ -28,21 +29,18 @@ export default function SearchPage() {
   >(FETCH_BOARDS);
   //여기서 data는 global state
 
-  const onClickSearch = () => {
-    refetch({ search: search, page: 1 });
-    //refetch 할때 페이지를 1로 이동한걸 refetch
-
-    //입력했을때 state에 임시로 저장을 해놨는데 이게 검색버튼을 클릭하지 않아도 페이지네이션만 하면 자꾸 그 검색어로 넘어갔음
-    //그래서 search에 제모깅라고 하고 검색버튼 누르는 순간 keyword에 제목이라고 저장을 해두는것
-    //이는 검색버튼을 누르게 하기 위해 만드는것
-    //이러면 다른 페이지를 눌러도 이전 검색어가 검색되지 않는거임
-
-    setKeyword(search);
-    //그래서 search를 넘겨주는거임 키워드에
-  };
+  const getDebounce = _.debounce((data) => {
+    refetch({ search: data, page: 1 });
+    setKeyword(data);
+  }, 200);
+  //마지막 작업이 끝나고 0.2초간 시간 후에 실행되는
 
   const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearch(event?.target.value);
+    // setSearch(event?.target.value);
+    //debounce 실행시키기
+    getDebounce(event.target.value);
+
+    // refetch({ search: event.target.value, page: 1 });
   };
 
   const onClickPage = (event: MouseEvent<HTMLSpanElement>) => {
@@ -56,7 +54,6 @@ export default function SearchPage() {
     <div>
       <h1>Search Page</h1>
       <input type="text/>" onChange={onChangeSearch} />
-      <button onClick={onClickSearch}>Search</button>
 
       {data?.fetchBoards.map((el) => (
         <div key={el._id}>

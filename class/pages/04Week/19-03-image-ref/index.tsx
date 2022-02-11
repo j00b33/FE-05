@@ -4,8 +4,8 @@ import { useMutation, gql } from "@apollo/client";
 import {
   IMutation,
   IMutationUploadFileArgs,
-} from "../../src/commons/types/generated/types";
-import { checkFileValidation } from "../../src/commons/libraries/utils";
+} from "../../../src/commons/types/generated/types";
+import { checkFileValidation } from "../../../src/commons/libraries/utils";
 
 const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {

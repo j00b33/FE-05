@@ -4,8 +4,8 @@ import { useMutation, gql } from "@apollo/client";
 import {
   IMutation,
   IMutationUploadFileArgs,
-} from "../../src/commons/types/generated/types";
-import { checkFileValidation } from "../../src/commons/libraries/utils";
+} from "../../../src/commons/types/generated/types";
+import { checkFileValidation } from "../../../src/commons/libraries/utils";
 import { Space } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 
