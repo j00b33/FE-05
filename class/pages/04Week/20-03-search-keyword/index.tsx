@@ -36,7 +36,10 @@ export default function SearchPage() {
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
-  >(FETCH_BOARDS);
+  >(
+    FETCH_BOARDS
+    // ,{fetchPlicy: "network-only"}
+  );
   //여기서 data는 global state
 
   const getDebounce = _.debounce((data) => {
