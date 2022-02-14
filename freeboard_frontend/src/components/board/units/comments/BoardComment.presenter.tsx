@@ -55,7 +55,7 @@ export default function BoardCommentUIPage(props) {
               <C.DivisionLine></C.DivisionLine>
 
               <C.Update>
-                <C.CommentEdit onClick={props.onClickEditCom}>
+                <C.CommentEdit onClick={props.onClickUpdate}>
                   <GrEdit />
                 </C.CommentEdit>
                 <C.Delete id={el._id} onClick={props.onClickOpenDeleteModal}>

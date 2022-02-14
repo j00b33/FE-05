@@ -100,6 +100,12 @@ export default function BoardCommentPage() {
     }
   }
 
+  const [isEdit, setIsEdit] = useState(false);
+
+  function onClickUpdate() {
+    setIsEdit(true);
+  }
+
   function onLoadMore() {
     if (!data) return;
 
@@ -130,6 +136,7 @@ export default function BoardCommentPage() {
       onChangeMyPassword={onChangeMyPassword}
       onChangeMyContents={onChangeMyContents}
       onChangeStar={onChangeStar}
+      onClickUpdate={onClickUpdate}
       onClickDelete={onClickDelete}
       onClickOpenDeleteModal={onClickOpenDeleteModal}
       onChangeDeletePassword={onChangeDeletePassword}
