@@ -39,3 +39,18 @@ function solution(nums) {
   });
   return answer.size;
 }
+
+// without for loop, but with new Set
+function solution(nums) {
+  //nums에 있는 중복된 데이터가 자동으로 제거가 됨 --> 그러면 제거된 상태에서 new Set 받아오기 가능함
+  const answer = new Set(nums).size;
+  //포켓몬 넣을 수 있는 최대 수 => limit로 받아오기
+  const limit = nums.length / 2;
+
+  if (limit >= answer) {
+    return answer;
+  }
+  //내가 3종류를 가져갈 수 있지만 최대 2종류까지만 가져갈 수 있을 떄 두종류만 가져가겠다 (limit만 가져가는거)
+  return limit;
+}
+//내가 몇마리 가져갈 수 있는지랑 몇마리가 있는지를 구해내서 여기서 깔끔하고 빠르게 풀이를 짤 수 있음
