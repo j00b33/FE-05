@@ -15,20 +15,20 @@ export default function SignupUIPage(props) {
             type="text"
             placeholder="Username must be at least 2 letters"
             id="name"
-            onChange={props.onChangeUserInput}
+            onChange={props.onChangeName}
           ></P.Input>
-          <P.Error>{props.idError}</P.Error>
+          <P.Error>{props.nameError}</P.Error>
         </P.InnerWrapper>
 
         <P.InnerWrapper>
-          <P.Box>ID</P.Box>
+          <P.Box>Email</P.Box>
           <P.Input
             type="text"
-            placeholder="Id must be at least 4 letters"
+            placeholder="Enter your Email"
             id="id"
-            onChange={props.onChangeUserInput}
+            onChange={props.onChangeEmail}
           ></P.Input>
-          <P.Error>{props.idError}</P.Error>
+          <P.Error>{props.emailError}</P.Error>
         </P.InnerWrapper>
 
         <P.InnerWrapper>
@@ -37,9 +37,9 @@ export default function SignupUIPage(props) {
             type="password"
             placeholder="Password must be at least 4 letters"
             id="password"
-            onChange={props.onChangeUserInput}
+            onChange={props.onChangePw}
           ></P.Input>
-          <P.Error>{props.idError}</P.Error>
+          <P.Error>{props.passwordError}</P.Error>
         </P.InnerWrapper>
 
         <P.InnerWrapper>
@@ -48,9 +48,9 @@ export default function SignupUIPage(props) {
             type="text"
             placeholder="Age cannot exceed 2 digits"
             id="age"
-            onChange={props.onChangeUserInput}
+            onChange={props.onChangeAge}
           ></P.Input>
-          <P.Error>{props.idError}</P.Error>
+          <P.Error>{props.ageError}</P.Error>
         </P.InnerWrapper>
       </P.Body>
 

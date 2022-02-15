@@ -10,14 +10,14 @@ export default function SigninUIPage(props) {
 
       <P.Body>
         <P.InnerWrapper>
-          <P.Box>ID</P.Box>
+          <P.Box>Email</P.Box>
           <P.Input
             type="text"
-            placeholder="Enter your ID"
+            placeholder="Enter your email"
             id="id"
-            onChange={props.onChangeUserInput}
+            onChange={props.onChangeEmail}
           ></P.Input>
-          <P.Error>{props.idError}</P.Error>
+          <P.Error>{props.emailError}</P.Error>
         </P.InnerWrapper>
 
         <P.InnerWrapper>
@@ -26,9 +26,9 @@ export default function SigninUIPage(props) {
             type="password"
             placeholder="Enter your password"
             id="password"
-            onChange={props.onChangeUserInput}
+            onChange={props.onChangePw}
           ></P.Input>
-          <P.Error>{props.idError}</P.Error>
+          <P.Error>{props.pwError}</P.Error>
         </P.InnerWrapper>
       </P.Body>
 

@@ -66,7 +66,7 @@ export default function LoginPage() {
         );
 
         //success page로 이동
-        router.push("22-02-login-success");
+        router.push("23-05-login-check-success");
       }
       console.log(result.data?.loginUser.accessToken);
     } catch (error) {

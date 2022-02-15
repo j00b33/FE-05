@@ -12,7 +12,13 @@ import Layout from "../src/components/commons/layout";
 import { globalStyles } from "../src/commons/styles/globalstlyes";
 import { createUploadLink } from "apollo-upload-client";
 import { initializeApp } from "firebase/app";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQbouh-zQ-3Lu0gC0c5sjfR-UbexdrZNE",
@@ -35,6 +41,27 @@ function MyAPP({ Component, pageProps }: AppProps) {
     accessToken,
     setAccessToken,
   };
+
+  // if (process.browser){
+  //   if (localStorage.getItem("accessToken")) {
+  //     setAccessToken(localStorage.getItem("accessToken") || "");
+  //   }
+  // }
+
+  // if (typeof window !== "undefined"){
+  //   //--> window가 browser라는 것
+  //   if (localStorage.getItem("accessToken")) {
+  //     setAccessToken(localStorage.getItem("accessToken") || "");
+  //   }
+  //   //여기 위에 두개로 하면 setState가 계속 바뀌어서 안됨
+  // }
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setAccessToken(localStorage.getItem("accessToken") || "");
+    }
+    //useEffect는 한번만 실행이 되기 때문에 여기서 setState하고 종료
+  });
 
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql", //apollo setting

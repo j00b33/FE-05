@@ -42,6 +42,7 @@ export const Body = styled.div`
 export const Error = styled.div`
   color: red;
   font-size: 10px;
+  margin-top: 3px;
 `;
 
 export const InnerWrapper = styled.div`

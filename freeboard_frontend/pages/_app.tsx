@@ -1,4 +1,3 @@
-// import ' ../styles/globals.css'
 import {
   ApolloClient,
   InMemoryCache,
@@ -13,6 +12,7 @@ import { globalStyles } from "../src/commons/styles/globalstyles";
 import { createUploadLink } from "apollo-upload-client";
 
 import { initializeApp } from "firebase/app";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 const firebaseConfig = {
   apiKey: "AIzaSyCQbouh-zQ-3Lu0gC0c5sjfR-UbexdrZNE",
   authDomain: "jbsite-77c6d.firebaseapp.com",
@@ -23,9 +23,20 @@ const firebaseConfig = {
 };
 export const firebaseApp = initializeApp(firebaseConfig);
 
+interface IGlobalContext {
+  accessToken?: string;
+  setAccessToken?: Dispatch<SetStateAction<string>>;
+}
+export const GlobalContext = createContext<IGlobalContext>({});
 function MyAPP({ Component, pageProps }: AppProps) {
+  const [accessToken, setAccessToken] = useState("");
+  const value = {
+    accessToken,
+    setAccessToken,
+  };
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql",
+    headers: { Authorization: `Bearer ${accessToken}` },
   });
 
   const client = new ApolloClient({
@@ -38,12 +49,14 @@ function MyAPP({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ApolloProvider>
+    <GlobalContext.Provider value={value}>
+      <ApolloProvider client={client}>
+        <Global styles={globalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
   );
 }
 
