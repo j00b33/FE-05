@@ -54,16 +54,27 @@ export default function SigninContainer() {
         },
       });
 
+      const accessToken = result.data?.loginUser.accessToken || "";
+      console.log(accessToken);
+
       if (setAccessToken) {
         setAccessToken(result.data?.loginUser.accessToken || "");
         console.log(result.data?.loginUser.accessToken);
         Modal.success({ content: "Welcome:)" });
 
+        // =====firebase=====
         const signin = collection(getFirestore(firebaseApp), "signin");
         await addDoc(signin, {
           email,
           password,
         });
+        //====================
+
+        console.log(localStorage.getItem("accessToken"));
+        localStorage.setItem(
+          "accessToken",
+          result.data?.loginUser.accessToken || ""
+        );
 
         router.push("/01-01-board/list");
       }
@@ -76,11 +87,16 @@ export default function SigninContainer() {
     }
   };
 
+  const onClickSignup = () => {
+    router.push("/01-01-board/signup");
+  };
+
   return (
     <SigninUIPage
       onChangeEmail={onChangeEmail}
       onChangePw={onChangePw}
       onClickUpload={onClickUpload}
+      onClickSignup={onClickSignup}
     />
   );
 }

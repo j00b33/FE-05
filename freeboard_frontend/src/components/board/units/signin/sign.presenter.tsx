@@ -33,6 +33,10 @@ export default function SigninUIPage(props) {
       </P.Body>
 
       <P.Button onClick={props.onClickUpload}>Sign in</P.Button>
+      <P.SignupWrapper>
+        <P.GoSignupText>Don't have an account? ➤</P.GoSignupText>
+        <P.GoSignup onClick={props.onClickSignup}>Go to Sign up</P.GoSignup>
+      </P.SignupWrapper>
     </P.Wrapper>
   );
 }

@@ -9,8 +9,9 @@ import {
 } from "./BoardDetail.queries";
 import BoardCommentPage from "../comments/BoardComment.container";
 import { Modal } from "antd";
+import withAuth from "../../../commons/hoc/withAuth";
 
-export default function BoardDetailPage(props) {
+const BoardDetailPage = (props) => {
   const router = useRouter();
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [likeBoard] = useMutation(LIKE_BOARD);
@@ -77,4 +78,6 @@ export default function BoardDetailPage(props) {
       <BoardCommentPage />
     </>
   );
-}
+};
+
+export default withAuth(BoardDetailPage);

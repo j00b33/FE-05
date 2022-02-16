@@ -69,7 +69,7 @@ export const Button = styled.div`
   width: 300px;
   height: 50px;
 
-  margin-top: 30px;
+  margin-top: 20px;
 
   background-color: #b81a39;
   color: white;
@@ -85,4 +85,32 @@ export const Button = styled.div`
   border-radius: 15px;
 
   cursor: pointer;
+
+  :hover {
+    background-color: #9c1c36;
+  }
+`;
+
+export const SignupWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 260px;
+`;
+
+export const GoSignupText = styled.div`
+  font-size: 15px;
+  color: #575757;
+`;
+
+export const GoSignup = styled.div`
+  cursor: pointer;
+  font-size: 15px;
+  color: #9e9e9e;
+
+  :hover {
+    color: #575757;
+    text-decoration-line: underline;
+  }
 `;

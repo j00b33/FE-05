@@ -4,8 +4,9 @@ import { ChangeEvent, useContext, useState } from "react";
 import {
   IMutation,
   IMutationLoginUserArgs,
-} from "../../src/commons/types/generated/types";
-import { GlobalContext } from "../_app";
+} from "../../../../src/commons/types/generated/types";
+
+import { GlobalContext } from "../../../_app";
 
 const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
@@ -56,7 +57,7 @@ export default function LoginPage() {
         console.log(localStorage.getItem("accessToken"));
         console.log("========");
 
-        //새로고침하면 사라지는걸 방지하기 위해
+        //새로고침하면 사라지는걸 방지하기 위해 localStorage 저장
         // localStorage.setItem("aaa","철수")
         // localStorage.getItem("aaa")
         localStorage.setItem(
@@ -64,13 +65,13 @@ export default function LoginPage() {
           result.data?.loginUser.accessToken || ""
         );
 
-        //success page로 이동
-        router.push("23-02-login-localstorage-success");
+        //main page로 이동
+        router.push("/example/hoc/main");
       }
       console.log(result.data?.loginUser.accessToken);
     } catch (error) {
       if (error instanceof Error) {
-        alert("회원가입을 먼저 해주세요");
+        alert(error.message);
       }
     }
   };

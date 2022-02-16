@@ -10,9 +10,14 @@ import { Global } from "@emotion/react";
 import Layout from "../src/commons/layout/index";
 import { globalStyles } from "../src/commons/styles/globalstyles";
 import { createUploadLink } from "apollo-upload-client";
-
 import { initializeApp } from "firebase/app";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+} from "react";
 const firebaseConfig = {
   apiKey: "AIzaSyCQbouh-zQ-3Lu0gC0c5sjfR-UbexdrZNE",
   authDomain: "jbsite-77c6d.firebaseapp.com",
@@ -34,6 +39,17 @@ function MyAPP({ Component, pageProps }: AppProps) {
     accessToken,
     setAccessToken,
   };
+
+  // if (localStorage.getItem("accessToken")){
+  //   setAccessToken(localStorage.getIteem("accessToken") || "")
+  // }
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setAccessToken(localStorage.getItem("accessToken") || "");
+    }
+  });
+
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
@@ -61,3 +77,4 @@ function MyAPP({ Component, pageProps }: AppProps) {
 }
 
 export default MyAPP;
+//어떤 페이지를 실행하던 이게 먼저 접속되고 그 다음 세팅된 페이지가 먹히는것

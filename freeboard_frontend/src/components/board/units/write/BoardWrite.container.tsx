@@ -10,8 +10,9 @@ import {
   IMutation,
   IMutationUploadFileArgs,
 } from "../../../../commons/types/generated/types";
+import withAuth from "../../../commons/hoc/withAuth";
 
-export default function BoardContain(props) {
+const BoardContain = (props) => {
   const [isActive, setIsActive] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -257,4 +258,6 @@ export default function BoardContain(props) {
       fileRef={fileRef}
     />
   );
-}
+};
+
+export default withAuth(BoardContain);

@@ -30,16 +30,27 @@ const firebaseConfig = {
 };
 export const firebaseApp = initializeApp(firebaseConfig);
 
+interface IUserInfo {
+  name?: string;
+  email?: string;
+  picture?: string;
+}
+
 interface IGlobalContext {
   accessToken?: string;
   setAccessToken?: Dispatch<SetStateAction<string>>;
+  userInfo?: IUserInfo;
+  setUserInfo?: Dispatch<SetStateAction<IUserInfo>>;
 }
 export const GlobalContext = createContext<IGlobalContext>({});
 function MyAPP({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");
+  const [userInfo, setUserInfo] = useState<IUserInfo>({});
   const value = {
     accessToken,
     setAccessToken,
+    userInfo,
+    setUserInfo,
   };
 
   // if (process.browser){
@@ -61,7 +72,7 @@ function MyAPP({ Component, pageProps }: AppProps) {
       setAccessToken(localStorage.getItem("accessToken") || "");
     }
     //useEffect는 한번만 실행이 되기 때문에 여기서 setState하고 종료
-  });
+  }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql", //apollo setting
@@ -90,5 +101,4 @@ function MyAPP({ Component, pageProps }: AppProps) {
 }
 
 export default MyAPP;
-
 //어떤 페이지를 실행하던 이게 먼저 접속되고 그 다음 세팅된 페이지가 먹히는것

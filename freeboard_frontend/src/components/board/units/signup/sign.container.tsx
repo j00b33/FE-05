@@ -119,6 +119,10 @@ export default function SignupContainer() {
     }
   };
 
+  const onClickSignin = () => {
+    router.push("/01-01-board/signin");
+  };
+
   return (
     <SignupUIPage
       onChangeName={onChangeName}
@@ -130,6 +134,7 @@ export default function SignupContainer() {
       nameError={nameError}
       passwordError={passwordError}
       ageError={ageError}
+      onClickSignin={onClickSignin}
     />
   );
 }

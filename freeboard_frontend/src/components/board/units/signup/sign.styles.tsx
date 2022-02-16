@@ -86,3 +86,29 @@ export const Button = styled.div`
 
   cursor: pointer;
 `;
+
+export const GoSigninWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  margin-top: 10px;
+
+  width: 270px;
+`;
+
+export const GoSigninText = styled.div`
+  font-size: 15px;
+  color: #575757;
+`;
+
+export const GoSignin = styled.div`
+  cursor: pointer;
+  font-size: 15px;
+  color: #9e9e9e;
+
+  :hover {
+    color: #575757;
+    text-decoration-line: underline;
+  }
+`;

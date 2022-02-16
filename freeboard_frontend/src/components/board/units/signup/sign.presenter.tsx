@@ -13,7 +13,7 @@ export default function SignupUIPage(props) {
           <P.Box>Username</P.Box>
           <P.Input
             type="text"
-            placeholder="Username must be at least 2 letters"
+            placeholder="Enter your username"
             id="name"
             onChange={props.onChangeName}
           ></P.Input>
@@ -24,7 +24,7 @@ export default function SignupUIPage(props) {
           <P.Box>Email</P.Box>
           <P.Input
             type="text"
-            placeholder="Enter your Email"
+            placeholder="Enter your email"
             id="id"
             onChange={props.onChangeEmail}
           ></P.Input>
@@ -35,7 +35,7 @@ export default function SignupUIPage(props) {
           <P.Box>Password</P.Box>
           <P.Input
             type="password"
-            placeholder="Password must be at least 4 letters"
+            placeholder="Enter your password"
             id="password"
             onChange={props.onChangePw}
           ></P.Input>
@@ -46,7 +46,7 @@ export default function SignupUIPage(props) {
           <P.Box>Age</P.Box>
           <P.Input
             type="text"
-            placeholder="Age cannot exceed 2 digits"
+            placeholder="Enter your age"
             id="age"
             onChange={props.onChangeAge}
           ></P.Input>
@@ -55,6 +55,11 @@ export default function SignupUIPage(props) {
       </P.Body>
 
       <P.Button onClick={props.onClickUpload}>Sign up</P.Button>
+
+      <P.GoSigninWrapper>
+        <P.GoSigninText>Already have an account? ➤</P.GoSigninText>
+        <P.GoSignin onClick={props.onClickSignin}>Go to Sign in</P.GoSignin>
+      </P.GoSigninWrapper>
     </P.Wrapper>
   );
 }
