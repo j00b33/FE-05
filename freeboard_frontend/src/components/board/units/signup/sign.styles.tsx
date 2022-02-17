@@ -54,8 +54,28 @@ export const InnerWrapper = styled.div`
   height: 75px;
 `;
 
-export const Box = styled.div`
+export const NameHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 280px;
+`;
+
+export const Random = styled.div`
+  cursor: pointer;
+  color: #9e9e9e;
   font-size: 13px;
+
+  :hover {
+    color: #575757;
+    text-decoration-line: underline;
+  }
+`;
+
+export const Box = styled.div`
+  font-size: 15px;
   font-weight: bold;
 `;
 

@@ -49,7 +49,6 @@ export default function ReactHookFormPage() {
       <div>{formState.errors.myEmail?.message}</div>
       비밀번호: <input type="text" {...register("myPassword")} />
       <div>{formState.errors.myPassword?.message}</div>
-      {formState.isValid}
       <MyButton isValid={formState.isValid}>로그인</MyButton>
       {/* <button type="button">My Button</button>
             reset: form안에 있는 Input값들을 초기화시킴

@@ -123,6 +123,10 @@ export default function SignupContainer() {
     router.push("/01-01-board/signin");
   };
 
+  const onClickApi = () => {
+    router.push("/01-01-board/api");
+  };
+
   return (
     <SignupUIPage
       onChangeName={onChangeName}
@@ -135,6 +139,7 @@ export default function SignupContainer() {
       passwordError={passwordError}
       ageError={ageError}
       onClickSignin={onClickSignin}
+      onClickApi={onClickApi}
     />
   );
 }

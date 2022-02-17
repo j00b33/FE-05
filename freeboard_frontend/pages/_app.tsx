@@ -28,16 +28,27 @@ const firebaseConfig = {
 };
 export const firebaseApp = initializeApp(firebaseConfig);
 
+interface IUserInfo {
+  name?: string;
+  email?: string;
+  picture?: string;
+}
+
 interface IGlobalContext {
   accessToken?: string;
   setAccessToken?: Dispatch<SetStateAction<string>>;
+  userInfo?: IUserInfo;
+  setUserInfo?: Dispatch<SetStateAction<IUserInfo>>;
 }
 export const GlobalContext = createContext<IGlobalContext>({});
 function MyAPP({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");
+  const [userInfo, setUserInfo] = useState<IUserInfo>({});
   const value = {
     accessToken,
     setAccessToken,
+    userInfo,
+    setUserInfo,
   };
 
   // if (localStorage.getItem("accessToken")){

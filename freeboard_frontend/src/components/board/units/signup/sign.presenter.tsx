@@ -10,7 +10,12 @@ export default function SignupUIPage(props) {
 
       <P.Body>
         <P.InnerWrapper>
-          <P.Box>Username</P.Box>
+          <P.NameHeader>
+            <P.Box>Username</P.Box>
+            <P.Random onClick={props.onClickApi}>
+              Click here to get a random username!
+            </P.Random>
+          </P.NameHeader>
           <P.Input
             type="text"
             placeholder="Enter your username"

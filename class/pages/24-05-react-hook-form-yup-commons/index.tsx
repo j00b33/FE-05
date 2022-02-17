@@ -33,7 +33,7 @@ export default function ReactHookFormPage() {
     console.log(data);
   };
 
-  //re-render 체크하는 방법
+  //re-render 체크
   console.log("==re-rendering check==");
 
   return (

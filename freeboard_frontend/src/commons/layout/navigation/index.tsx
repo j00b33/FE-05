@@ -36,19 +36,23 @@ const onClickList = () => {
   Router.push(`/01-01-board/list`);
 };
 
-const onClickAPI = () => {
+const onClickPost = () => {
   Router.push(`/01-01-board/new`);
+};
+
+const onClickMarket = () => {
+  Router.push(`/01-01-market/home`);
 };
 
 export default function LayoutNavigation() {
   return (
     <Wrapper>
       <InnerWrapper>
-        <Inner onClick={onClickList}>List</Inner>
+        <Inner onClick={onClickList}>FreeBoard</Inner>
         {"  /  "}
-        <Inner>Market</Inner>
+        <Inner onClick={onClickMarket}>Market</Inner>
         {"  /  "}
-        <Inner onClick={onClickAPI}>Post</Inner>
+        <Inner onClick={onClickPost}>Post</Inner>
       </InnerWrapper>
     </Wrapper>
   );

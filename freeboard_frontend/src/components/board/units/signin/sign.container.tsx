@@ -55,29 +55,27 @@ export default function SigninContainer() {
       });
 
       const accessToken = result.data?.loginUser.accessToken || "";
-      console.log(accessToken);
+      console.log(result);
+      setAccessToken(result.data?.loginUser.accessToken || "");
 
-      if (setAccessToken) {
-        setAccessToken(result.data?.loginUser.accessToken || "");
-        console.log(result.data?.loginUser.accessToken);
-        Modal.success({ content: "Welcome:)" });
+      console.log(result.data?.loginUser.accessToken);
+      Modal.success({ content: "Welcome:)" });
 
-        // =====firebase=====
-        const signin = collection(getFirestore(firebaseApp), "signin");
-        await addDoc(signin, {
-          email,
-          password,
-        });
-        //====================
+      // =====firebase=====
+      const signin = collection(getFirestore(firebaseApp), "signin");
+      await addDoc(signin, {
+        email,
+        password,
+      });
+      //====================
 
-        console.log(localStorage.getItem("accessToken"));
-        localStorage.setItem(
-          "accessToken",
-          result.data?.loginUser.accessToken || ""
-        );
+      console.log(localStorage.getItem("accessToken"));
+      localStorage.setItem(
+        "accessToken",
+        result.data?.loginUser.accessToken || ""
+      );
 
-        router.push("/01-01-board/list");
-      }
+      router.push("/01-01-board/list");
     } catch (error) {
       if (error instanceof Error) {
         Modal.warn({
