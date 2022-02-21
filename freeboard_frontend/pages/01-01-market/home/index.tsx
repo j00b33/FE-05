@@ -1,13 +1,10 @@
 import { Divider } from "antd";
 import { useRouter } from "next/router";
+import { useMove } from "../../../src/components/commons/hoc/customhooks/moveTo";
 import * as P from "./styles";
 
 export default function MarketHome() {
-  const router = useRouter();
-
-  const onClickCreateProduct = () => {
-    router.push("/01-01-market/create");
-  };
+  const { moveTo } = useMove();
 
   return (
     <P.Wrapper>
@@ -24,11 +21,15 @@ export default function MarketHome() {
       <P.BodyWrapper>
         <P.InnerBodyWrapper>
           <P.MainPic1 src="/product/createProduct.png" />
-          <P.Select onClick={onClickCreateProduct}>Upload Product</P.Select>
+          <P.Select onClick={moveTo("/01-01-market/create")}>
+            Upload Product
+          </P.Select>
         </P.InnerBodyWrapper>
 
         <P.InnerBodyWrapper>
-          <P.Select>View Other's Products</P.Select>
+          <P.Select onClick={moveTo("/01-01-market/list")}>
+            View Products
+          </P.Select>
           <P.MainPic2 src="/product/viewProduct.png" />
         </P.InnerBodyWrapper>
       </P.BodyWrapper>

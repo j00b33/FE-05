@@ -18,7 +18,7 @@ type IPage = "/board" | "/market" | "/myPage";
 export function useMoveToPage() {
   const router = useRouter();
   const [visitedPage, setVisitedPaged] = useState("/");
-  //시작점 === route === "/"
+  //시작점 = route = "/"
   const moveToPage = (page: IPage) => () => {
     setVisitedPaged(page);
     router.push(page);

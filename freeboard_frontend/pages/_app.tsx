@@ -52,14 +52,14 @@ function MyAPP({ Component, pageProps }: AppProps) {
   };
 
   // if (localStorage.getItem("accessToken")){
-  //   setAccessToken(localStorage.getIteem("accessToken") || "")
+  //   setAccessToken(localStorage.getItem("accessToken") || "")
   // }
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setAccessToken(localStorage.getItem("accessToken") || "");
     }
-  });
+  }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql",

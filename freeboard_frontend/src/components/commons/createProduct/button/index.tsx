@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import { useMove } from "../../hoc/customhooks/moveTo";
 
 interface IMyButtonProps {
   isValid: boolean;
@@ -24,6 +26,7 @@ const CreateButton = styled.button`
 `;
 
 export default function Button(props) {
+  const router = useRouter();
   return (
     <CreateButton type={props.type} isValid={props.isValid}>
       {props.name}

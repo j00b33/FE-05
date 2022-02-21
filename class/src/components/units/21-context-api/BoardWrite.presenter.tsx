@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ExampleContext } from "../../../../pages/21-04-context-api";
+import { ExampleContext } from "../../../../pages/05Week/21-04-context-api";
 
 export default function BoardWriteContextUI() {
   const { isEdit } = useContext(ExampleContext);

@@ -54,11 +54,17 @@ export default function SigninContainer() {
         },
       });
 
-      const accessToken = result.data?.loginUser.accessToken || "";
-      console.log(result);
-      setAccessToken(result.data?.loginUser.accessToken || "");
+      router.push("/01-01-board/list");
 
-      console.log(result.data?.loginUser.accessToken);
+      const accessToken = result.data?.loginUser.accessToken;
+      if (setAccessToken)
+        // console.log(result);
+        setAccessToken(accessToken || "");
+
+      // console.log(localStorage.getItem("accessToken"));
+      localStorage.setItem("accessToken", accessToken || "");
+
+      // console.log(result.data?.loginUser.accessToken);
       Modal.success({ content: "Welcome:)" });
 
       // =====firebase=====
@@ -68,14 +74,6 @@ export default function SigninContainer() {
         password,
       });
       //====================
-
-      console.log(localStorage.getItem("accessToken"));
-      localStorage.setItem(
-        "accessToken",
-        result.data?.loginUser.accessToken || ""
-      );
-
-      router.push("/01-01-board/list");
     } catch (error) {
       if (error instanceof Error) {
         Modal.warn({
