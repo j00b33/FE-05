@@ -18,8 +18,8 @@ import { checkFileValidation } from "../../../../commons/libraries/utils";
 interface FormValues {
   name?: string;
   remarks?: string;
-  contents?: string;
   price?: number;
+  contents?: string;
   images?: string;
 }
 
@@ -58,10 +58,16 @@ export const CreateProductContainer = (props) => {
   // console.log(image);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const { moveTo } = useMove();
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, setValue, trigger, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
+  const handleChange = (value: string) => {
+    console.log(value);
+    setValue("contents", value === "<p><br></p>" ? "" : value);
+    trigger("contents");
+  };
 
   //이미지 추가
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -168,6 +174,7 @@ export const CreateProductContainer = (props) => {
       data={props.data}
       onChangeFile={onChangeFile}
       fileRef={fileRef}
+      handleChange={handleChange}
     />
   );
 };

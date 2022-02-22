@@ -2,6 +2,8 @@ import Button from "../../../commons/createProduct/button";
 import * as C from "./upload.styles";
 import LargeInput from "../../../commons/createProduct/input/01";
 import MidInput from "../../../commons/createProduct/input/03";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 export default function CreateProductUIPage(props) {
   return (
@@ -32,9 +34,8 @@ export default function CreateProductUIPage(props) {
 
         <C.LargeSectionWrapper>
           <C.Label>Description</C.Label>
-          <LargeInput
-            type="text"
-            register={props.register("contents")}
+          <ReactQuill
+            onChange={props.handleChange}
             defaultValue={props.data?.fetchUseditem.contents}
           />
           <C.Error>{props.formState.errors.contents?.message}</C.Error>

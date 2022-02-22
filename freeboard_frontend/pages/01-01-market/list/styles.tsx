@@ -27,13 +27,62 @@ export const HeaderSubtitle = styled.div`
 export const BoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  //박스 래퍼 전체
-`;
-export const BoxRow = styled.div`
-  //여기가 박스들 한 줄
+  align-items: center;
+  justify-content: space-evenly;
+
+  width: 1200px;
+  margin-top: 50px;
 `;
 
 export const Box = styled.div`
   //박스 하나
+  width: 1200px;
+  height: 300px;
+  border: 4px solid grey;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-bottom: 70px;
 `;
-//map으로 5개씩 10줄 무한스크롤 구현 목표
+
+export const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-top: 60px;
+  margin-left: 60px;
+`;
+
+export const Text = styled.div`
+  font-size: 20px;
+  color: #3b3b3b;
+`;
+export const Date = styled.div`
+  font-size: 20px;
+`;
+
+export const Seller = styled.div`
+  font-size: 25px;
+`;
+export const Product = styled.div`
+  font-size: 25px;
+  cursor: pointer;
+  :hover {
+    color: #b81a39;
+  }
+`;
+
+export const Remarks = styled.div`
+  font-size: 20px;
+  color: #444444;
+`;
+
+export const Price = styled.div`
+  font-size: 18px;
+`;
+
+export const RightSection = styled.div``;
+
+export const Image = styled.image``;

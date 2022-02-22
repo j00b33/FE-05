@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { gql, useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import { Modal } from "antd";
 import {
   IMutation,
   IMutationCreateBoardArgs,
-} from "../../src/commons/types/generated/types";
-import { useRouter } from "next/router";
-import { Modal } from "antd";
+} from "../../../../src/commons/types/generated/types";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 //ssr: "server-side-rendering 에서는 하지마 브라우저에서만 해"
@@ -17,9 +17,6 @@ const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
     createBoard(createBoardInput: $createBoardInput) {
       _id
-      writer
-      title
-      contents
     }
   }
 `;
@@ -31,7 +28,7 @@ interface IFormValues {
   contents?: string;
 }
 
-export default function WebEditorWithHookFormPage() {
+export default function WebEditorPage() {
   const router = useRouter();
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
@@ -45,20 +42,15 @@ export default function WebEditorWithHookFormPage() {
   const handleChange = (value: string) => {
     console.log(value);
     setValue("contents", value === "<p><br></p>" ? "" : value);
-    //contents 라는 state에다가 value값을 넣어주는거
-    //register로 등록하지 않고, 강제로 값을 넣어주는 기능 (register이 편하겠지만 event가 들어오지 않고 가짜로 만들어진 속성이기 때문)
-    //값은 변하긴 했는데 change가 됐는지 안됐는지를 인식하진 못함
-
-    //값도 변경해주면서 changeEvent가 진행이 됐다는걸 알려주는것 : trigger
     trigger("contents");
-    //onChange가 됐는지 안됐는지 react-hook-form에 알려주는 기능
   };
 
-  const onClickSubmit = async (data: IFormValues) => {
+  const onClickSubmit = async (data: IFromValues) => {
     if (!(data.writer && data.password && data.title && data.contents)) {
-      Modal.warn({ content: "필수 입력 사항입니다" });
+      Modal.warn({ content: "필수 입력 사항입니다!" });
       return;
     }
+
     try {
       const result = await createBoard({
         variables: {
@@ -70,9 +62,9 @@ export default function WebEditorWithHookFormPage() {
           },
         },
       });
-      router.push(`/27-04-web-editor-detail/${result.data?.createBoard._id}`);
+      router.push(`/quiz06/editor/detail/${result.data?.createBoard._id}`);
     } catch (error) {
-      Modal.error(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
@@ -85,9 +77,6 @@ export default function WebEditorWithHookFormPage() {
       제목: <input type="text" {...register("title")} />
       <br />
       내용: <ReactQuill onChange={handleChange} />
-      {/* 여기에 변동이 생기면 handleChange에 value가 들어오게 되는것 (event같은 느낌인데 얘는 바로 들어오는거) 
-        여기선 {...register("contents")} 안써줌
-      */}
       <br />
       <button>등록하기</button>
     </form>

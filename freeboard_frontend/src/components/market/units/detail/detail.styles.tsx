@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 import { VscLocation } from "react-icons/vsc";
 import { BiLike, BiDislike } from "react-icons/bi";
 import { FaRegEdit } from "react-icons/fa";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
 
 export const MyWrapper = styled.div`
   width: 1200px;
@@ -77,7 +77,17 @@ export const Update = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  width: 70px;
+  width: 90px;
+`;
+
+export const List = styled(RiFileList3Line)`
+  cursor: pointer;
+  color: grey;
+  :hover {
+    color: #b81a39;
+  }
+  width: 20px;
+  height: 20px;
 `;
 
 export const Edit = styled(FaRegEdit)`

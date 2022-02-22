@@ -10,21 +10,67 @@ const Wrapper = styled.div`
   align-items: center;
 
   margin: 100px;
+  height: 500px;
 `;
 
 const Title = styled.div`
   color: black;
-  font-size: 40px;
+  font-size: 30px;
 `;
 
-const Name = styled.div`
-  margin-top: 50px;
+const Arrow = styled.div`
   font-size: 20px;
 `;
 
-const Generate = styled.div`
-  font-size: 30px;
+const Name = styled.div`
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 40px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #d6a0a0;
 `;
+
+const Generate = styled.div`
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  background-color: #ebebeb;
+  border-radius: 15px;
+  width: 200px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  :hover {
+    color: #b85f5f;
+  }
+  margin-bottom: 10px;
+`;
+
+const Back = styled.div`
+  cursor: pointer;
+  font-size: 15px;
+  color: #8b8b8b;
+  width: 150px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  :hover {
+    color: black;
+  }
+`;
+
+const Warning = styled.div`
+  font-size: 17px;
+  color: grey;
+  margin-bottom: 10px;
+`;
+
 export default function OpenApiPage() {
   const [random, setRandom] = useState("");
 
@@ -33,18 +79,35 @@ export default function OpenApiPage() {
       const result = await axios.get(
         "https://random-names-api.herokuapp.com/random"
       );
-      setRandom(result.data.body.name); // promise가 뜨게 되는데 이건 비동기형식이라 언젠가 result 화면에 보여줄게 하고 말하는것
-      //--> 이렇게 안에 함수를 만들어주고 그 안에 넣어줘야 async 사용 가능
+      setRandom(result.data.body.name); // promise => async ("Someday the result's gonna be displayed")
       console.log("Name is Generated!!");
     };
     Nombre();
-  }, []); //빈 array는 한번만 실행하고 그 뒤로는 실행 안한다는것
+  }, []); //empty array => once it's executed (doesn't activate twice)
+
+  const onClickBack = () => {
+    history.back();
+    //histroy.go() both back&forth possible
+  };
+
+  // const [value, setValue] = useState();
+
+  // const refresh = () => {
+  //   // re-renders the component
+  //   setValue({});
+  // };
+
+  const refresh = () => {
+    window.location.reload();
+  };
 
   return (
     <Wrapper>
-      <Title>Refresh the page to get a new random name!</Title>
-      <Generate> ⬇️ </Generate>
+      <Title>Your random username: </Title>
+      {/* <Arrow>⬇</Arrow> */}
       <Name>{random}</Name>
+      <Generate onClick={refresh}> Refresh the page </Generate>
+      <Back onClick={onClickBack}>Go to previous page</Back>
     </Wrapper>
   );
 }

@@ -9,14 +9,14 @@ const withAuth = (Component) => (props) => {
 
   // accessToken 여부 확인
   useEffect(() => {
-    if (!accessToken) {
+    if (!localStorage.getItem("accessToken")) {
       Modal.warn({ content: "Join us to view more :)" });
       router.push("/01-01-board/signin");
       //accessToken 없다면 signin page로 이동
     }
   }, []);
 
-  if (!accessToken) return <></>;
+  // if (!accessToken) return <></>;
   return <Component {...props} />;
 };
 

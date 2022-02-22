@@ -41,7 +41,11 @@ export default function ProductDetailContainer() {
       variables: { useditemId: router.query.productDetail },
     });
     Modal.success({ content: "Your Product is deleted" });
-    router.push("/01-01-market/home");
+    router.push("/01-01-market/list");
+  };
+
+  const onClickList = () => {
+    router.push("/01-01-market/list");
   };
 
   return (
@@ -49,6 +53,7 @@ export default function ProductDetailContainer() {
       data={data}
       onClickMoveToEdit={onClickMoveToEdit}
       onClickDelete={onClickDelete}
+      onClickList={onClickList}
     />
   );
 }

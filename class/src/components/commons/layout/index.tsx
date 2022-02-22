@@ -16,10 +16,21 @@ const LayoutSidebar = styled.div`
   background-color: #555555;
 `;
 
-const LayoutBody = styled.div``;
+const LayoutBody = styled.div`
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const BodyWrapper = styled.div`
   display: flex;
+`;
+
+const Title = styled.div`
+  color: #527da5;
+  font-size: 70px;
+  font-weight: 700;
 `;
 
 //Hiding Header in particular page
@@ -39,7 +50,10 @@ export default function Layout(props: IProps) {
       <LayoutNavigation />
       <BodyWrapper>
         <LayoutSidebar></LayoutSidebar>
-        <LayoutBody>{props.children}</LayoutBody>
+        <LayoutBody>
+          <Title>Inclass Practice</Title>
+          {props.children}
+        </LayoutBody>
       </BodyWrapper>
       <LayoutFooter />
     </div>

@@ -2,7 +2,8 @@ import * as D from "./detail.styles";
 import { Tooltip } from "antd";
 import { VscLocation } from "react-icons/vsc";
 import { FaRegEdit } from "react-icons/fa";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
+import Dompurify from "dompurify";
 
 export default function ProductDetailUIPage(props) {
   return (
@@ -33,6 +34,7 @@ export default function ProductDetailUIPage(props) {
 
         {/* 수정 삭제 */}
         <D.Update>
+          <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
           <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>
           <D.Delete onClick={props.onClickDelete}>{RiDeleteBinLine}</D.Delete>
         </D.Update>
@@ -51,7 +53,15 @@ export default function ProductDetailUIPage(props) {
           />
         </D.PicWrapper>
 
-        <D.MyContents>{props.data?.fetchUseditem?.contents}</D.MyContents>
+        {process.browser && (
+          <D.MyContents
+            dangerouslySetInnerHTML={{
+              __html: Dompurify.sanitize(
+                String(props.data?.fetchUseditem.contents)
+              ),
+            }}
+          />
+        )}
       </D.MyBody>
 
       <D.PageBottom></D.PageBottom>
