@@ -6,8 +6,48 @@ import { GiSafetyPin } from "react-icons/gi";
 import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
 import Dompurify from "dompurify";
 import Head from "next/head";
+import { useEffect } from "react";
+
+declare const window: typeof globalThis & {
+  kakao: any; //뭐가 더 들어오는지 모르기 때문에 any 사용
+};
 
 export default function ProductDetailUIPage(props) {
+  useEffect(() => {
+    const script = document.createElement("script"); // <script></script>
+
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=49d3c5429e18c3d510e928134b830407&libraries=services&autoload=false ";
+    //`?` --> 객체에 두개를 넣어서 문자열 형태로 넣어서 보내는거
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(function () {
+        const mapContainer = document.getElementById("map"); // 지도를 표시할 div
+        const mapOption = {
+          center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          level: 3, // 지도의 확대 레벨
+        };
+
+        // 지도 생성
+        var map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+        const geocoder = new window.kakao.maps.services.Geocoder();
+
+        //주소로 좌표 검색
+        geocoder.addressSearch(props.address, function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === window.kakao.maps.services.Status.OK) {
+            const coords = new window.kakao.maps.LatLng(
+              result[0].y,
+              result[0].x
+            );
+          }
+        });
+      });
+    };
+  }),
+    [props.address];
   return (
     <D.Wrapper>
       <Head>
@@ -76,14 +116,22 @@ export default function ProductDetailUIPage(props) {
         </D.RightDetail>
       </D.MainDetail>
 
-      <D.Update>
-        <D.Pay onClick={props.onClickPay}>{FaMoneyCheck}</D.Pay>
-        <D.Pin>{GiSafetyPin}</D.Pin>
-        <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
+      <D.ThirdWrapper>
+        <D.ThirdLeft>
+          <D.Update>
+            <D.Pay onClick={props.onClickPay}>{FaMoneyCheck}</D.Pay>
+            <D.Pin>{GiSafetyPin}</D.Pin>
+            <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
 
-        <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>
-        <D.Delete onClick={props.onClickDelete}>{RiDeleteBinLine}</D.Delete>
-      </D.Update>
+            <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>
+            <D.Delete onClick={props.onClickDelete}>{RiDeleteBinLine}</D.Delete>
+          </D.Update>
+        </D.ThirdLeft>
+
+        <D.ThirdRight>
+          <D.Map id="map" style={{ width: "500px", height: "350px" }} />
+        </D.ThirdRight>
+      </D.ThirdWrapper>
 
       <D.CommentDivision />
     </D.Wrapper>

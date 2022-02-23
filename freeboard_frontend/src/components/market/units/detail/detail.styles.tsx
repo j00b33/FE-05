@@ -128,10 +128,6 @@ export const Update = styled.div`
   justify-content: space-between;
 
   width: 240px;
-
-  margin-top: 20px;
-  margin-bottom: 50px;
-  margin-right: 600px;
 `;
 
 export const Pin = styled(GiSafetyPin)`
@@ -183,6 +179,29 @@ export const Delete = styled(RiDeleteBinLine)`
   width: 30px;
   height: 30px;
 `;
+
+//third 지도랑 설정 아이콘들
+export const ThirdWrapper = styled.div`
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const ThirdLeft = styled.div`
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ThirdRight = styled.div``;
+
+export const Map = styled.div``;
 
 export const CommentDivision = styled.div`
   border: 1px solid grey;

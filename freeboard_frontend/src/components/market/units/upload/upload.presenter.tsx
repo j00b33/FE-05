@@ -55,10 +55,10 @@ export default function CreateProductUIPage(props) {
             map.setCenter(coords);
           }
         });
-      }),
-        [props.address];
+      });
     };
-  });
+  }),
+    [props.address];
   return (
     <C.Wrapper>
       <form
@@ -136,29 +136,27 @@ export default function CreateProductUIPage(props) {
               <C.AddressBtn onClick={props.showModal}>
                 Search Address
               </C.AddressBtn>
+              <C.AddressInput
+                readOnly={true}
+                defaultValue={props.address}
+              ></C.AddressInput>
               <C.GPS>
                 <C.GPSInput
                   readOnly={true}
-                  placeholder="(lat)"
-                  defaultValue={props.data?.fetchUseditem.useditemAddress.lat}
+                  placeholder="Zone Code"
+                  defaultValue={props.zoneCode}
                 ></C.GPSInput>
                 <C.GPSInput
                   readOnly={true}
                   placeholder="(lng)"
-                  defaultValue={props.data?.fetchUseditem.useditemAddress.lng}
+                  defaultValue={props.town}
                 ></C.GPSInput>
               </C.GPS>
 
-              <C.AddressInner>
-                <C.AddressInput
-                  readOnly={true}
-                  defaultValue={props.address}
-                ></C.AddressInput>
-                <C.AddressInput
-                  onChange={props.onChangeAddressDetail}
-                  defaultValue={props.addressDetail}
-                ></C.AddressInput>
-              </C.AddressInner>
+              <C.AddressInput
+                onChange={props.onChangeAddressDetail}
+                defaultValue={props.addressDetail}
+              ></C.AddressInput>
             </C.AddressRightWrapper>
           </C.AddressMain>
         </C.AddressWrapper>

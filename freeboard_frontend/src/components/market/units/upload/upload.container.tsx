@@ -40,8 +40,6 @@ const CREATE_USED_ITEM = gql`
         zipcode
         address
         addressDetail
-        lat
-        lng
       }
       contents
       images
@@ -139,8 +137,8 @@ export const CreateProductContainer = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  const [zoneCode, setZoneCode] = useState("");
+  const [town, setTown] = useState("");
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -161,6 +159,8 @@ export const CreateProductContainer = (props) => {
 
     setAddress(data.address);
     setIsModalVisible(false);
+    setZoneCode(data.zonecode);
+    setTown(data.bname);
   };
 
   //Product Upload
@@ -176,8 +176,6 @@ export const CreateProductContainer = (props) => {
           useditemAddress: {
             address: address,
             addressDetail: addressDetail,
-            lat: lat,
-            lng: lng,
           },
         },
       },
@@ -199,6 +197,10 @@ export const CreateProductContainer = (props) => {
             price: Number(data.price),
             contents: data.contents,
             images: image,
+            useditemAddress: {
+              address: address,
+              addressDetail: addressDetail,
+            },
           },
         },
       });
@@ -234,6 +236,8 @@ export const CreateProductContainer = (props) => {
       address={address}
       onChangeAddressDetail={onChangeAddressDetail}
       addressDetail={addressDetail}
+      zoneCode={zoneCode}
+      town={town}
     />
   );
 };
