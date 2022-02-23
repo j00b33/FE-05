@@ -2,28 +2,33 @@ import styled from "@emotion/styled";
 import ReactPlayer from "react-player";
 import { VscLocation } from "react-icons/vsc";
 import { BiLike, BiDislike } from "react-icons/bi";
-import { FaRegEdit } from "react-icons/fa";
+import { FaMoneyCheck, FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
+import { GiSafetyPin } from "react-icons/gi";
 
-export const MyWrapper = styled.div`
-  width: 1200px;
+export const Wrapper = styled.div`
+  width: 1100px;
 
-  margin: 100px;
-
-  padding-top: 80px;
-  padding-bottom: 100px;
+  margin-top: 100px;
+  margin-left: 170px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  box-shadow: 0px 4px 20px grey;
-  border: 1px solid black;
+
   border: none;
 `;
 
-export const LeftHeader = styled.div`
-  width: 996px;
+export const MainDetail = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 1100px;
+`;
+
+export const LeftDetail = styled.div`
+  width: 500px;
 
   display: flex;
   flex-direction: row;
@@ -33,19 +38,31 @@ export const LeftHeader = styled.div`
   padding-bottom: 30px;
 `;
 
-export const MyHeader = styled.div`
+export const MainPic = styled.img``;
+
+export const RightDetail = styled.div`
+  width: 500px;
+  height: 500px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const SecondRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 990px;
+  width: 500px;
 `;
 
-export const HeaderLine = styled.div`
+export const SecondInner = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: space-evenly;
-  height: 50px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 130px;
 `;
 
 export const LocationWrapper = styled.div``;
@@ -57,19 +74,52 @@ export const AddressTool = styled(VscLocation)`
   cursor: pointer;
 `;
 
-export const MyWriter = styled.div`
+export const DivisionL = styled.div`
+  width: 500px;
+  border: 1px solid #b81a39;
+`;
+
+export const Product = styled.div`
+  font-size: 36px;
+  font-weight: 700;
+`;
+
+export const Price = styled.div`
+  font-size: 28px;
+  font-weight: 600;
+`;
+
+export const Date = styled.div`
+  font-weight: normal;
+  font-size: 20px;
+`;
+
+//Seller, Remarks, Contents
+
+export const ContentWrapper = styled.div`
+  width: 1100px;
+  height: 1070px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenly;
+  padding-top: 50px;
+`;
+
+export const Seller = styled.div`
   font-style: normal;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 23px;
   padding-bottom: 10px;
   font-family: Cochin;
 `;
 
-export const MyDate = styled.div`
-  font-weight: normal;
-  font-size: 16px;
-  color: #828282;
-  font-family: Cochin;
+export const Remarks = styled.div`
+  font-size: 20px;
+  padding-bottom: 40px;
+`;
+
+export const MyContents = styled.div`
+  font-size: 23px;
 `;
 
 export const Update = styled.div`
@@ -77,7 +127,31 @@ export const Update = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  width: 90px;
+  width: 240px;
+
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-right: 600px;
+`;
+
+export const Pin = styled(GiSafetyPin)`
+  cursor: pointer;
+  color: grey;
+  :hover {
+    color: #b81a39;
+  }
+  width: 30px;
+  height: 30px;
+`;
+
+export const Pay = styled(FaMoneyCheck)`
+  cursor: pointer;
+  color: grey;
+  :hover {
+    color: #b81a39;
+  }
+  width: 30px;
+  height: 30px;
 `;
 
 export const List = styled(RiFileList3Line)`
@@ -86,8 +160,8 @@ export const List = styled(RiFileList3Line)`
   :hover {
     color: #b81a39;
   }
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 export const Edit = styled(FaRegEdit)`
@@ -96,8 +170,8 @@ export const Edit = styled(FaRegEdit)`
   :hover {
     color: #b81a39;
   }
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 export const Delete = styled(RiDeleteBinLine)`
@@ -106,102 +180,11 @@ export const Delete = styled(RiDeleteBinLine)`
   :hover {
     color: #b81a39;
   }
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
-export const DivisionL = styled.div`
-  width: 996px;
-  border: 1px solid #b81a39;
-`;
-
-export const MyBody = styled.div`
-  width: 996px;
-  height: 1070px;
-  display: flex;
-  flex-direction: column;
-  align-items: space-evenly;
-  padding-top: 50px;
-`;
-export const MyTitle = styled.div`
-  font-family: Cochin;
-  font-weight: 700;
-  font-size: 36px;
-  padding-bottom: 40px;
-`;
-
-export const Price = styled.div`
-  font-size: 20px;
-`;
-
-export const MyContents = styled.div`
-  font-family: Cochin;
-  font-size: 20px;
-`;
-
-export const MyYoutube = styled(ReactPlayer)`
-  margin: auto;
-`;
-export const PicWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
-
-export const MainPic = styled.img`
-  padding-bottom: 50px;
-`;
-
-export const MainVid = styled.div``;
-//likes
-export const LikeWrapper = styled.div`
-  width: 100px;
-  height: 50px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-export const IconWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 60px;
-`;
-
-//footer
-export const PageBottom = styled.div`
-  width: 400px;
-  height: 45px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const MyBtn = styled.button`
-  font-family: Cochin;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  width: 179px;
-  height: 45px;
-
-  background: white;
-  color: black;
-  border: 1px solid #262626;
-  box-sizing: border-box;
-
-  border-radius: 10px;
-  cursor: pointer;
-
-  :hover {
-    background-color: #b81a39;
-    border-color: #262626;
-    color: white;
-  }
+export const CommentDivision = styled.div`
+  border: 1px solid grey;
+  width: 1100px;
 `;

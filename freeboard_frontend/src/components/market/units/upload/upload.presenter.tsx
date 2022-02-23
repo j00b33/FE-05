@@ -2,16 +2,25 @@ import Button from "../../../commons/createProduct/button";
 import * as C from "./upload.styles";
 import LargeInput from "../../../commons/createProduct/input/01";
 import MidInput from "../../../commons/createProduct/input/03";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function CreateProductUIPage(props) {
   return (
     <C.Wrapper>
-      <C.Header>
-        {props.isEdit ? "Edit Your Product" : "Upload Your Product"}
-      </C.Header>
-      <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
+      <form
+        onSubmit={
+          props.isEdit
+            ? props.handleSubmit(props.onClickUpdate)
+            : props.handleSubmit(props.onClickSubmit)
+        }
+      >
+        <C.Header>
+          {props.isEdit ? "Edit Your Product" : "Upload Your Product"}
+        </C.Header>
+
         <C.SectionWrapper>
           <C.Label>Product</C.Label>
           <MidInput
@@ -37,6 +46,7 @@ export default function CreateProductUIPage(props) {
           <ReactQuill
             onChange={props.handleChange}
             defaultValue={props.data?.fetchUseditem.contents}
+            style={{ height: "180px" }}
           />
           <C.Error>{props.formState.errors.contents?.message}</C.Error>
         </C.LargeSectionWrapper>

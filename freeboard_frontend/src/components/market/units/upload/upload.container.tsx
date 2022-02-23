@@ -8,7 +8,7 @@ import { useMove } from "../../../commons/hoc/customhooks/moveTo";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { UPLOAD_FILE } from "../../../board/units/write/BoardWrite.queries";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import {
   IMutation,
   IMutationUploadFileArgs,
@@ -36,6 +36,20 @@ const CREATE_USED_ITEM = gql`
   }
 `;
 
+const UPDATE_USED_ITEM = gql`
+  mutation updateUseditem(
+    $updateUseditemInput: UpdateUseditemInput!
+    $useditemId: ID!
+  ) {
+    updateUseditem(
+      updateUseditemInput: $updateUseditemInput
+      useditemId: $useditemId
+    ) {
+      _id
+    }
+  }
+`;
+
 const schema = yup.object().shape({
   name: yup.string().required("Enter the name of product"),
   remarks: yup.string().required("Enter a short description of the product"),
@@ -55,6 +69,8 @@ export const CreateProductContainer = (props) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState([]);
 
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
+
   // console.log(image);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const { moveTo } = useMove();
@@ -62,6 +78,16 @@ export const CreateProductContainer = (props) => {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
+  const [myContents, setMyContents] = useState("");
+
+  useEffect(() => {
+    setValue("name", props.data?.fetchUseditem.name);
+    setValue("remarks", props.data?.fetchUseditem.remarks);
+    setValue("contents", props.data?.fetchUseditem.contents);
+    setValue("price", props.data?.fetchUseditem.price);
+    setValue("images", props.data?.fetchUseditem.images[0]);
+  }, [props.data]);
 
   const handleChange = (value: string) => {
     console.log(value);
@@ -115,50 +141,26 @@ export const CreateProductContainer = (props) => {
     router.push(`/01-01-market/${result.data.createUseditem._id}`);
   };
 
-  // const onClickUpdate = async () => {
-  //   if (!price && !remarks && !contents) {
-  //     Modal.error({ content: "하나는 수정해야합니다" });
-  //   }
-  //   if (!myPassword) {
-  //     Modal.error({ content: "비밀번호를 입력해주세요" });
-  //   }
-
-  //   interface IFetchUseditem {
-  //     name?: string;
-  //       remarks?: string;
-  //     contents?: string;
-  //     price?: string
-  //     images?: string
-  //     };
-  //   }
-
-  //   const myUpdateBoardInput: IMyUpdateBoardInput = {};
-  //   if (myTitle) myUpdateBoardInput.title = myTitle;
-  //   if (myContents) myUpdateBoardInput.contents = myContents;
-  //   if (youtubeUrl) myUpdateBoardInput.youtubeUrl = youtubeUrl;
-  //   if (zipcode || address || addressDetail) {
-  //     //셋중에 하나라도 변경사항이 생기면 아래 괄호 안의 코드가 실행이 됨
-  //     myUpdateBoardInput.boardAddress = {};
-  //     if (zipcode) myUpdateBoardInput.boardAddress.zipcode = zipcode;
-  //     if (address) myUpdateBoardInput.boardAddress.address = address;
-  //     if (addressDetail)
-  //       myUpdateBoardInput.boardAddress.addressDetail = addressDetail;
-  //   }
-
-  //   try {
-  //     await updateBoard({
-  //       variables: {
-  //         boardId: router.query.boardDetail,
-  //         password: myPassword,
-  //         updateBoardInput: myUpdateBoardInput,
-  //       },
-  //     });
-  //     Modal.success({ content: "수정이 완료되었습니다" });
-  //     router.push(`/01-01-board/${router.query.boardDetail}`);
-  //   } catch (error) {
-  //     Modal.error({ content: "수정에 오류가 생겼습니다" });
-  //   }
-  // };
+  const onClickUpdate = async (data) => {
+    try {
+      await updateUseditem({
+        variables: {
+          useditemId: router.query.productDetail,
+          updateUseditemInput: {
+            name: data.name,
+            remarks: data.remarks,
+            price: Number(data.price),
+            contents: data.contents,
+            images: image,
+          },
+        },
+      });
+      Modal.success({ content: "Product has updated successfully" });
+      router.push(`/01-01-market/${router.query.productDetail}`);
+    } catch (error) {
+      Modal.error({ content: "Error" });
+    }
+  };
 
   return (
     <CreateProductUIPage
@@ -175,6 +177,7 @@ export const CreateProductContainer = (props) => {
       onChangeFile={onChangeFile}
       fileRef={fileRef}
       handleChange={handleChange}
+      onClickUpdate={onClickUpdate}
     />
   );
 };

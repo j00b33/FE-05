@@ -6,14 +6,10 @@ export const CREATE_USED_ITEM_QUESTION = gql`
     $useditemId: ID!
   ) {
     createUseditemQuestion(
-      Input: $createUseditemQuestionInput
+      createUseditemQuestionInput: $createUseditemQuestionInput
       useditemId: $useditemId
     ) {
       _id
-      user {
-        _id
-        name
-      }
       contents
     }
   }
@@ -25,31 +21,27 @@ export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
     $useditemQuestionId: ID!
   ) {
     createUseditemQuestionAnswer(
-      AnswerInput: $createUseditemQuestionAnswerInput
+      createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
       useditemQuestionId: $useditemQuestionId
     ) {
       _id
-      contents
       useditemQuestion {
         _id
-        contents
-        user {
-          _id
-          name
-        }
       }
+      contents
     }
   }
 `;
+
 export const FETCH_USED_ITEM_QUESTIONS = gql`
   query fetchUseditemQuestions($page: Int, $useditemId: ID!) {
     fetchUseditemQuestions(page: $page, useditemId: $useditemId) {
       _id
       contents
       user {
-        _id
         name
       }
+      createdAt
     }
   }
 `;
@@ -62,18 +54,16 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
     ) {
       _id
       contents
-      useditemQuestion {
-        _id
-        contents
-        user {
-          _id
-          name
-        }
-      }
+
       user {
-        _id
         name
       }
     }
+  }
+`;
+
+export const DELETE_USED_ITEM_QUESTION = gql`
+  mutation deleteUseditemQuestion($useditemQuestionId: ID!) {
+    deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
   }
 `;

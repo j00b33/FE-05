@@ -13,6 +13,9 @@ const FETCH_USED_ITEM = gql`
       remarks
       createdAt
       images
+      seller {
+        name
+      }
     }
   }
 `;
@@ -28,9 +31,6 @@ export default function ProductDetailContainer() {
     variables: { useditemId: String(router.query.productDetail) },
   });
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
-
-  console.log("======detailData=====");
-  console.log(data);
 
   const onClickMoveToEdit = () => {
     router.push(`/01-01-market/${router.query.productDetail}/edit`);
@@ -48,9 +48,14 @@ export default function ProductDetailContainer() {
     router.push("/01-01-market/list");
   };
 
+  const onClickPay = () => {
+    router.push("/01-01-market/pay");
+  };
+
   return (
     <ProductDetailUIPage
       data={data}
+      onClickPay={onClickPay}
       onClickMoveToEdit={onClickMoveToEdit}
       onClickDelete={onClickDelete}
       onClickList={onClickList}

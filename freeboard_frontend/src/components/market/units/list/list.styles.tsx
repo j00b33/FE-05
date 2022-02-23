@@ -1,5 +1,34 @@
 import styled from "@emotion/styled";
 
+//Search
+export const SearchBox = styled.input`
+  width: 500px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 18px;
+`;
+
+export const Searchtitle = styled.div`
+  font-size: 20px;
+  margin-right: 15px;
+`;
+export const SearchWrapper = styled.div`
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+interface IProps {
+  isMatched: boolean;
+}
+
+export const Word = styled.span`
+  color: ${(props: IProps) => props.isMatched && "#b81a39"};
+`;
+
+//List
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,8 +69,9 @@ export const Box = styled.div`
   height: 300px;
   border: 4px solid grey;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
   margin-bottom: 70px;
 `;
@@ -51,7 +81,7 @@ export const LeftSection = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  margin-top: 60px;
+  margin-top: 10px;
   margin-left: 60px;
 `;
 
@@ -85,4 +115,6 @@ export const Price = styled.div`
 
 export const RightSection = styled.div``;
 
-export const Image = styled.image``;
+export const Image = styled.img`
+  margin-right: 30px;
+`;

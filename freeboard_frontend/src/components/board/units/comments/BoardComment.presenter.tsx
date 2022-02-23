@@ -40,6 +40,7 @@ export default function BoardCommentUIPage(props) {
         </Modal>
       )}
 
+      {/* fetchComments */}
       <C.CommentsWrapper>
         <InfiniteScroll
           pageStart={0}

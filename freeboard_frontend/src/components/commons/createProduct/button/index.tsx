@@ -27,9 +27,5 @@ const CreateButton = styled.button`
 
 export default function Button(props) {
   const router = useRouter();
-  return (
-    <CreateButton type={props.type} isValid={props.isValid}>
-      {props.name}
-    </CreateButton>
-  );
+  return <CreateButton isValid={props.isValid}>{props.name}</CreateButton>;
 }
