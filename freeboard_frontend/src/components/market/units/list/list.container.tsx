@@ -68,6 +68,10 @@ export default function ListcontainerPage() {
   const onChangeSearch = (event) => {
     getDebounce(event.target.value);
   };
+
+  const onClickMoveToUpload = () => {
+    router.push("/01-01-market/create");
+  };
   return (
     <ListUIPage
       data={data}
@@ -75,6 +79,7 @@ export default function ListcontainerPage() {
       onLoadMore={onLoadMore}
       onClickProductsDetail={onClickProductsDetail}
       keyword={keyword}
+      onClickMoveToUpload={onClickMoveToUpload}
     />
   );
 }

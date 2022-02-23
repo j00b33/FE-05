@@ -7,6 +7,7 @@ import {
   IQuery,
   IQueryFetchUseditemQuestionAnswersArgs,
 } from "../../../src/commons/types/generated/types";
+import * as A from "./styles";
 
 export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
   mutation createUseditemQuestionAnswer(
@@ -39,26 +40,29 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
 `;
 
 export default function AnswerPage(props) {
-  const router = useRouter();
   const [createUseditemQuestionAnswer] = useMutation<
     Pick<IMutation, "createUseditemQuestionAnswer">,
     IMutationCreateUseditemQuestionAnswerArgs
   >(CREATE_USED_ITEM_QUESTION_ANSWER);
 
-  const { data: fetchAnswer } = useQuery<
+  const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemQuestionAnswers">,
     IQueryFetchUseditemQuestionAnswersArgs
-  >(FETCH_USED_ITEM_QUESTION_ANSWERS);
+  >(FETCH_USED_ITEM_QUESTION_ANSWERS, {
+    variables: {
+      useditemQuestionId: props.el._id,
+      page: 1,
+    },
+  });
+
+  const [contents, setContents] = useState("");
 
   function onChangeContents(event) {
     setContents(event.target.value);
   }
-  const [contents, setContents] = useState("");
 
   const onClickAdd = async () => {
-    // console.log(props.el._id);
-
-    if (contents !== "") {
+    if (contents) {
       try {
         await createUseditemQuestionAnswer({
           variables: {
@@ -67,28 +71,33 @@ export default function AnswerPage(props) {
             },
             useditemQuestionId: String(props.el._id),
           },
-          refetchQueries: [
-            {
-              query: FETCH_USED_ITEM_QUESTION_ANSWERS,
-              variables: {
-                useditemQuestionId: String(props.el._id),
-              },
-            },
-          ],
+          // refetchQueries: [
+          //   {
+          //     query: FETCH_USED_ITEM_QUESTION_ANSWERS,
+          //     variables: {
+          //       useditemQuestionId: String(props.el._id),
+          //     },
+          //   },
+          // ],
         });
+        refetch();
       } catch (error) {
         alert(error.message);
       }
-      setContents(contents);
     }
   };
+
   return (
-    <div>
+    <A.Wrapper>
       {props.isAdd ? (
-        <div>
-          <input type="text" onChange={onChangeContents}></input>
-          <button onClick={onClickAdd}>Comment</button>
-        </div>
+        <A.AnswerTypeWrapper>
+          <A.AnswerInput
+            type="text"
+            onChange={onChangeContents}
+            value={contents}
+          ></A.AnswerInput>
+          <A.AnswerSubmit onClick={onClickAdd}>Comment</A.AnswerSubmit>
+        </A.AnswerTypeWrapper>
       ) : (
         <></>
       )}
@@ -96,12 +105,13 @@ export default function AnswerPage(props) {
       <br />
 
       {/* 대댓 리스트 */}
-      {fetchAnswer?.fetchUseditemQuestionAnswers.map((el) => (
-        <div key={el.user.name}>
-          <div>{el?._id}</div>
-          <div>{el?.contents}</div>
-        </div>
+      {data?.fetchUseditemQuestionAnswers.map((el) => (
+        <A.AnswerListWrapper key={el._id}>
+          <A.AnswerName>{el?.user.name}</A.AnswerName>
+          <A.AnswerContents>{el?.contents}</A.AnswerContents>
+          <A.DivisionLine />
+        </A.AnswerListWrapper>
       ))}
-    </div>
+    </A.Wrapper>
   );
 }

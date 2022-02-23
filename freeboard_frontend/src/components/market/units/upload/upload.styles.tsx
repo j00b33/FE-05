@@ -32,6 +32,13 @@ export const LargeSectionWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
+export const SmallInputWrapper = styled.div`
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const Header = styled.div`
   font-weight: bold;
   font-size: 36px;
@@ -39,7 +46,7 @@ export const Header = styled.div`
 `;
 
 export const Label = styled.div`
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
 `;
 
@@ -55,13 +62,12 @@ export const ImageWrapper = styled.div`
 `;
 
 export const AddImage = styled.div`
-  background-color: grey;
+  background-color: #d6d6d6;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  border-radius: 50px;
 
   color: white;
   font-size: 12px;
@@ -72,8 +78,13 @@ export const AddImage = styled.div`
   cursor: pointer;
 
   :hover {
-    background-color: #9e6161;
+    color: #757575;
+    border: 2px dotted #757575;
   }
+`;
+
+export const ReactQuill = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const BoxWord = styled.div`
@@ -84,7 +95,6 @@ export const BoxWord = styled.div`
 export const SmallImage = styled.img`
   width: 30px;
   height: 30px;
-  border-radius: 30px;
 `;
 
 export const Footer = styled.div`
@@ -103,4 +113,72 @@ export const DivisionLine = styled.div`
   margin-bottom: 30px;
   width: 996px;
   border: 1px solid #dadadaec;
+`;
+
+//Address
+export const AddressBtn = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  width: 500px;
+  height: 52px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+`;
+export const AddressWrapper = styled.div`
+  width: 100%;
+  max-width: 996px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px;
+`;
+
+export const AddressMain = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+`;
+
+export const AddressPage = styled.div``;
+
+export const AddressRightWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 300px;
+  width: 500px;
+`;
+
+export const GPS = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const GPSInput = styled.input`
+  width: 230px;
+  height: 52px;
+  font-size: 15px;
+`;
+
+export const AddressInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 130px;
+`;
+
+export const AddressInput = styled.input`
+  width: 500px;
+  height: 52px;
 `;

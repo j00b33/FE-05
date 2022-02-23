@@ -13,6 +13,14 @@ const FETCH_USED_ITEM = gql`
       remarks
       createdAt
       images
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
       seller {
         name
       }

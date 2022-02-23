@@ -13,7 +13,7 @@ export const Searchtitle = styled.div`
   margin-right: 15px;
 `;
 export const SearchWrapper = styled.div`
-  margin-top: 100px;
+  margin-top: 70px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -49,8 +49,17 @@ export const HeaderTitle = styled.div`
 `;
 
 export const HeaderSubtitle = styled.div`
-  color: grey;
-  font-size: 20px;
+  color: #313131;
+  font-size: 23px;
+`;
+
+export const HeaderRouter = styled.div`
+  font-size: 17px;
+  color: #8d8d8d;
+  cursor: pointer;
+  :hover {
+    color: #b81a39;
+  }
 `;
 
 export const BoxWrapper = styled.div`
@@ -116,5 +125,5 @@ export const Price = styled.div`
 export const RightSection = styled.div``;
 
 export const Image = styled.img`
-  margin-right: 30px;
+  margin-right: 80px;
 `;

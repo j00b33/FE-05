@@ -21,6 +21,12 @@ interface FormValues {
   price?: number;
   contents?: string;
   images?: string;
+  useditemAddress?: {
+    address?: string;
+    addressDetail?: string;
+    lat?: number;
+    lng?: number;
+  };
 }
 
 const CREATE_USED_ITEM = gql`
@@ -30,6 +36,13 @@ const CREATE_USED_ITEM = gql`
       name
       remarks
       price
+      useditemAddress {
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
       contents
       images
     }
@@ -79,8 +92,6 @@ export const CreateProductContainer = (props) => {
     resolver: yupResolver(schema),
   });
 
-  const [myContents, setMyContents] = useState("");
-
   useEffect(() => {
     setValue("name", props.data?.fetchUseditem.name);
     setValue("remarks", props.data?.fetchUseditem.remarks);
@@ -95,7 +106,7 @@ export const CreateProductContainer = (props) => {
     trigger("contents");
   };
 
-  //이미지 추가
+  //Add Image File
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     // console.log(file);
@@ -118,8 +129,41 @@ export const CreateProductContainer = (props) => {
     fileRef.current?.click();
   };
 
+  const onChangeAddressDetail = (event) => {
+    setAddressDetail(event.target.value);
+  };
+
   const router = useRouter();
 
+  //Address
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    //ok 누르면 창이 사라짐
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    //cancle 누르면 창 사라짐
+  };
+
+  const onCompleteDaumPostCode = (data: any) => {
+    console.log(data);
+
+    setAddress(data.address);
+    setIsModalVisible(false);
+  };
+
+  //Product Upload
   const onClickSubmit = async (data: FormValues) => {
     const result = await createUseditem({
       variables: {
@@ -129,18 +173,21 @@ export const CreateProductContainer = (props) => {
           price: data.price,
           contents: data.contents,
           images: image,
+          useditemAddress: {
+            address: address,
+            addressDetail: addressDetail,
+            lat: lat,
+            lng: lng,
+          },
         },
       },
     });
-    console.log("========Data Check========");
-    // console.log(result);
-    console.log(props.data);
-
     Modal.success({ content: "Product is uploaded successfully" });
 
     router.push(`/01-01-market/${result.data.createUseditem._id}`);
   };
 
+  //Product Edit
   const onClickUpdate = async (data) => {
     try {
       await updateUseditem({
@@ -178,6 +225,15 @@ export const CreateProductContainer = (props) => {
       fileRef={fileRef}
       handleChange={handleChange}
       onClickUpdate={onClickUpdate}
+      //address
+      showModal={showModal}
+      onCompleteDaumPostCode={onCompleteDaumPostCode}
+      isModalVisible={isModalVisible}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      address={address}
+      onChangeAddressDetail={onChangeAddressDetail}
+      addressDetail={addressDetail}
     />
   );
 };

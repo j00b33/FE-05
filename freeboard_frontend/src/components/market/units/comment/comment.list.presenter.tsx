@@ -24,13 +24,13 @@ export default function CommentList(props) {
       await deleteUseditemQuestion({
         variables: {
           //questionId 받아와야함
-          useditemQuestionId: props.questionData.fetchUseditemQuestions._id,
+          useditemQuestionId: props.el._id,
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEM_QUESTIONS,
             variables: {
-              useditemQuestionId: props.questionData.fetchUseditemQuestions._id,
+              useditemId: router.query.productDetail,
             },
           },
         ],
@@ -49,7 +49,7 @@ export default function CommentList(props) {
           <C.WriterComment>{props.el?.contents}</C.WriterComment>
           <C.Update>
             <C.QuestionEdit>{BiEditAlt}</C.QuestionEdit>
-            <C.QuestionDelete onClick={props.onClickDelete}>
+            <C.QuestionDelete onClick={onClickDelete}>
               {BiEraser}
             </C.QuestionDelete>
             <C.AnswerAdd onClick={onClickAddAnswer}>

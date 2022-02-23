@@ -10,7 +10,11 @@ const CreateInput = styled.input`
 export default function SmallInput(props) {
   return (
     <div>
-      <CreateInput type={props.type} {...props.register} />
+      <CreateInput
+        type={props.type}
+        {...props.register}
+        defaultValue={props.defaultValue}
+      />
     </div>
   );
 }

@@ -1,13 +1,64 @@
 import Button from "../../../commons/createProduct/button";
 import * as C from "./upload.styles";
-import LargeInput from "../../../commons/createProduct/input/01";
+import SmallInput from "../../../commons/createProduct/input/02";
 import MidInput from "../../../commons/createProduct/input/03";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
+declare const window: typeof globalThis & {
+  kakao: any; //뭐가 더 들어오는지 모르기 때문에 any 사용
+};
+
 export default function CreateProductUIPage(props) {
+  useEffect(() => {
+    const script = document.createElement("script"); // <script></script>
+
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=49d3c5429e18c3d510e928134b830407&libraries=services&autoload=false ";
+    //`?` --> 객체에 두개를 넣어서 문자열 형태로 넣어서 보내는거
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(function () {
+        const mapContainer = document.getElementById("map"); // 지도를 표시할 div
+        const mapOption = {
+          center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          level: 3, // 지도의 확대 레벨
+        };
+
+        // 지도 생성
+        var map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+        const geocoder = new window.kakao.maps.services.Geocoder();
+
+        //주소로 좌표 검색
+        geocoder.addressSearch(props.address, function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === window.kakao.maps.services.Status.OK) {
+            const coords = new window.kakao.maps.LatLng(
+              result[0].y,
+              result[0].x
+            );
+
+            // 결과값으로 받은 위치를 마커로 표시
+            const marker = new window.kakao.maps.Marker({
+              map: map,
+              position: coords,
+            });
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동
+            map.setCenter(coords);
+          }
+        });
+      }),
+        [props.address];
+    };
+  });
   return (
     <C.Wrapper>
       <form
@@ -21,15 +72,27 @@ export default function CreateProductUIPage(props) {
           {props.isEdit ? "Edit Your Product" : "Upload Your Product"}
         </C.Header>
 
-        <C.SectionWrapper>
-          <C.Label>Product</C.Label>
-          <MidInput
-            type="text"
-            register={props.register("name")}
-            defaultValue={props.data?.fetchUseditem.name}
-          />
-          <C.Error>{props.formState.errors.name?.message}</C.Error>
-        </C.SectionWrapper>
+        <C.SmallInputWrapper>
+          <C.SectionWrapper>
+            <C.Label>Product</C.Label>
+            <SmallInput
+              type="text"
+              register={props.register("name")}
+              defaultValue={props.data?.fetchUseditem.name}
+            />
+            <C.Error>{props.formState.errors.name?.message}</C.Error>
+          </C.SectionWrapper>
+
+          <C.SectionWrapper>
+            <C.Label>Price</C.Label>
+            <SmallInput
+              type="text"
+              register={props.register("price")}
+              defaultValue={props.data?.fetchUseditem.price}
+            />
+            <C.Error>{props.formState.errors.price?.message}</C.Error>
+          </C.SectionWrapper>
+        </C.SmallInputWrapper>
 
         <C.SectionWrapper>
           <C.Label>Short Description</C.Label>
@@ -43,23 +106,62 @@ export default function CreateProductUIPage(props) {
 
         <C.LargeSectionWrapper>
           <C.Label>Description</C.Label>
-          <ReactQuill
-            onChange={props.handleChange}
-            defaultValue={props.data?.fetchUseditem.contents}
-            style={{ height: "180px", width: "996px" }}
-          />
+          <C.ReactQuill>
+            <ReactQuill
+              onChange={props.handleChange}
+              defaultValue={props.data?.fetchUseditem.contents}
+              style={{ height: "180px", width: "996px" }}
+            />
+          </C.ReactQuill>
+
           <C.Error>{props.formState.errors.contents?.message}</C.Error>
         </C.LargeSectionWrapper>
 
-        <C.SectionWrapper>
-          <C.Label>Price</C.Label>
-          <MidInput
-            type="text"
-            register={props.register("price")}
-            defaultValue={props.data?.fetchUseditem.price}
-          />
-          <C.Error>{props.formState.errors.price?.message}</C.Error>
-        </C.SectionWrapper>
+        {props.isModalVisible && (
+          <Modal
+            title="Address"
+            visible={true}
+            onOk={props.handleOk}
+            onCancel={props.handleCancel}
+          >
+            <DaumPostcode onComplete={props.onCompleteDaumPostCode} />
+          </Modal>
+        )}
+        <C.AddressWrapper>
+          <C.Label>Address</C.Label>
+          <C.AddressMain>
+            <div id="map" style={{ width: "450px", height: "300px" }} />
+
+            <C.AddressRightWrapper>
+              <C.AddressBtn onClick={props.showModal}>
+                Search Address
+              </C.AddressBtn>
+              <C.GPS>
+                <C.GPSInput
+                  readOnly={true}
+                  placeholder="(lat)"
+                  defaultValue={props.data?.fetchUseditem.useditemAddress.lat}
+                ></C.GPSInput>
+                <C.GPSInput
+                  readOnly={true}
+                  placeholder="(lng)"
+                  defaultValue={props.data?.fetchUseditem.useditemAddress.lng}
+                ></C.GPSInput>
+              </C.GPS>
+
+              <C.AddressInner>
+                <C.AddressInput
+                  readOnly={true}
+                  defaultValue={props.address}
+                ></C.AddressInput>
+                <C.AddressInput
+                  onChange={props.onChangeAddressDetail}
+                  defaultValue={props.addressDetail}
+                ></C.AddressInput>
+              </C.AddressInner>
+            </C.AddressRightWrapper>
+          </C.AddressMain>
+        </C.AddressWrapper>
 
         <C.ImageWrapper>
           <C.Label>Add Photo</C.Label>
@@ -68,6 +170,7 @@ export default function CreateProductUIPage(props) {
             <C.SmallImage
               src={`https://storage.googleapis.com/${props.image}`}
               defaultValue={props.data?.fetchUseditem.images}
+              onError={(e) => (e.currentTarget.src = "/empty.png")}
             />
           </C.AddImage>
           <input

@@ -8,6 +8,9 @@ export default function ListUIPage(props) {
       <L.Header>
         <L.HeaderTitle>Products</L.HeaderTitle>
         <L.HeaderSubtitle>View other's products!</L.HeaderSubtitle>
+        <L.HeaderRouter onClick={props.onClickMoveToUpload}>
+          Click here to upload your product
+        </L.HeaderRouter>
       </L.Header>
 
       <L.SearchWrapper>
@@ -51,7 +54,7 @@ export default function ListUIPage(props) {
               <L.RightSection>
                 <L.Image
                   src={`https://storage.googleapis.com/${el.images[0]}`}
-                  height="270px"
+                  height="200px"
                   onError={(e) => (e.currentTarget.src = "/empty.png")}
                 ></L.Image>
               </L.RightSection>

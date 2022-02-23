@@ -102,6 +102,7 @@ const BoardContain = (props) => {
     setZipcode(String(data.zonecode));
     setIsOpen(false);
 
+    console.log(data);
     console.log(zipcode);
     console.log(address);
     //modal complete되면 다시 닫아줘야함
