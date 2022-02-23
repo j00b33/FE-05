@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: 100px;
   margin-right: 230px;
 
@@ -11,8 +12,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0px 4px 20px grey;
 `;
 
 export const SectionWrapper = styled.div`
@@ -36,7 +35,7 @@ export const LargeSectionWrapper = styled.div`
 export const Header = styled.div`
   font-weight: bold;
   font-size: 36px;
-  padding-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 export const Label = styled.div`
@@ -97,4 +96,11 @@ export const Footer = styled.div`
 export const Error = styled.div`
   font-size: 15px;
   color: red;
+`;
+
+export const DivisionLine = styled.div`
+  margin-top: 40px;
+  margin-bottom: 30px;
+  width: 996px;
+  border: 1px solid #dadadaec;
 `;

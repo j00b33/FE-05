@@ -46,7 +46,7 @@ export default function CreateProductUIPage(props) {
           <ReactQuill
             onChange={props.handleChange}
             defaultValue={props.data?.fetchUseditem.contents}
-            style={{ height: "180px" }}
+            style={{ height: "180px", width: "996px" }}
           />
           <C.Error>{props.formState.errors.contents?.message}</C.Error>
         </C.LargeSectionWrapper>
@@ -78,6 +78,8 @@ export default function CreateProductUIPage(props) {
             //화면에만 안보이는거
           />
         </C.ImageWrapper>
+
+        <C.DivisionLine />
 
         <C.Footer>
           <Button

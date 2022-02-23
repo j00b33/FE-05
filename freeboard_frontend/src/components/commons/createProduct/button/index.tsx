@@ -11,8 +11,6 @@ const CreateButton = styled.button`
   height: 52px;
   font-size: 20px;
 
-  border-radius: 15px;
-
   cursor: pointer;
 
   display: flex;
@@ -20,7 +18,7 @@ const CreateButton = styled.button`
   align-items: center;
 
   background-color: ${(props: IMyButtonProps) =>
-    props.isValid ? "#b81a39" : ""};
+    props.isValid ? "#b81a39" : "white"};
 
   color: ${(props: IMyButtonProps) => (props.isValid ? "white" : "black")};
 `;
