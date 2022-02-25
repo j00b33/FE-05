@@ -17,9 +17,9 @@ export default function BoardDetailUIPage(props) {
 
           <D.LocationWrapper>
             <Tooltip
-              color="#b81a39"
+              color="#9900ff"
               font-size="16px"
-              font-family="Cochin"
+              font-family="CodaCaption"
               title={`${props.data?.fetchBoard.boardAddress?.address} 
                 ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
             >

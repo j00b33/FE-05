@@ -5,13 +5,13 @@ import {
   ApolloProvider,
   ApolloLink,
 } from "@apollo/client";
-import { AppProps } from "next/app";
-import "antd/dist/antd.css";
 import { Global } from "@emotion/react";
+import { AppProps } from "next/app";
 import Layout from "../src/components/commons/layout";
 import { globalStyles } from "../src/commons/styles/globalstlyes";
 import { createUploadLink } from "apollo-upload-client";
 import { initializeApp } from "firebase/app";
+import "antd/dist/antd.css";
 import {
   createContext,
   Dispatch,
@@ -19,7 +19,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import Head from "next/head";
+import { onError } from "@apollo/client/link/error";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQbouh-zQ-3Lu0gC0c5sjfR-UbexdrZNE",
@@ -29,6 +30,7 @@ const firebaseConfig = {
   messagingSenderId: "1016132627942",
   appId: "1:1016132627942:web:4f02aa495f12c65e0afa27",
 };
+
 export const firebaseApp = initializeApp(firebaseConfig);
 
 interface IUserInfo {
@@ -69,22 +71,51 @@ function MyAPP({ Component, pageProps }: AppProps) {
   // }
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setAccessToken(localStorage.getItem("accessToken") || "");
-    }
+    // if (localStorage.getItem("accessToken")) {
+    //   setAccessToken(localStorage.getItem("accessToken") || "");
+    // }
     //useEffect는 한번만 실행이 되기 때문에 여기서 setState하고 종료
+
+    getAccessToken().then((newAccessToken) => {
+      setAccessToken(newAccessToken);
+    });
   }, []);
 
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    // 1. 에러를 캐치
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        // 2. 해당 에러가 토큰만료 에러인지 체크(UNAUTHENTICATED)
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          // 3. refreshToken으로 accessToken을 재발급 받기
+          getAccessToken().then((newAccessToken) => {
+            // 4. 재발급 받은 accessToken 저장하기
+            setAccessToken(newAccessToken);
+
+            // 5. 재발급 받은 accessToken으로 방금 실패한 쿼리 재요청하기
+            operation.setContext({
+              headers: {
+                ...operation.getContext().headers,
+                Authorization: `Bearer ${newAccessToken}`,
+              },
+            }); // 설정 변경(accessToken만!! 바꿔치기)
+            return forward(operation); // 변경된 operation 재요청하기!!
+          });
+        }
+      }
+    }
+  });
+
   const uploadLink = createUploadLink({
-    uri: "http://backend05.codebootcamp.co.kr/graphql", //apollo setting
+    uri: "https://backend05.codebootcamp.co.kr/graphql", //apollo setting
     headers: { Authorization: `Bearer ${accessToken}` },
+    credentials: "include", //-->  중요한 쿠키 저장됨
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     //link: 다른 기능들을 연결해주겠다
     //알 수 없는 타입의 아폴로링크꺼
-
     cache: new InMemoryCache(),
     //"링크"에서 받아온 데이터들을 따로 저장공간을 만들어서 저장을 해둠
   });

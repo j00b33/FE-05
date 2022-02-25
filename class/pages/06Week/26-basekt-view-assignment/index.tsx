@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IBoard } from "../../src/commons/types/generated/types";
+import { IBoard } from "../../../src/commons/types/generated/types";
 
 //로그인해서 접속해왔을때 어떻게 보여질 것인지 (로그인을 했다고 가정하고)
 

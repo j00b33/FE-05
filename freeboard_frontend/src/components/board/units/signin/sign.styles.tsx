@@ -60,7 +60,6 @@ export const Box = styled.div`
 `;
 
 export const Input = styled.input`
-  border-radius: 10px;
   width: 300px;
   height: 40px;
 `;
@@ -71,7 +70,7 @@ export const Button = styled.div`
 
   margin-top: 20px;
 
-  background-color: #b81a39;
+  background-color: #9900ff;
   color: white;
 
   font-size: 20px;
@@ -82,12 +81,11 @@ export const Button = styled.div`
   align-items: center;
 
   border: 2px solid black;
-  border-radius: 15px;
 
   cursor: pointer;
 
   :hover {
-    background-color: #9c1c36;
+    background-color: #c36aff;
   }
 `;
 

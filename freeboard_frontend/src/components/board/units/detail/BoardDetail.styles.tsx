@@ -41,7 +41,7 @@ export const HeaderLine = styled.div`
 export const LocationWrapper = styled.div``;
 
 export const AddressTool = styled(VscLocation)`
-  color: #b81a39;
+  color: #9900ff;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -52,19 +52,17 @@ export const MyWriter = styled.div`
   font-weight: 500;
   font-size: 22px;
   padding-bottom: 10px;
-  font-family: Cochin;
 `;
 
 export const MyDate = styled.div`
   font-weight: normal;
   font-size: 16px;
   color: #828282;
-  font-family: Cochin;
 `;
 
 export const DivisionL = styled.div`
   width: 996px;
-  border: 1px solid #b81a39;
+  border: 1px solid #9900ff;
 `;
 
 export const MyBody = styled.div`
@@ -76,14 +74,13 @@ export const MyBody = styled.div`
   padding-top: 50px;
 `;
 export const MyTitle = styled.div`
-  font-family: Cochin;
   font-weight: 700;
   font-size: 36px;
   padding-bottom: 40px;
 `;
 
 export const MyContents = styled.div`
-  font-family: Cochin;
+  font-family: "Roboto";
   font-size: 20px;
 `;
 
@@ -116,7 +113,7 @@ export const Like = styled(BiLike)`
   height: 30px;
   cursor: pointer;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
 `;
 
@@ -125,7 +122,7 @@ export const Dislike = styled(BiDislike)`
   height: 30px;
   cursor: pointer;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
 `;
 
@@ -161,7 +158,7 @@ export const PageBottom = styled.div`
 `;
 
 export const MyBtn = styled.button`
-  font-family: Cochin;
+  font-family: "CodaCaption";
 
   display: flex;
   flex-direction: row;
@@ -176,12 +173,10 @@ export const MyBtn = styled.button`
   border: 1px solid #262626;
   box-sizing: border-box;
 
-  border-radius: 10px;
   cursor: pointer;
 
   :hover {
-    background-color: #b81a39;
+    background-color: #09ff00;
     border-color: #262626;
-    color: white;
   }
 `;

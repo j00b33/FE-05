@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const Wrapper = styled.div`
@@ -16,10 +15,7 @@ const Wrapper = styled.div`
 const Title = styled.div`
   color: black;
   font-size: 30px;
-`;
-
-const Arrow = styled.div`
-  font-size: 20px;
+  font-weight: 700;
 `;
 
 const Name = styled.div`
@@ -31,55 +27,49 @@ const Name = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #d6a0a0;
+  background-color: #dac6e7;
+`;
+
+const Menu = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 400px;
 `;
 
 const Generate = styled.div`
   font-size: 20px;
   cursor: pointer;
   color: black;
-  background-color: #ebebeb;
-  border-radius: 15px;
-  width: 200px;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   :hover {
-    color: #b85f5f;
+    color: #09ff00;
   }
   margin-bottom: 10px;
 `;
 
 const Back = styled.div`
+  font-size: 20px;
   cursor: pointer;
-  font-size: 15px;
-  color: #8b8b8b;
-  width: 150px;
+  color: black;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   :hover {
-    color: black;
+    color: #09ff00;
   }
-`;
-
-const Warning = styled.div`
-  font-size: 17px;
-  color: grey;
   margin-bottom: 10px;
 `;
 
 export default function OpenApiPage() {
-  const [random, setRandom] = useState("");
+  const [randomName, setRandomName] = useState("");
 
   useEffect(() => {
     const Nombre = async () => {
       const result = await axios.get(
         "https://random-names-api.herokuapp.com/random"
       );
-      setRandom(result.data.body.name); // promise => async ("Someday the result's gonna be displayed")
+      setRandomName(String(result.data.body.name)); // promise => async ("Someday the result's gonna be displayed")
       console.log("Name is Generated!!");
     };
     Nombre();
@@ -87,15 +77,8 @@ export default function OpenApiPage() {
 
   const onClickBack = () => {
     history.back();
-    //histroy.go() both back&forth possible
+    //history.go() both back&forth possible
   };
-
-  // const [value, setValue] = useState();
-
-  // const refresh = () => {
-  //   // re-renders the component
-  //   setValue({});
-  // };
 
   const refresh = () => {
     window.location.reload();
@@ -105,9 +88,13 @@ export default function OpenApiPage() {
     <Wrapper>
       <Title>Your random username: </Title>
       {/* <Arrow>⬇</Arrow> */}
-      <Name>{random}</Name>
-      <Generate onClick={refresh}> Refresh the page </Generate>
-      <Back onClick={onClickBack}>Go to previous page</Back>
+      <Name>{randomName}</Name>
+      {/* <button onClick={copyText}>Copy</button> */}
+      <Menu>
+        <Back onClick={onClickBack}>Go to previous page</Back>
+        <div>{" / "}</div>
+        <Generate onClick={refresh}>Refresh the page</Generate>
+      </Menu>
     </Wrapper>
   );
 }

@@ -2,11 +2,12 @@ import * as D from "./detail.styles";
 import { Tooltip } from "antd";
 import { VscLocation } from "react-icons/vsc";
 import { FaMoneyCheck, FaRegEdit } from "react-icons/fa";
-import { GiSafetyPin } from "react-icons/gi";
 import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
 import Dompurify from "dompurify";
 import Head from "next/head";
 import { useEffect } from "react";
+import { GrCart } from "react-icons/gr";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 declare const window: typeof globalThis & {
   kakao: any; //뭐가 더 들어오는지 모르기 때문에 any 사용
@@ -35,19 +36,30 @@ export default function ProductDetailUIPage(props) {
         const geocoder = new window.kakao.maps.services.Geocoder();
 
         //주소로 좌표 검색
-        geocoder.addressSearch(props.address, function (result, status) {
-          // 정상적으로 검색이 완료됐으면
-          if (status === window.kakao.maps.services.Status.OK) {
-            const coords = new window.kakao.maps.LatLng(
-              result[0].y,
-              result[0].x
-            );
+        geocoder.addressSearch(
+          props.data?.fetchUseditem?.useditemAddress.address,
+          function (result, status) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
+              // 결과값으로 받은 위치를 마커로 표시
+              const marker = new window.kakao.maps.Marker({
+                map: map,
+                position: coords,
+              });
+
+              // 지도의 중심을 결과값으로 받은 위치로 이동
+              map.setCenter(coords);
+            }
           }
-        });
+        );
       });
     };
-  }),
-    [props.address];
+  }, [props.data]);
+
   return (
     <D.Wrapper>
       <Head>
@@ -80,7 +92,7 @@ export default function ProductDetailUIPage(props) {
               </D.Date>
               <D.LocationWrapper>
                 <Tooltip
-                  color="#b81a39"
+                  color="#9900ff"
                   font-size="16px"
                   font-family="Cochin"
                   title={`${props.data?.fetchUseditem.useditemAddress?.address} 
@@ -120,7 +132,7 @@ export default function ProductDetailUIPage(props) {
         <D.ThirdLeft>
           <D.Update>
             <D.Pay onClick={props.onClickPay}>{FaMoneyCheck}</D.Pay>
-            <D.Pin>{GiSafetyPin}</D.Pin>
+            <D.Pin>{HiOutlineShoppingCart}</D.Pin>
             <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
 
             <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>

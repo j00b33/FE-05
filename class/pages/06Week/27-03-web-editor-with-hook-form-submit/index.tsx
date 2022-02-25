@@ -6,7 +6,7 @@ import { gql, useMutation } from "@apollo/client";
 import {
   IMutation,
   IMutationCreateBoardArgs,
-} from "../../src/commons/types/generated/types";
+} from "../../../src/commons/types/generated/types";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
 

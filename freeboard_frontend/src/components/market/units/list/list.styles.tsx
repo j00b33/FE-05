@@ -5,12 +5,13 @@ export const SearchBox = styled.input`
   width: 500px;
   height: 40px;
   font-size: 20px;
-  border-radius: 18px;
+  font-family: "Roboto";
 `;
 
 export const Searchtitle = styled.div`
   font-size: 20px;
   margin-right: 15px;
+  font-family: "Roboto";
 `;
 export const SearchWrapper = styled.div`
   margin-top: 70px;
@@ -25,7 +26,7 @@ interface IProps {
 }
 
 export const Word = styled.span`
-  color: ${(props: IProps) => props.isMatched && "#b81a39"};
+  color: ${(props: IProps) => props.isMatched && "#9900FF"};
 `;
 
 //List
@@ -33,6 +34,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background-color: white;
 
   margin: 100px;
 `;
@@ -58,7 +61,7 @@ export const HeaderRouter = styled.div`
   color: #8d8d8d;
   cursor: pointer;
   :hover {
-    color: #b81a39;
+    color: #9900ff;
   }
 `;
 
@@ -109,7 +112,7 @@ export const Product = styled.div`
   font-size: 25px;
   cursor: pointer;
   :hover {
-    color: #b81a39;
+    color: #9900ff;
   }
 `;
 

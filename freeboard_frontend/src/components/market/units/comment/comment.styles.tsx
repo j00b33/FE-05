@@ -40,9 +40,9 @@ export const Input = styled.input`
 export const SubmitBtn = styled.div`
   width: 100px;
   height: 80px;
-  color: #b81a39;
+  color: white;
 
-  background-color: white;
+  background-color: #9900ff;
   border: 2px solid black;
   display: flex;
   flex-direction: row;
@@ -54,11 +54,6 @@ export const SubmitBtn = styled.div`
   font-family: Cochin;
   /* border-radius: 20px; */
   cursor: pointer;
-
-  :hover {
-    background-color: #b81a39;
-    color: white;
-  }
 `;
 
 //fetchComments//
@@ -108,7 +103,7 @@ export const QuestionEdit = styled(BiEditAlt)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #3a3a3a;
   }
 `;
 
@@ -118,7 +113,7 @@ export const QuestionDelete = styled(BiEraser)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #3a3a3a;
   }
 `;
 
@@ -128,13 +123,13 @@ export const AnswerAdd = styled(BiMessageAltAdd)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #3a3a3a;
   }
 `;
 
 export const DivisionLine = styled.div`
   width: 1000px;
-  border: 1px solid #b93652;
+  border: 1px solid #9900ff;
 `;
 
 export const ScrollMore = styled.div`

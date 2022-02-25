@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   height: 60px;
   width: 100%;
 
-  background-color: #b81a39;
+  background-color: #9900ff;
 
   display: flex;
   flex-direction: row;
@@ -25,7 +25,8 @@ const InnerWrapper = styled.div`
 `;
 const Inner = styled.div`
   cursor: pointer;
-  font-family: Cochin;
+  font-family: "Roboto";
+  font-weight: 700;
   :hover {
     color: white;
   }

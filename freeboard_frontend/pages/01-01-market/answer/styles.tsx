@@ -33,12 +33,8 @@ export const AnswerSubmit = styled.div`
   align-items: center;
   font-weight: 700;
 
-  color: #b81a39;
-
-  :hover {
-    background-color: #b81a39;
-    color: white;
-  }
+  background-color: #ba85e0;
+  color: white;
 `;
 
 export const AnswerListWrapper = styled.div`
@@ -61,5 +57,5 @@ export const AnswerContents = styled.div`
 
 export const DivisionLine = styled.div`
   width: 667px;
-  border: 1px solid #da9da9;
+  border: 1px solid #ba85e0;
 `;

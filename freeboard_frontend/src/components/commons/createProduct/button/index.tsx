@@ -18,9 +18,7 @@ const CreateButton = styled.button`
   align-items: center;
 
   background-color: ${(props: IMyButtonProps) =>
-    props.isValid ? "#b81a39" : "white"};
-
-  color: ${(props: IMyButtonProps) => (props.isValid ? "white" : "black")};
+    props.isValid ? "#09FF00" : "white"};
 `;
 
 export default function Button(props) {

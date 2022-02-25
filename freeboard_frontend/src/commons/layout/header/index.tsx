@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import Router, { useRouter } from "next/router";
 import { Modal, Tooltip } from "antd";
-import { RiUser5Line, RiSettings2Line } from "react-icons/ri";
-import { GiSafetyPin } from "react-icons/gi";
+import { RiAliensLine, RiUser5Line } from "react-icons/ri";
+import { AiTwotoneExperiment } from "react-icons/ai";
+import { IoIosConstruct } from "react-icons/io";
 import { Menu, Dropdown, Space } from "antd";
 import { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
   height: 120px;
   width: 100%;
 
-  background-color: white;
+  background-color: black;
 
   display: flex;
   flex-direction: row;
@@ -29,10 +30,9 @@ const Wrapper = styled.div`
 `;
 const Title = styled.div`
   font-size: 80px;
-  color: #b81a39;
-  font-family: Cochin;
+  color: #9900ff;
+  font-family: Impact;
   padding-left: 170px;
-  font-weight: 900;
 
   width: 700px;
   cursor: pointer;
@@ -53,6 +53,7 @@ const HeaderWrapper = styled.div`
 const Welcome = styled.div`
   display: flex;
   flex-direction: row;
+  color: white;
 `;
 
 const Loggedin = styled.div`
@@ -61,26 +62,27 @@ const Loggedin = styled.div`
 
 const Name = styled.div`
   font-size: 16px;
-  color: #b81a39;
+  color: #09ff00;
+  font-family: "Roboto";
 `;
 
-const Profile = styled(RiUser5Line)`
-  color: black;
+const Profile = styled(RiAliensLine)`
+  color: white;
   width: 25px;
   height: 25px;
   cursor: pointer;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
 `;
-const Shopping = styled(GiSafetyPin)`
-  color: black;
+const Shopping = styled(AiTwotoneExperiment)`
+  color: white;
   width: 25px;
   height: 25px;
 
   cursor: pointer;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
 `;
 
@@ -88,14 +90,14 @@ const Blank = styled.div`
   width: 5px;
 `;
 
-const Settings = styled(RiSettings2Line)`
-  color: black;
+const Settings = styled(IoIosConstruct)`
+  color: white;
   width: 25px;
   height: 25px;
 
   cursor: pointer;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
 `;
 
@@ -143,7 +145,7 @@ export default function LayoutHeader() {
 
   return (
     <Wrapper>
-      <Title onClick={onClickTitle}>Pierce Peers</Title>
+      <Title onClick={onClickTitle}>GO MAD</Title>
       <HeaderWrapper>
         <Welcome>
           <Loggedin>Welcome </Loggedin>
@@ -154,20 +156,20 @@ export default function LayoutHeader() {
         <Space direction="vertical">
           <Dropdown overlay={menu}>
             <Profile>
-              <RiUser5Line />
+              <RiAliensLine />
             </Profile>
           </Dropdown>
         </Space>
 
         <Tooltip title="Cart">
           <Shopping>
-            <GiSafetyPin />
+            <AiTwotoneExperiment />
           </Shopping>
         </Tooltip>
 
         <Tooltip title="Settings">
           <Settings>
-            <RiSettings2Line />
+            <IoIosConstruct />
           </Settings>
         </Tooltip>
       </HeaderWrapper>

@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { IBoard } from "../../src/commons/types/generated/types";
+import { IBoard } from "../../../src/commons/types/generated/types";
 
 const FETCH_BOARDS = gql`
   query fetchBoards {

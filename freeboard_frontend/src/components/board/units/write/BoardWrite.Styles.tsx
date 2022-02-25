@@ -158,15 +158,13 @@ export const ImageWrapper = styled.div`
 `;
 
 export const AddImage = styled.div`
-  background-color: grey;
+  background-color: #afafaf;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  border-radius: 50px;
-
-  color: white;
+  color: #000000;
   font-size: 12px;
 
   width: 70px;
@@ -175,7 +173,7 @@ export const AddImage = styled.div`
   cursor: pointer;
 
   :hover {
-    background-color: #9e6161;
+    background-color: #99ce99;
   }
 `;
 
@@ -241,8 +239,6 @@ export const MyBtn = styled.button`
   color: black;
   font-size: 20px;
 
-  border-radius: 15px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -250,6 +246,5 @@ export const MyBtn = styled.button`
   cursor: pointer;
 
   background-color: ${(props: IProps) =>
-    props.isActive === true ? "#b81a39" : "none"};
-  color: ${(props: IProps) => (props.isActive === true ? "white" : "none")};
+    props.isActive === true ? "#09ff09" : "white"};
 `;

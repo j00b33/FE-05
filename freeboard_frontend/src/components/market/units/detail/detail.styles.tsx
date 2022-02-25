@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import ReactPlayer from "react-player";
 import { VscLocation } from "react-icons/vsc";
-import { BiLike, BiDislike } from "react-icons/bi";
 import { FaMoneyCheck, FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
-import { GiSafetyPin } from "react-icons/gi";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 export const Wrapper = styled.div`
   width: 1100px;
@@ -68,7 +67,7 @@ export const SecondInner = styled.div`
 export const LocationWrapper = styled.div``;
 
 export const AddressTool = styled(VscLocation)`
-  color: #b81a39;
+  color: #9900ff;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -76,7 +75,7 @@ export const AddressTool = styled(VscLocation)`
 
 export const DivisionL = styled.div`
   width: 500px;
-  border: 1px solid #b81a39;
+  border: 1px solid #9900ff;
 `;
 
 export const Product = styled.div`
@@ -130,11 +129,11 @@ export const Update = styled.div`
   width: 240px;
 `;
 
-export const Pin = styled(GiSafetyPin)`
+export const Pin = styled(HiOutlineShoppingCart)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
   width: 30px;
   height: 30px;
@@ -144,7 +143,7 @@ export const Pay = styled(FaMoneyCheck)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
   width: 30px;
   height: 30px;
@@ -154,7 +153,7 @@ export const List = styled(RiFileList3Line)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
   width: 30px;
   height: 30px;
@@ -164,7 +163,7 @@ export const Edit = styled(FaRegEdit)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
   width: 30px;
   height: 30px;
@@ -174,7 +173,7 @@ export const Delete = styled(RiDeleteBinLine)`
   cursor: pointer;
   color: grey;
   :hover {
-    color: #b81a39;
+    color: #09ff00;
   }
   width: 30px;
   height: 30px;
@@ -207,3 +206,6 @@ export const CommentDivision = styled.div`
   border: 1px solid grey;
   width: 1100px;
 `;
+function MdOutlineShoppingCart(MdOutlineShoppingCart: any) {
+  throw new Error("Function not implemented.");
+}

@@ -4,7 +4,7 @@ import SmallInput from "../../../commons/createProduct/input/02";
 import MidInput from "../../../commons/createProduct/input/03";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
 
@@ -24,10 +24,18 @@ export default function CreateProductUIPage(props) {
     document.head.appendChild(script);
 
     script.onload = () => {
+      console.log(props.data);
       window.kakao.maps.load(function () {
         const mapContainer = document.getElementById("map"); // 지도를 표시할 div
         const mapOption = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          center: new window.kakao.maps.LatLng(
+            props.isEdit
+              ? props.data?.fetchUseditem.useditemAddress.lng
+              : 33.450701,
+            props.isEdit
+              ? props.data?.fetchUseditem.useditemAddress.lat
+              : 126.570667
+          ), // 지도의 중심좌표
           level: 3, // 지도의 확대 레벨
         };
 
@@ -44,6 +52,8 @@ export default function CreateProductUIPage(props) {
               result[0].y,
               result[0].x
             );
+            props.setLat(coords.La);
+            props.setLng(coords.Ma);
 
             // 결과값으로 받은 위치를 마커로 표시
             const marker = new window.kakao.maps.Marker({
@@ -57,8 +67,7 @@ export default function CreateProductUIPage(props) {
         });
       });
     };
-  }),
-    [props.address];
+  }, [props.address, props.data]);
   return (
     <C.Wrapper>
       <form
@@ -138,24 +147,39 @@ export default function CreateProductUIPage(props) {
               </C.AddressBtn>
               <C.AddressInput
                 readOnly={true}
-                defaultValue={props.address}
+                placeholder="Address"
+                defaultValue={
+                  props.data?.fetchUseditem.useditemAddress.address
+                    ? props.data?.fetchUseditem.useditemAddress.address
+                    : props.address
+                }
               ></C.AddressInput>
               <C.GPS>
                 <C.GPSInput
                   readOnly={true}
-                  placeholder="Zone Code"
-                  defaultValue={props.zoneCode}
+                  placeholder="(lat)"
+                  defaultValue={
+                    props.data?.fetchUseditem.useditemAddress?.lat
+                      ? props.data?.fetchUseditem.useditemAddress.lat
+                      : props.lat
+                  }
                 ></C.GPSInput>
                 <C.GPSInput
                   readOnly={true}
                   placeholder="(lng)"
-                  defaultValue={props.town}
+                  defaultValue={
+                    props.data?.fetchUseditem.useditemAddress?.lng
+                      ? props.data?.fetchUseditem.useditemAddress?.lng
+                      : props.lng
+                  }
                 ></C.GPSInput>
               </C.GPS>
 
               <C.AddressInput
                 onChange={props.onChangeAddressDetail}
-                defaultValue={props.addressDetail}
+                defaultValue={
+                  props.data?.fetchUseditem?.useditemAddress.addressDetail
+                }
               ></C.AddressInput>
             </C.AddressRightWrapper>
           </C.AddressMain>
@@ -166,8 +190,12 @@ export default function CreateProductUIPage(props) {
           <C.AddImage onClick={props.onClickImage}>
             <C.BoxWord>+</C.BoxWord>
             <C.SmallImage
-              src={`https://storage.googleapis.com/${props.image}`}
-              defaultValue={props.data?.fetchUseditem.images}
+              src={
+                props.data?.fetchUseditem.images
+                  ? `https://storage.googleapis.com/${props.data?.fetchUseditem.images[0]}`
+                  : `https://storage.googleapis.com/${props.image}`
+              }
+              // defaultValue={props.data?.fetchUseditem.images}
               onError={(e) => (e.currentTarget.src = "/empty.png")}
             />
           </C.AddImage>
