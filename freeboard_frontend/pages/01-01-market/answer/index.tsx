@@ -1,6 +1,8 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { BiEraser } from "react-icons/bi";
 import {
   IMutation,
   IMutationCreateUseditemQuestionAnswerArgs,
@@ -39,6 +41,14 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
   }
 `;
 
+export const DELETE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation deleteUseditemQuestionAnswer($useditemQuestionAnswerId: ID!) {
+    deleteUseditemQuestionAnswer(
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    )
+  }
+`;
+
 export default function AnswerPage(props) {
   const [createUseditemQuestionAnswer] = useMutation<
     Pick<IMutation, "createUseditemQuestionAnswer">,
@@ -56,6 +66,9 @@ export default function AnswerPage(props) {
   });
 
   const [contents, setContents] = useState("");
+  const [deleteUseditemQuestionAnswer] = useMutation(
+    DELETE_USED_ITEM_QUESTION_ANSWER
+  );
 
   function onChangeContents(event) {
     setContents(event.target.value);
@@ -87,6 +100,22 @@ export default function AnswerPage(props) {
     }
   };
 
+  const router = useRouter();
+  const onClickDelete = (el) => async () => {
+    try {
+      await deleteUseditemQuestionAnswer({
+        variables: {
+          //questionId 받아와야함
+          useditemQuestionAnswerId: el,
+        },
+      });
+      refetch();
+      Modal.success({ content: "Comment is deleted" });
+    } catch (error) {
+      Modal.error({ content: "Failed to delete the comment" });
+    }
+  };
+
   return (
     <A.Wrapper>
       {props.isAdd ? (
@@ -108,7 +137,12 @@ export default function AnswerPage(props) {
       {data?.fetchUseditemQuestionAnswers.map((el) => (
         <A.AnswerListWrapper key={el._id}>
           <A.AnswerName>{el?.user.name}</A.AnswerName>
-          <A.AnswerContents>{el?.contents}</A.AnswerContents>
+          <A.BottomRow>
+            <A.AnswerContents>{el?.contents}</A.AnswerContents>
+            <A.AnswerDelete onClick={onClickDelete(el._id)}>
+              {BiEraser}
+            </A.AnswerDelete>
+          </A.BottomRow>
           <A.DivisionLine />
         </A.AnswerListWrapper>
       ))}

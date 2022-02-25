@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { BiEraser } from "react-icons/bi";
 
 export const Wrapper = styled.div`
   margin-top: 30px;
@@ -51,8 +52,28 @@ export const AnswerName = styled.div`
   font-weight: 700;
 `;
 
+export const BottomRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
 export const AnswerContents = styled.div`
   font-size: 17px;
+`;
+
+export const AnswerDelete = styled(BiEraser)`
+  color: grey;
+  width: 20px;
+  height: 20px;
+
+  cursor: pointer;
+
+  :hover {
+    color: #9900ff;
+  }
 `;
 
 export const DivisionLine = styled.div`

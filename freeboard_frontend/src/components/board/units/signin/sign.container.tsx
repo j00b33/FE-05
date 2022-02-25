@@ -54,7 +54,7 @@ export default function SigninContainer() {
         },
       });
 
-      router.push("/01-01-board/list");
+      router.push("/01-01-market/home");
 
       const accessToken = result.data?.loginUser.accessToken;
       if (setAccessToken)

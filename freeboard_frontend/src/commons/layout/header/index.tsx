@@ -116,7 +116,7 @@ export default function LayoutHeader() {
 
     window.location.reload();
     Modal.success({ content: "Signed out successfully" });
-    router.push("/01-01-board/signin");
+    router.push("/01-01-market/home");
   };
 
   useEffect(() => {

@@ -37,7 +37,7 @@ export default function ProductDetailUIPage(props) {
 
         //주소로 좌표 검색
         geocoder.addressSearch(
-          props.data?.fetchUseditem?.useditemAddress.address,
+          props.data?.fetchUseditem?.useditemAddress?.address,
           function (result, status) {
             // 정상적으로 검색이 완료됐으면
             if (status === window.kakao.maps.services.Status.OK) {
