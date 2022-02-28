@@ -42,7 +42,7 @@ export const MainPic = styled.img``;
 
 export const RightDetail = styled.div`
   width: 500px;
-  height: 500px;
+  height: 700px;
 
   display: flex;
   flex-direction: column;
@@ -119,12 +119,18 @@ export const Remarks = styled.div`
 
 export const MyContents = styled.div`
   font-size: 23px;
+  width: 100%;
+  max-width: 500px;
+  table-layout: fixed;
+  word-wrap: break-word;
 `;
 
 export const Update = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  margin-right: 80px;
 
   width: 240px;
 `;
@@ -183,8 +189,11 @@ export const Delete = styled(RiDeleteBinLine)`
 export const ThirdWrapper = styled.div`
   width: 100%;
   max-width: 1100px;
+
+  margin-left: 100px;
   margin-top: 50px;
   margin-bottom: 50px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;

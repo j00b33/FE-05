@@ -9,6 +9,7 @@ import {
   CREATE_USED_ITEM_QUESTION,
   FETCH_USED_ITEM_QUESTIONS,
   DELETE_USED_ITEM_QUESTION,
+  UPDATE_USED_ITEM_QUESTION,
 } from "./comment.queries";
 
 export default function MarketCommentPage() {
@@ -71,26 +72,6 @@ export default function MarketCommentPage() {
       },
     });
   }
-
-  // async function onClickDelete() {
-  //   try {
-  //     await deleteUseditemQuestion({
-  //       variables: {
-  //         //questionId 받아와야함
-  //         useditemQuestionId: questionData.fetchUseditemQuestions._id,
-  //       },
-  //       refetchQueries: [
-  //         {
-  //           query: FETCH_USED_ITEM_QUESTIONS,
-  //           variables: { useditemQuestionId: router.query.productDetail },
-  //         },
-  //       ],
-  //     });
-  //     Modal.success({ content: "Comment is deleted" });
-  //   } catch (error) {
-  //     Modal.error({ content: "Failed to delete the comment" });
-  //   }
-  // }
 
   return (
     <MarketCommentUIPage

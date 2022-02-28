@@ -137,6 +137,37 @@ export const ScrollMore = styled.div`
   font-size: 17px;
   margin-top: 30px;
 `;
-function BsEraserFill(BsEraserFill: any) {
-  throw new Error("Function not implemented.");
-}
+
+export const EditWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 900px;
+`;
+
+export const WriterCommentEdit = styled.input`
+  width: 800px;
+  height: 40px;
+
+  font-size: 20px;
+  border: 2px dotted grey;
+`;
+
+export const WriterCommentEditBtn = styled.div`
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+
+  background-color: #c9b3d8;
+  border: 2px dotted grey;
+
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Roboto";
+  font-size: 15px;
+`;

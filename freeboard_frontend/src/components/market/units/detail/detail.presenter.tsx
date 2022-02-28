@@ -136,15 +136,13 @@ export default function ProductDetailUIPage(props) {
               {GiBottledShadow}
             </D.Pin>
             <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
-
             <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>
             <D.Delete onClick={props.onClickDelete}>{RiDeleteBinLine}</D.Delete>
           </D.Update>
         </D.ThirdLeft>
+        <D.Map id="map" style={{ width: "500px", height: "350px" }} />
 
-        <D.ThirdRight>
-          <D.Map id="map" style={{ width: "500px", height: "350px" }} />
-        </D.ThirdRight>
+        <D.ThirdRight></D.ThirdRight>
       </D.ThirdWrapper>
 
       <D.CommentDivision />

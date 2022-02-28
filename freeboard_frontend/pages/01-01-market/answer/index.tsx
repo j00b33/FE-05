@@ -1,8 +1,9 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
+import { isExecutableDefinitionNode } from "graphql";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { BiEraser } from "react-icons/bi";
+import { BiEditAlt, BiEraser, BiMessageAltAdd } from "react-icons/bi";
 import { BsArrowReturnRight } from "react-icons/bs";
 import {
   IMutation,
@@ -10,6 +11,8 @@ import {
   IQuery,
   IQueryFetchUseditemQuestionAnswersArgs,
 } from "../../../src/commons/types/generated/types";
+import { UPDATE_USED_ITEM_QUESTION } from "../../../src/components/market/units/comment/comment.queries";
+import EditPage from "./edit";
 import * as A from "./styles";
 
 export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
@@ -38,15 +41,10 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
       user {
         name
       }
+      useditemQuestion {
+        _id
+      }
     }
-  }
-`;
-
-export const DELETE_USED_ITEM_QUESTION_ANSWER = gql`
-  mutation deleteUseditemQuestionAnswer($useditemQuestionAnswerId: ID!) {
-    deleteUseditemQuestionAnswer(
-      useditemQuestionAnswerId: $useditemQuestionAnswerId
-    )
   }
 `;
 
@@ -67,9 +65,6 @@ export default function AnswerPage(props) {
   });
 
   const [contents, setContents] = useState("");
-  const [deleteUseditemQuestionAnswer] = useMutation(
-    DELETE_USED_ITEM_QUESTION_ANSWER
-  );
 
   function onChangeContents(event) {
     setContents(event.target.value);
@@ -95,20 +90,6 @@ export default function AnswerPage(props) {
   };
 
   const router = useRouter();
-  const onClickDelete = (el) => async () => {
-    try {
-      await deleteUseditemQuestionAnswer({
-        variables: {
-          //questionId 받아와야함
-          useditemQuestionAnswerId: el,
-        },
-      });
-      refetch();
-      Modal.success({ content: "Comment is deleted" });
-    } catch (error) {
-      Modal.error({ content: "Failed to delete the comment" });
-    }
-  };
 
   return (
     <A.Wrapper>
@@ -135,10 +116,7 @@ export default function AnswerPage(props) {
         <A.AnswerListWrapper key={el._id}>
           <A.AnswerName>{el?.user.name}</A.AnswerName>
           <A.BottomRow>
-            <A.AnswerContents>{el?.contents}</A.AnswerContents>
-            <A.AnswerDelete onClick={onClickDelete(el._id)}>
-              {BiEraser}
-            </A.AnswerDelete>
+            <EditPage el={el} />
           </A.BottomRow>
           <A.DivisionLine />
         </A.AnswerListWrapper>
