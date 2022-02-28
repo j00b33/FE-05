@@ -1,12 +1,22 @@
 import styled from "@emotion/styled";
 import { BiEraser } from "react-icons/bi";
+import { BsArrowReturnRight } from "react-icons/bs";
 
 export const Wrapper = styled.div`
   margin-top: 30px;
   width: 100%;
-  padding-left: 330px;
   display: flex;
   flex-direction: column;
+
+  margin-left: 250px;
+`;
+
+export const Arrow = styled(BsArrowReturnRight)`
+  margin-top: 10px;
+  font-weight: 700;
+  width: 30px;
+  height: 30px;
+  margin-right: 50px;
 `;
 
 export const AnswerTypeWrapper = styled.div`
@@ -15,6 +25,7 @@ export const AnswerTypeWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
 export const AnswerInput = styled.input`
   width: 600px;
   height: 50px;
@@ -42,6 +53,7 @@ export const AnswerListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-left: 85px;
   height: 80px;
   width: 667px;
 `;

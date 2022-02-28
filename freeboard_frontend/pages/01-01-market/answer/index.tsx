@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { BiEraser } from "react-icons/bi";
+import { BsArrowReturnRight } from "react-icons/bs";
 import {
   IMutation,
   IMutationCreateUseditemQuestionAnswerArgs,
@@ -84,15 +85,8 @@ export default function AnswerPage(props) {
             },
             useditemQuestionId: String(props.el._id),
           },
-          // refetchQueries: [
-          //   {
-          //     query: FETCH_USED_ITEM_QUESTION_ANSWERS,
-          //     variables: {
-          //       useditemQuestionId: String(props.el._id),
-          //     },
-          //   },
-          // ],
         });
+        setContents("");
         refetch();
       } catch (error) {
         alert(error.message);
@@ -120,10 +114,13 @@ export default function AnswerPage(props) {
     <A.Wrapper>
       {props.isAdd ? (
         <A.AnswerTypeWrapper>
+          <A.Arrow>{BsArrowReturnRight}</A.Arrow>
           <A.AnswerInput
             type="text"
             onChange={onChangeContents}
+            placeholder="Enter Your Comment Here"
             value={contents}
+            // defaultValue={event.target.value}
           ></A.AnswerInput>
           <A.AnswerSubmit onClick={onClickAdd}>Comment</A.AnswerSubmit>
         </A.AnswerTypeWrapper>

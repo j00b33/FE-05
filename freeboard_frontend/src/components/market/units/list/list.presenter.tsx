@@ -6,10 +6,10 @@ export default function ListUIPage(props) {
   return (
     <L.Wrapper>
       <L.Header>
-        <L.HeaderTitle>Products</L.HeaderTitle>
-        <L.HeaderSubtitle>View other's products!</L.HeaderSubtitle>
+        <L.HeaderTitle>Market</L.HeaderTitle>
+        <L.HeaderSubtitle>View new albums!</L.HeaderSubtitle>
         <L.HeaderRouter onClick={props.onClickMoveToUpload}>
-          Click here to upload your product
+          Click here to upload your album
         </L.HeaderRouter>
       </L.Header>
 

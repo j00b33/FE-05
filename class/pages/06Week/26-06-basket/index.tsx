@@ -21,6 +21,7 @@ export default function BasketPage() {
     const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
     //데이터가 있으면 basket에 더해나가고 없으면 빈객체에 더해나가고
 
+    //같은거 걸러내기
     const temp = baskets.filter((basketEl: IBoard) => basketEl._id === el._id);
     //basketEl은 장바구니에 담겨있는 element
     //같은게 있다면 필터링해줘

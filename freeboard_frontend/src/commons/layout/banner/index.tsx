@@ -46,13 +46,13 @@ export default function LayoutBanner() {
     <Wrapper>
       <SliderCustom {...settings}>
         <ImageWrapper>
-          <Image src="/banner/emptyBanner.jpg" />
+          <Image src="/music-banner/winter.png" />
         </ImageWrapper>
         <ImageWrapper>
-          <Image src="/banner/emptyBanner.jpg" />
+          <Image src="/music-banner/mad.png" />
         </ImageWrapper>
         <ImageWrapper>
-          <Image src="/banner/emptyBanner.jpg" />
+          <Image src="/music-banner/cozy.png" />
         </ImageWrapper>
       </SliderCustom>
     </Wrapper>

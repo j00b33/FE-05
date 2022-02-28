@@ -5,13 +5,13 @@ export const SearchBox = styled.input`
   width: 500px;
   height: 40px;
   font-size: 20px;
-  font-family: "Roboto";
+  font-family: Arial;
 `;
 
 export const Searchtitle = styled.div`
   font-size: 20px;
   margin-right: 15px;
-  font-family: "Roboto";
+  font-family: Arial;
 `;
 export const SearchWrapper = styled.div`
   margin-top: 70px;
@@ -58,7 +58,7 @@ export const HeaderSubtitle = styled.div`
 
 export const HeaderRouter = styled.div`
   font-size: 17px;
-  color: #8d8d8d;
+  color: #9d6eb3;
   cursor: pointer;
   :hover {
     color: #9900ff;

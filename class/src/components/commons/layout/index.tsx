@@ -13,7 +13,7 @@ interface IProps {
 const LayoutSidebar = styled.div`
   width: 300px;
   height: 1000px;
-  background-color: #555555;
+  background-color: #a0a0a0;
 `;
 
 const LayoutBody = styled.div`

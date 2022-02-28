@@ -24,8 +24,9 @@ const InnerWrapper = styled.div`
   width: 600px;
 `;
 const Inner = styled.div`
+  font-family: Arial;
+
   cursor: pointer;
-  font-family: "Roboto";
   font-weight: 700;
   :hover {
     color: white;
@@ -49,7 +50,7 @@ export default function LayoutNavigation() {
   return (
     <Wrapper>
       <InnerWrapper>
-        <Inner onClick={onClickList}>FreeBoard</Inner>
+        <Inner onClick={onClickList}>Community</Inner>
         {"  /  "}
         <Inner onClick={onClickMarket}>Market</Inner>
         {"  /  "}

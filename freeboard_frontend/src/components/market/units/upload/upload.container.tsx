@@ -67,7 +67,6 @@ const schema = yup.object().shape({
   remarks: yup.string().required("Enter a short description of the product"),
   contents: yup
     .string()
-    .min(10, "Description should be longer than 10 characters")
     .max(300, "Description cannot be longer than 300 characters")
     .required("Enter descriptions about your product"),
   price: yup.number().required("Enter the price of the product"),

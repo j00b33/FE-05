@@ -1,14 +1,14 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
-    height: 200px;
-    background-color: #a1cce7;
-`
+  height: 100px;
+  background-color: #cabceb;
+`;
 
-export default function LayoutBanner(){
-    return(
-        <div>
-        <Wrapper></Wrapper>
-        </div>
-    )
+export default function LayoutBanner() {
+  return (
+    <div>
+      <Wrapper></Wrapper>
+    </div>
+  );
 }

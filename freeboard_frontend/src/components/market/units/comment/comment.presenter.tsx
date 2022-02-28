@@ -13,7 +13,7 @@ export default function MarketCommentUIPage(props) {
       <C.CreateC>
         <C.Input
           type="text"
-          placeholder="Enter Your Comment Here."
+          placeholder="Enter Your Comment Here"
           onChange={props.onChangeContents}
           value={props.contents}
         ></C.Input>

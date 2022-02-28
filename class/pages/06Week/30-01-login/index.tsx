@@ -50,7 +50,7 @@ export default function LoginPage() {
       if (setAccessToken) setAccessToken(accessToken);
 
       //success page로 이동
-      router.push("/30-02-success");
+      router.push("/06Week/30-02-success");
     } catch (error) {
       if (error instanceof Error) {
         alert("회원가입을 먼저 해주세요");

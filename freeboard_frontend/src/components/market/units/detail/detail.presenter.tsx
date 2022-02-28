@@ -8,6 +8,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { GrCart } from "react-icons/gr";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { GiBottledShadow } from "react-icons/gi";
 
 declare const window: typeof globalThis & {
   kakao: any; //뭐가 더 들어오는지 모르기 때문에 any 사용
@@ -94,7 +95,6 @@ export default function ProductDetailUIPage(props) {
                 <Tooltip
                   color="#9900ff"
                   font-size="16px"
-                  font-family="Cochin"
                   title={`${props.data?.fetchUseditem.useditemAddress?.address} 
                       ${props.data?.fetchUseditem.useditemAddress?.addressDetail}`}
                 >
@@ -132,7 +132,9 @@ export default function ProductDetailUIPage(props) {
         <D.ThirdLeft>
           <D.Update>
             <D.Pay onClick={props.onClickPay}>{FaMoneyCheck}</D.Pay>
-            <D.Pin>{HiOutlineShoppingCart}</D.Pin>
+            <D.Pin onClick={props.onClickToggle(props.data)}>
+              {GiBottledShadow}
+            </D.Pin>
             <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
 
             <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>

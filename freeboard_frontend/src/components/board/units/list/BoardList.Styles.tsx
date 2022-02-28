@@ -49,7 +49,6 @@ export const Row = styled.div`
 
 export const MyNumber = styled.div`
   font-size: 15px;
-  font-family: Cochin;
 `;
 
 export const MyTitle = styled.div`
@@ -64,5 +63,5 @@ export const MyWriter = styled.div``;
 
 export const MyDate = styled.div`
   font-size: 15px;
-  font-family: Cochin;
+  font-family: Arial;
 `;

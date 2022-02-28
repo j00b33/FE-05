@@ -47,7 +47,7 @@ const HeaderWrapper = styled.div`
   right: 200px;
   top: 68px;
 
-  width: 220px;
+  width: 240px;
 `;
 
 const Welcome = styled.div`
@@ -58,12 +58,13 @@ const Welcome = styled.div`
 
 const Loggedin = styled.div`
   font-size: 16px;
+  font-family: "CodaCaption";
 `;
 
 const Name = styled.div`
   font-size: 16px;
   color: #09ff00;
-  font-family: "Roboto";
+  font-family: "CodaCaption";
 `;
 
 const Profile = styled(RiAliensLine)`
@@ -128,6 +129,10 @@ export default function LayoutHeader() {
     }
   });
 
+  const onClickBasket = () => {
+    router.push("/01-01-market/basket");
+  };
+
   const menu = (
     <Menu>
       <Menu.Item disabled={abled}>
@@ -161,11 +166,9 @@ export default function LayoutHeader() {
           </Dropdown>
         </Space>
 
-        <Tooltip title="Cart">
-          <Shopping>
-            <AiTwotoneExperiment />
-          </Shopping>
-        </Tooltip>
+        <Shopping onClick={onClickBasket}>
+          <AiTwotoneExperiment />
+        </Shopping>
 
         <Tooltip title="Settings">
           <Settings>

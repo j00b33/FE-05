@@ -1,13 +1,10 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
-    height: 100px;
-    background-color: #82c1e7;
-`
+  height: 100px;
+  background-color: #c1d5ec;
+`;
 
-export default function LayoutNavigation(){
-    return(
-        <Wrapper></Wrapper>
-
-    )
+export default function LayoutNavigation() {
+  return <Wrapper></Wrapper>;
 }

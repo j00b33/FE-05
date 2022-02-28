@@ -4,6 +4,7 @@ import { VscLocation } from "react-icons/vsc";
 import { FaMoneyCheck, FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { GiBottledShadow } from "react-icons/gi";
 
 export const Wrapper = styled.div`
   width: 1100px;
@@ -90,7 +91,7 @@ export const Price = styled.div`
 
 export const Date = styled.div`
   font-weight: normal;
-  font-size: 20px;
+  font-size: 17px;
 `;
 
 //Seller, Remarks, Contents
@@ -109,7 +110,6 @@ export const Seller = styled.div`
   font-weight: 500;
   font-size: 23px;
   padding-bottom: 10px;
-  font-family: Cochin;
 `;
 
 export const Remarks = styled.div`
@@ -129,7 +129,7 @@ export const Update = styled.div`
   width: 240px;
 `;
 
-export const Pin = styled(HiOutlineShoppingCart)`
+export const Pin = styled(GiBottledShadow)`
   cursor: pointer;
   color: grey;
   :hover {

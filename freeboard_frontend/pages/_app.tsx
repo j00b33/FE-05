@@ -18,6 +18,9 @@ import {
   useState,
   useEffect,
 } from "react";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+import { onError } from "@apollo/client/link/error";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCQbouh-zQ-3Lu0gC0c5sjfR-UbexdrZNE",
   authDomain: "jbsite-77c6d.firebaseapp.com",
@@ -59,11 +62,41 @@ function MyAPP({ Component, pageProps }: AppProps) {
     if (localStorage.getItem("accessToken")) {
       setAccessToken(localStorage.getItem("accessToken") || "");
     }
+
+    // getAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    // });
   }, []);
+
+  // const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+  //   // 1. 에러를 캐치
+  //   if (graphQLErrors) {
+  //     for (const err of graphQLErrors) {
+  //       // 2. 해당 에러가 토큰만료 에러인지 체크(UNAUTHENTICATED)
+  //       if (err.extensions.code === "UNAUTHENTICATED") {
+  //         // 3. refreshToken으로 accessToken을 재발급 받기
+  //         getAccessToken().then((newAccessToken) => {
+  //           // 4. 재발급 받은 accessToken 저장하기
+  //           setAccessToken(newAccessToken);
+
+  //           // 5. 재발급 받은 accessToken으로 방금 실패한 쿼리 재요청하기
+  //           operation.setContext({
+  //             headers: {
+  //               ...operation.getContext().headers,
+  //               Authorization: `Bearer ${newAccessToken}`,
+  //             },
+  //           }); // 설정 변경(accessToken만!! 바꿔치기)
+  //           return forward(operation); // 변경된 operation 재요청하기!!
+  //         });
+  //       }
+  //     }
+  //   }
+  // });
 
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
+    // credentials: "include", //-->중요한 쿠키 저장
   });
 
   const client = new ApolloClient({
@@ -73,6 +106,8 @@ function MyAPP({ Component, pageProps }: AppProps) {
 
     cache: new InMemoryCache(),
     //"링크"에서 받아온 데이터들을 따로 저장공간을 만들어서 저장을 해둠
+
+    connectToDevTools: true,
   });
 
   return (

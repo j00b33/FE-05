@@ -118,6 +118,7 @@ function MyAPP({ Component, pageProps }: AppProps) {
     //알 수 없는 타입의 아폴로링크꺼
     cache: new InMemoryCache(),
     //"링크"에서 받아온 데이터들을 따로 저장공간을 만들어서 저장을 해둠
+    connectToDevTools: true,
   });
 
   return (

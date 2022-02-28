@@ -98,13 +98,13 @@ export const SignupWrapper = styled.div`
 `;
 
 export const GoSignupText = styled.div`
-  font-size: 15px;
+  font-size: 13px;
   color: #575757;
 `;
 
 export const GoSignup = styled.div`
   cursor: pointer;
-  font-size: 15px;
+  font-size: 13px;
   color: #9e9e9e;
 
   :hover {
