@@ -13,7 +13,7 @@ export const NextPage = styled.button`
 
   cursor: pointer;
   :hover {
-    background-color: #09ff00;
+    background-color: #00eeff;
   }
 `;
 
@@ -29,7 +29,7 @@ export const Pages = styled.span`
   }
 
   &.isNow {
-    color: #09ff00;
+    color: #00eeff;
   }
 `;
 

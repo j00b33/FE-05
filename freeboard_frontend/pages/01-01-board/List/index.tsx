@@ -66,7 +66,7 @@ const Title1 = styled.div`
 const Title2 = styled.div`
   font-size: 45px;
   font-family: "CodaCaption";
-  color: #09ff00;
+  color: #00eeff;
 `;
 
 const FETCH_BOARDS = gql`

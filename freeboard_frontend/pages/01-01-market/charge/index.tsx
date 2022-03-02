@@ -102,7 +102,9 @@ export default function ChargePage() {
 
       <C.Selected>Selected Point: {amount}</C.Selected>
       <C.ChargeButton onClick={onClickPayment}>Charge</C.ChargeButton>
-      <div>Current Point: {data?.fetchUserLoggedIn?.userPoint.amount}</div>
+      <C.Current>
+        Current Point: {data?.fetchUserLoggedIn?.userPoint.amount}
+      </C.Current>
     </C.Wrapper>
   );
 }

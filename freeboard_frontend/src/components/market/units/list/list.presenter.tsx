@@ -52,7 +52,7 @@ export default function ListUIPage(props) {
 
                 <L.Remarks>{el.remarks}</L.Remarks>
 
-                <L.Price>${el.price}</L.Price>
+                <L.Price>{el.price}₩</L.Price>
               </L.LeftSection>
               <L.RightSection>
                 <L.Image

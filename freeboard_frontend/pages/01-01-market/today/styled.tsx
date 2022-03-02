@@ -34,7 +34,7 @@ export const ProductWrapper = styled.div`
 export const Box = styled.div`
   width: 120px;
   height: 120px;
-  background-color: #d0c3d8;
+  background-color: #f2edf5;
 
   display: flex;
   flex-direction: column;

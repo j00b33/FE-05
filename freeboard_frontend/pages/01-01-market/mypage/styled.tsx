@@ -69,17 +69,20 @@ export const SubTitle = styled.div`
 `;
 
 export const PreSelectWrapper = styled.div`
+  //margin 여부 고민중
+  margin-left: 75px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  width: 350px;
+  width: 600px;
 
-  border-bottom: 2px solid #999999;
+  /* border-bottom: 2px solid #999999; */
 `;
 
 export const PresenterSelect = styled.div`
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
   color: grey;
   cursor: pointer;
@@ -97,7 +100,7 @@ export const PaymentWrapper = styled.div`
 
 export const UserMoney = styled.div`
   font-size: 20px;
-  color: #61d7f5;
+  color: #9900ff;
   font-weight: 700;
 `;
 

@@ -22,10 +22,10 @@ export default function LandingUIPage(props) {
       <L.ColumnWrapper>
         <L.ColumnOne>
           <L.SubWrapper>
-            <L.MainPic src="/music-landing/dance.png" />
+            <L.MainPic src="/music-landing/beautiful.png" />
             <L.DescriptionWrapper>
-              <L.MainPicDes>{"Love Dance"} </L.MainPicDes>
-              <L.MainPicSinger>{"HAON"}</L.MainPicSinger>
+              <L.MainPicDes>{"Beautiful"} </L.MainPicDes>
+              <L.MainPicSinger>{"MOTi, JETFIRE, Lovespeake"}</L.MainPicSinger>
             </L.DescriptionWrapper>
           </L.SubWrapper>
 

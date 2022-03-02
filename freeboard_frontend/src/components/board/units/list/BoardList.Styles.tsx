@@ -55,7 +55,7 @@ export const MyNumber = styled.div`
 export const MyTitle = styled.div`
   cursor: pointer;
   :hover {
-    color: #09ff00;
+    color: #00eeff;
     text-decoration-line: underline;
   }
 `;

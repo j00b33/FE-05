@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const Word = styled.span`
-  color: ${(props: IProps) => props.isMatched && "#09ff00"};
+  color: ${(props: IProps) => props.isMatched && "#00eeff"};
 `;
 
 export default function BoardListUIPage(props) {

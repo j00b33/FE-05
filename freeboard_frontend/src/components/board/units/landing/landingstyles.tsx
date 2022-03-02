@@ -30,7 +30,7 @@ export const TopBoxLetter = styled.div`
 export const TopLine = styled.div`
   height: 20px;
   width: 100%;
-  background-color: #09ff00;
+  background-color: #00eeff;
   margin-bottom: 20px;
 `;
 
@@ -95,8 +95,8 @@ export const DescriptionWrapper = styled.div`
 export const MainPic = styled.img`
   width: 250px;
   height: 250px;
-  border: 4px solid black;
-  box-shadow: 20px 20px #3a3a3a;
+  border: 4px solid white;
+  box-shadow: 20px 20px #00eeff;
 `;
 
 export const MainPicDes = styled.div`

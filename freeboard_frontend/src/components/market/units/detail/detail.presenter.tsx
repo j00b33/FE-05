@@ -85,7 +85,7 @@ export default function ProductDetailUIPage(props) {
         <D.RightDetail>
           <D.Product>{props.data?.fetchUseditem?.name}</D.Product>
           <D.SecondRow>
-            <D.Price>${props.data?.fetchUseditem?.price}</D.Price>
+            <D.Price>{props.data?.fetchUseditem?.price}₩</D.Price>
             <D.SecondInner>
               <D.Date>
                 {props.data?.fetchUseditem?.createdAt.slice(0, 10)}

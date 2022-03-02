@@ -46,7 +46,7 @@ export const Space = styled.div`
 
 export const HeaderTitle2 = styled.div`
   font-family: Impact;
-  color: #09ff00;
+  color: #00eeff;
   font-size: 60px;
 `;
 
@@ -76,7 +76,7 @@ export const InnerBodyWrapper = styled.div`
   cursor: pointer;
 
   :hover {
-    color: #09ff00;
+    color: #00eeff;
   }
 `;
 

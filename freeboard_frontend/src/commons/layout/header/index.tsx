@@ -71,7 +71,7 @@ const Loggedin = styled.div`
 
 const Name = styled.div`
   font-size: 16px;
-  color: #09ff00;
+  color: #00eeff;
   font-family: "CodaCaption";
 `;
 
@@ -87,8 +87,8 @@ const Sign = styled.div`
   color: white;
   cursor: pointer;
   :hover {
-    color: #09ff00;
-    border: 1px solid #09ff00;
+    color: #00eeff;
+    border: 1px solid #00eeff;
   }
   background-color: none;
   border: 1px solid white;
@@ -97,7 +97,7 @@ const Sign = styled.div`
 `;
 
 const Alien = styled.div`
-  color: #09ff09;
+  color: #00eeff;
   font-size: 25px;
   display: flex;
   flex-direction: row;

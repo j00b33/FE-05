@@ -34,12 +34,26 @@ const DELETE_USED_ITEM = gql`
   }
 `;
 
+const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
+  mutation createPointTransactionOfBuyingAndSelling($useritemId: ID!) {
+    createPointTransactionOfBuyingAndSelling(useritemId: $useritemId) {
+      _id
+      name
+      price
+    }
+  }
+`;
+
 export default function ProductDetailContainer() {
   const router = useRouter();
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: String(router.query.productDetail) },
   });
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
+
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
 
   const onClickMoveToEdit = () => {
     router.push(`/01-01-market/${router.query.productDetail}/edit`);
@@ -57,8 +71,17 @@ export default function ProductDetailContainer() {
     router.push("/01-01-market/list");
   };
 
-  const onClickPay = () => {
-    //누르면 구매가 가능해야되는데
+  const onClickPay = async () => {
+    try {
+      await createPointTransactionOfBuyingAndSelling({
+        variables: {
+          useritemId: router.query.productDetail,
+        },
+      });
+      Modal.success({ content: "Purchase done successfully" });
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
   };
 
   return (

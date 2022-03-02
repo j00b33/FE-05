@@ -33,18 +33,28 @@ export const SelectAmount = styled.button`
   justify-content: center;
   align-items: center;
 
-  border: 1px solid black;
+  border: 2px solid black;
   background-color: white;
   cursor: pointer;
 
   :hover {
-    color: #9900ff;
-    border: 1px solid #9900ff;
+    color: #00eeff;
+    border: 2px solid #00eeff;
+    background-color: black;
   }
 `;
 
 export const Selected = styled.div`
   font-size: 20px;
+  font-weight: 700;
+
+  width: 500px;
+  background-color: #def0f1;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ChargeButton = styled.div`
@@ -54,11 +64,23 @@ export const ChargeButton = styled.div`
   width: 400px;
   height: 40px;
 
-  border: 2px solid grey;
-  background-color: #befbff;
+  border: 2px solid black;
+
+  cursor: pointer;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  :hover {
+    background-color: black;
+    color: #00eeff;
+    border: 2px solid #00eeff;
+  }
+`;
+
+export const Current = styled.div`
+  font-size: 20px;
+  font-weight: 700;
 `;
