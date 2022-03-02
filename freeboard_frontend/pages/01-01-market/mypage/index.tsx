@@ -3,8 +3,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { AiTwotoneExperiment } from "react-icons/ai";
 import { RiAliensLine } from "react-icons/ri";
+import { FiTool } from "react-icons/fi";
 import ChargePage from "../charge";
 import * as M from "./styled";
+import { GrMoney } from "react-icons/gr";
+import { FaRegPaperPlane } from "react-icons/fa";
 
 const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
@@ -21,7 +24,7 @@ export default function MyPage() {
 
   const router = useRouter();
 
-  const onClickMoveToPayment = () => {
+  const onClickPaymentPage = () => {
     setIsCharge(true);
   };
 
@@ -51,11 +54,11 @@ export default function MyPage() {
           </M.PaymentWrapper>
 
           <M.MyPageNavigationWrapper>
-            <M.Navigation>► My Profile</M.Navigation>
-            <M.Navigation onClick={onClickMoveToPayment}>
-              ► My Payment
+            <M.Navigation>My Profile ➤</M.Navigation>
+            <M.Navigation onClick={onClickPaymentPage}>
+              My Payment ➤
             </M.Navigation>
-            <M.Navigation>► My Posts</M.Navigation>
+            <M.Navigation>My Posts ➤</M.Navigation>
           </M.MyPageNavigationWrapper>
         </M.BodyLeftWrapper>
 

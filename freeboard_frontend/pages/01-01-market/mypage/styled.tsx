@@ -83,14 +83,14 @@ export const UserMoney = styled.div`
 //navigation
 export const MyPageNavigationWrapper = styled.div`
   margin-top: 100px;
-  margin-left: 100px;
+  padding-right: 100px;
 
   width: 300px;
   height: 120px;
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
 `;
 
@@ -100,6 +100,10 @@ export const Navigation = styled.div`
   :hover {
     color: #9900ff;
   }
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 //Division Line
 export const DivisionLine = styled.div`

@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useState } from "react";
 import Head from "next/head";
@@ -8,6 +8,9 @@ const FETCH_USER_LOGGED_IN = gql`
     fetchUserLoggedIn {
       email
       name
+      userPoint {
+        amount
+      }
     }
   }
 `;
@@ -21,18 +24,35 @@ const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
   }
 `;
 
+const FETCH_POINT_TRANSACTIONS_OF_LOADING = gql`
+  query fetchPointTransactionsOfLoading($search: String, $page: Int) {
+    fetchPointTransactionsOfLoading(search: $search, page: $page) {
+      _id
+      impUid
+      amount
+      updatedAt
+    }
+  }
+`;
+
 export default function ChargePage() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  const [createPointTransactionOfLoading] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_LOADING
+  );
+  const { data: pointData } = useQuery(FETCH_POINT_TRANSACTIONS_OF_LOADING);
+
   const [amount, setAmount] = useState(0);
 
   const onChangeAmount = (event) => {
-    setAmount(Number(event.target.value));
+    setAmount(event.currentTarget.value);
+    console.log(amount);
   };
 
   const onClickPayment = () => {
     const IMP = window.IMP; // 생략 가능
-    IMP.init("imp13990733");
-    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.init("imp49910675");
+
     IMP.request_pay(
       {
         pg: "html5_inicis",
@@ -40,7 +60,7 @@ export default function ChargePage() {
         name: "Payment Money Charge",
         amount: amount,
         buyer_email: "enter your email",
-        buyer_name: data.fetchUserLoggedIn?.name,
+        buyer_name: data?.fetchUserLoggedIn?.name,
         buyer_tel: "010-0000-0000",
         buyer_addr: "서울특별시 강남구 신사동",
         buyer_postcode: "00000",
@@ -48,10 +68,14 @@ export default function ChargePage() {
       (rsp) => {
         // callback
         if (rsp.success) {
+          console.log("rsp 확인");
           console.log(rsp);
-          //백엔드에 결제관련 데이터 넘겨주기
-          //=> 즉, 뮤테이션 실행
-          //ex) createPointTransactionOfLoading
+
+          const result = createPointTransactionOfLoading({
+            variables: {
+              impUid: rsp.imp_uid,
+            },
+          });
           new Date();
         }
       }
@@ -70,9 +94,21 @@ export default function ChargePage() {
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
         ></script>
       </Head>
-      결제금액: <input type="text" onChange={onChangeAmount} />
+
+      {/* <input type="text" onChange={onChangeAmount} /> */}
+      <button onClick={onChangeAmount} value={100}>
+        100
+      </button>
+      <button onClick={onChangeAmount} value={300}>
+        300
+      </button>
+      <button onClick={onChangeAmount} value={500}>
+        500
+      </button>
       <br />
-      <button onClick={onClickPayment}>결제하기</button>
+      <div>Selected Point: {amount}</div>
+      <button onClick={onClickPayment}>Charge</button>
+      <div>Current Point: {data?.fetchUserLoggedIn?.userPoint.amount}</div>
     </div>
   );
 }
