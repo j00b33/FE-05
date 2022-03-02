@@ -48,19 +48,7 @@ export default function SigninContainer() {
   const onClickUpload = async () => {
     try {
       //refreshToken
-      // //로그인하기
-      // const result = await loginUser({
-      //   variables: {
-      //     email: email,
-      //     password: password,
-      //   },
-      // });
-
-      // //global state에 저장하기
-      // const accessToken = result.data?.loginUser.accessToken || "";
-      // if (setAccessToken) setAccessToken(accessToken);
-
-      // 그냥 accessToken
+      //로그인하기
       const result = await loginUser({
         variables: {
           email: email,
@@ -68,13 +56,17 @@ export default function SigninContainer() {
         },
       });
 
-      const accessToken = result.data?.loginUser.accessToken;
-      if (setAccessToken)
-        // console.log(result);
-        setAccessToken(accessToken || "");
+      //global state에 저장하기
+      const accessToken = result.data?.loginUser.accessToken || "";
+      if (setAccessToken) setAccessToken(accessToken);
 
-      // console.log(localStorage.getItem("accessToken"));
-      localStorage.setItem("accessToken", accessToken || "");
+      // const accessToken = result.data?.loginUser.accessToken;
+      // if (setAccessToken)
+      //   // console.log(result);
+      //   setAccessToken(accessToken || "");
+
+      // // console.log(localStorage.getItem("accessToken"));
+      // localStorage.setItem("accessToken", accessToken || "");
 
       console.log(result.data?.loginUser.accessToken);
       Modal.success({ content: "Welcome:)" });

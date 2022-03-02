@@ -6,9 +6,8 @@ import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
 import Dompurify from "dompurify";
 import Head from "next/head";
 import { useEffect } from "react";
-import { GrCart } from "react-icons/gr";
-import { HiOutlineShoppingCart } from "react-icons/hi";
 import { GiBottledShadow } from "react-icons/gi";
+import ViewedPage from "../../../../../pages/01-01-market/today";
 
 declare const window: typeof globalThis & {
   kakao: any; //뭐가 더 들어오는지 모르기 때문에 any 사용
@@ -132,9 +131,7 @@ export default function ProductDetailUIPage(props) {
         <D.ThirdLeft>
           <D.Update>
             <D.Pay onClick={props.onClickPay}>{FaMoneyCheck}</D.Pay>
-            <D.Pin onClick={props.onClickToggle(props.data)}>
-              {GiBottledShadow}
-            </D.Pin>
+            <D.Pin>{GiBottledShadow}</D.Pin>
             <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
             <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>
             <D.Delete onClick={props.onClickDelete}>{RiDeleteBinLine}</D.Delete>
@@ -144,6 +141,9 @@ export default function ProductDetailUIPage(props) {
 
         <D.ThirdRight></D.ThirdRight>
       </D.ThirdWrapper>
+      <D.CommentDivision />
+
+      <ViewedPage />
 
       <D.CommentDivision />
     </D.Wrapper>

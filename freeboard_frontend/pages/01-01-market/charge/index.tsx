@@ -1,29 +1,49 @@
+import { gql, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useState } from "react";
 import Head from "next/head";
 
-export default function PaymentPage() {
+const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      name
+    }
+  }
+`;
+
+const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
+  mutation createPointTransactionOfLoading($impUid: ID!) {
+    createPointTransactionOfLoading(impUid: $impUid) {
+      _id
+      amount
+    }
+  }
+`;
+
+export default function ChargePage() {
+  const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [amount, setAmount] = useState(0);
+
+  const onChangeAmount = (event) => {
+    setAmount(Number(event.target.value));
+  };
 
   const onClickPayment = () => {
     const IMP = window.IMP; // 생략 가능
-    IMP.init("imp13990733"); // Example: imp00000000
-
+    IMP.init("imp13990733");
     // IMP.request_pay(param, callback) 결제창 호출
     IMP.request_pay(
       {
-        // param
         pg: "html5_inicis",
         pay_method: "card",
-        // merchant_uid: "ORD20180131-0000011",
-        name: "노르웨이 회전 의자",
+        name: "Payment Money Charge",
         amount: amount,
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
-        buyer_tel: "010-4242-4242",
+        buyer_email: "enter your email",
+        buyer_name: data.fetchUserLoggedIn?.name,
+        buyer_tel: "010-0000-0000",
         buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181",
-        //  m_redirect_url: 모바일 결재시 돌아갈 주소
-        //이 괄호 속 내용으로 결제페이지가 만들어짐
+        buyer_postcode: "00000",
       },
       (rsp) => {
         // callback
@@ -33,8 +53,6 @@ export default function PaymentPage() {
           //=> 즉, 뮤테이션 실행
           //ex) createPointTransactionOfLoading
           new Date();
-        } else {
-          // 결제 실패 시 로직
         }
       }
     );
@@ -58,5 +76,3 @@ export default function PaymentPage() {
     </div>
   );
 }
-
-//portfolio 할땐: imp49910675

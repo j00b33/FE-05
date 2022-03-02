@@ -61,24 +61,6 @@ export default function ProductDetailContainer() {
     router.push("/01-01-market/pay");
   };
 
-  const onClickToggle = (data) => () => {
-    console.log("======data======");
-    console.log(data);
-
-    //기존 방식
-    const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
-    // const temp = baskets.filter((basketEl) => basketEl._id === data._id);
-    // if (temp.length === 1) {
-    //   Modal.warn({ content: "You've already toggled" });
-    //   return;
-    // }
-
-    const { __typename, ...newEl } = data;
-    baskets.push(newEl);
-    localStorage.setItem("basket", JSON.stringify(baskets));
-    Modal.success({ content: "Successfully Toggled" });
-  };
-
   return (
     <ProductDetailUIPage
       data={data}
@@ -86,7 +68,6 @@ export default function ProductDetailContainer() {
       onClickMoveToEdit={onClickMoveToEdit}
       onClickDelete={onClickDelete}
       onClickList={onClickList}
-      onClickToggle={onClickToggle}
     />
   );
 }

@@ -38,12 +38,12 @@ const onClickList = () => {
   Router.push(`/01-01-board/list`);
 };
 
-const onClickPost = () => {
-  Router.push(`/01-01-board/new`);
-};
-
 const onClickMarket = () => {
   Router.push(`/01-01-market/home`);
+};
+
+const onClickPin = () => {
+  Router.push(`/01-01-market/pin`);
 };
 
 export default function LayoutNavigation() {
@@ -54,7 +54,7 @@ export default function LayoutNavigation() {
         {"  /  "}
         <Inner onClick={onClickMarket}>Market</Inner>
         {"  /  "}
-        <Inner onClick={onClickPost}>Post</Inner>
+        <Inner onClick={onClickPin}>Pinned</Inner>
       </InnerWrapper>
     </Wrapper>
   );

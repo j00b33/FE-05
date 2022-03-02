@@ -35,7 +35,10 @@ export default function ListUIPage(props) {
 
                 <L.Seller>Seller: {el.seller.name}</L.Seller>
 
-                <L.Product id={el._id} onClick={props.onClickProductsDetail}>
+                <L.Product
+                  id={el._id}
+                  onClick={props.onClickProductsDetail(el)}
+                >
                   Product:{" "}
                   {el.name
                     .replaceAll(props.keyword, `#$%${props.keyword}#$%`)

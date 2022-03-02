@@ -34,7 +34,7 @@ export const InnerWrapper = styled.div`
 
 export const HeadType = styled.div`
   font-size: 20px;
-  color: #272727;
+  color: white;
   font-family: "CodaCaption";
 `;
 
@@ -42,6 +42,7 @@ export const Row = styled.div`
   display: flex;
   flex-direction: column;
   align-items: space-between;
+  color: white;
 
   height: 30px;
   padding-bottom: 20px;
@@ -54,7 +55,7 @@ export const MyNumber = styled.div`
 export const MyTitle = styled.div`
   cursor: pointer;
   :hover {
-    color: #9900ff;
+    color: #09ff00;
     text-decoration-line: underline;
   }
 `;

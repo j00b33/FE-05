@@ -215,6 +215,3 @@ export const CommentDivision = styled.div`
   border: 1px solid grey;
   width: 1100px;
 `;
-function MdOutlineShoppingCart(MdOutlineShoppingCart: any) {
-  throw new Error("Function not implemented.");
-}

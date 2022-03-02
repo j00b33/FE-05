@@ -54,7 +54,6 @@ export default function CommentList(props) {
           },
         ],
       });
-      Modal.success({ content: "Edit Done" });
       setIsEdit(false);
     } catch (error) {
       Modal.error({ content: error.message });

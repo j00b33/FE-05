@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import Router, { useRouter } from "next/router";
 import { Modal, Tooltip } from "antd";
-import { RiAliensLine, RiUser5Line } from "react-icons/ri";
+import { RiAliensLine } from "react-icons/ri";
 import { AiTwotoneExperiment } from "react-icons/ai";
 import { IoIosConstruct } from "react-icons/io";
 import { Menu, Dropdown, Space } from "antd";
 import { useEffect, useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { IQuery } from "../../types/generated/types";
 
 const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
@@ -14,6 +15,12 @@ const FETCH_USER_LOGGED_IN = gql`
       email
       name
     }
+  }
+`;
+
+const LOGOUT_USER = gql`
+  mutation logoutUser {
+    logoutUser
   }
 `;
 
@@ -42,12 +49,13 @@ const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 
   position: absolute;
-  right: 200px;
+  right: 170px;
   top: 68px;
 
-  width: 240px;
+  width: 300px;
 `;
 
 const Welcome = styled.div`
@@ -67,114 +75,98 @@ const Name = styled.div`
   font-family: "CodaCaption";
 `;
 
-const Profile = styled(RiAliensLine)`
-  color: white;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-  :hover {
-    color: #09ff00;
-  }
-`;
-const Shopping = styled(AiTwotoneExperiment)`
-  color: white;
-  width: 25px;
-  height: 25px;
-
-  cursor: pointer;
-  :hover {
-    color: #09ff00;
-  }
-`;
-
 const Blank = styled.div`
   width: 5px;
 `;
 
-const Settings = styled(IoIosConstruct)`
+const Sign = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   color: white;
-  width: 25px;
-  height: 25px;
-
   cursor: pointer;
   :hover {
     color: #09ff00;
+    border: 1px solid #09ff00;
   }
+  background-color: none;
+  border: 1px solid white;
+  width: 100px;
+  margin-left: 20px;
+`;
+
+const Alien = styled.div`
+  color: #09ff09;
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+`;
+
+const LoggedOut = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: white;
+
+  margin-left: 200px;
 `;
 
 export default function LayoutHeader() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
-  const [disabled, setDisabled] = useState(true);
-  const [abled, setAbled] = useState(false);
   const onClickTitle = () => {
     Router.push("/");
   };
 
   const router = useRouter();
+  const [logoutUser] = useMutation(LOGOUT_USER);
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
   const onClickSignout = () => {
-    localStorage.removeItem("accessToken");
-
+    logoutUser();
     window.location.reload();
-    Modal.success({ content: "Signed out successfully" });
     router.push("/01-01-market/home");
   };
 
-  useEffect(() => {
-    if (process.browser) {
-      if (localStorage.getItem("accessToken")) {
-        setDisabled(false);
-        setAbled(true);
-      }
-    }
-  });
-
-  const onClickBasket = () => {
-    router.push("/01-01-market/basket");
+  const onClickSignin = () => {
+    router.push("/01-01-board/signin");
   };
 
-  const menu = (
-    <Menu>
-      <Menu.Item disabled={abled}>
-        <a href="/01-01-board/signin">Sign In</a>
-      </Menu.Item>
-      <Menu.Item onClick={onClickSignout} disabled={disabled}>
-        <a>Sign out</a>
-      </Menu.Item>
-      <Menu.Item disabled={disabled}>
-        <a>My Page</a>
-      </Menu.Item>
-    </Menu>
-  );
-  //localStorage.getItem("accessToken") 있다면 비활성화
+  const onClickMyPage = () => {
+    router.push("/01-01-market/mypage");
+  };
 
+  //   <Menu.Item disabled={abled}>
+  //   <a href="/01-01-board/signin">Sign In</a>
+  // </Menu.Item>
+  console.log("data");
+  console.log(data);
   return (
     <Wrapper>
       <Title onClick={onClickTitle}>GO MAD</Title>
       <HeaderWrapper>
-        <Welcome>
-          <Loggedin>Welcome </Loggedin>
-          <Blank></Blank>
-          <Name> {data?.fetchUserLoggedIn.name}</Name>
-          <Loggedin>!</Loggedin>
-        </Welcome>
-        <Space direction="vertical">
-          <Dropdown overlay={menu}>
-            <Profile>
+        {data ? (
+          <Welcome>
+            <Alien onClick={onClickMyPage}>
               <RiAliensLine />
-            </Profile>
-          </Dropdown>
-        </Space>
-
-        <Shopping onClick={onClickBasket}>
-          <AiTwotoneExperiment />
-        </Shopping>
-
-        <Tooltip title="Settings">
-          <Settings>
-            <IoIosConstruct />
-          </Settings>
-        </Tooltip>
+            </Alien>
+            <Loggedin>Welcome</Loggedin>
+            <Blank></Blank>
+            <Name> {data?.fetchUserLoggedIn.name}</Name>
+            <Blank></Blank>
+            <Sign onClick={onClickSignout}>Sign out</Sign>
+          </Welcome>
+        ) : (
+          <LoggedOut>
+            <Alien>
+              <RiAliensLine />
+            </Alien>
+            <Sign onClick={onClickSignin}>Sign in</Sign>
+          </LoggedOut>
+        )}
       </HeaderWrapper>
     </Wrapper>
   );

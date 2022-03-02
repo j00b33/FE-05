@@ -25,18 +25,56 @@ export const FETCH_USED_ITEMS = gql`
   }
 `;
 
+const FETCH_USED_ITEM = gql`
+  query fetchUseditem($useditemId: ID!) {
+    fetchUseditem(useditemId: $useditemId) {
+      _id
+      name
+      price
+      contents
+      remarks
+      createdAt
+      images
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
+      seller {
+        name
+      }
+    }
+  }
+`;
+
 export default function ListcontainerPage() {
+  const router = useRouter();
   const { data, refetch, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
   >(FETCH_USED_ITEMS, { variables: { page: 1 } });
-  const router = useRouter();
+
+  const { data: itemData } = useQuery(FETCH_USED_ITEM, {
+    variables: { useditemId: String(router.query.productDetail) },
+  });
 
   console.log(data);
 
-  function onClickProductsDetail(event) {
+  const onClickProductsDetail = (el) => (event) => {
+    const viewed = JSON.parse(localStorage.getItem("today i viewed") || "[]");
+
+    if (!JSON.stringify(localStorage).includes(el._id)) {
+      viewed.push(el);
+    }
+
+    localStorage.setItem("today i viewed", JSON.stringify(viewed));
+
+    //원래 onClickProductsDetail 들어가는 버튼
     router.push(`/01-01-market/${event.currentTarget.id}`);
-  }
+  };
 
   const onLoadMore = () => {
     if (!data) return;

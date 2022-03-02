@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const Word = styled.span`
-  color: ${(props: IProps) => props.isMatched && "#e63256"};
+  color: ${(props: IProps) => props.isMatched && "#09ff00"};
 `;
 
 export default function BoardListUIPage(props) {
@@ -56,7 +56,7 @@ export default function BoardListUIPage(props) {
         <D.InnerWrapper>
           <D.HeadType>Date</D.HeadType>
           <D.DivisionLine />
-          {props.data?.fetchBoards?.map((el, index) => (
+          {props.data?.fetchBoards?.map((el) => (
             <D.Row id={el._id} key={el._id}>
               <D.MyDate> {el.createdAt.slice(0, 10)}</D.MyDate>
             </D.Row>

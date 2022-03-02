@@ -21,14 +21,15 @@ export const Pages = styled.span`
   font-size: 20px;
   font-family: "CodaCaption";
   cursor: pointer;
+  color: #4e4e4e;
 
   :hover {
     text-decoration-line: underline;
-    color: grey;
+    color: #a7a7a7;
   }
 
   &.isNow {
-    color: #9900ff;
+    color: #09ff00;
   }
 `;
 

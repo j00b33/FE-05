@@ -16,7 +16,7 @@ export default function LandingUIPage(props) {
           <L.MainTitleTwo> MAD SCIENTISTS</L.MainTitleTwo>
         </L.MainSubWrapper>
 
-        <L.Description>Pick your taste</L.Description>
+        <L.Description>Share Your Music Tastes</L.Description>
       </L.MainWrapper>
 
       <L.ColumnWrapper>
