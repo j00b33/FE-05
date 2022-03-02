@@ -58,7 +58,7 @@ export default function ProductDetailContainer() {
   };
 
   const onClickPay = () => {
-    router.push("/01-01-market/pay");
+    //누르면 구매가 가능해야되는데
   };
 
   return (

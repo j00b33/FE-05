@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1200px;
+  height: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +68,26 @@ export const SubTitle = styled.div`
   font-family: "CodaCaption";
 `;
 
+export const PreSelectWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 350px;
+
+  border-bottom: 2px solid #999999;
+`;
+
+export const PresenterSelect = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  color: grey;
+  cursor: pointer;
+  :hover {
+    color: black;
+  }
+`;
+
 //current money
 export const PaymentWrapper = styled.div`
   display: flex;
@@ -76,7 +97,7 @@ export const PaymentWrapper = styled.div`
 
 export const UserMoney = styled.div`
   font-size: 20px;
-  color: #74638f;
+  color: #61d7f5;
   font-weight: 700;
 `;
 
@@ -108,7 +129,7 @@ export const Navigation = styled.div`
 //Division Line
 export const DivisionLine = styled.div`
   border: 1px solid grey;
-  height: 1000px;
+  height: 900px;
 `;
 
 //Right Section of Body

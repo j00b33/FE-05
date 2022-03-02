@@ -1,31 +1,42 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { AiTwotoneExperiment } from "react-icons/ai";
 import { RiAliensLine } from "react-icons/ri";
-import { FiTool } from "react-icons/fi";
 import ChargePage from "../charge";
 import * as M from "./styled";
-import { GrMoney } from "react-icons/gr";
-import { FaRegPaperPlane } from "react-icons/fa";
+import PaymentHistory from "../paymenthistory";
+import { StylesProvider } from "@material-ui/core";
 
 const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
     fetchUserLoggedIn {
       email
       name
+      userPoint {
+        _id
+        amount
+      }
     }
   }
 `;
 
 export default function MyPage() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+
+  const [isPayment, setIsPayment] = useState(false);
   const [isCharge, setIsCharge] = useState(false);
 
-  const router = useRouter();
-
   const onClickPaymentPage = () => {
+    setIsPayment(true);
     setIsCharge(true);
+  };
+
+  const onClickChargeZone = () => {
+    setIsCharge(true);
+  };
+
+  const onClickHistory = () => {
+    setIsCharge(false);
   };
 
   return (
@@ -50,7 +61,9 @@ export default function MyPage() {
           </M.ProfileWrapper>
 
           <M.PaymentWrapper>
-            <M.UserMoney>${"10,000"}</M.UserMoney>
+            <M.UserMoney>
+              ${data?.fetchUserLoggedIn?.userPoint.amount}
+            </M.UserMoney>
           </M.PaymentWrapper>
 
           <M.MyPageNavigationWrapper>
@@ -64,10 +77,19 @@ export default function MyPage() {
 
         <M.DivisionLine />
         <M.BodyRightWrapper>
-          {isCharge ? (
+          {/* 이건 My Payment를 눌렀을시 실행되는 것들 */}
+          {isPayment ? (
             <div>
-              <M.SubTitle>Point Charging</M.SubTitle>
-              <ChargePage />
+              <M.PreSelectWrapper>
+                <M.PresenterSelect onClick={onClickChargeZone}>
+                  Point Charging
+                </M.PresenterSelect>
+                {" / "}
+                <M.PresenterSelect onClick={onClickHistory}>
+                  Payment History
+                </M.PresenterSelect>
+              </M.PreSelectWrapper>
+              {isCharge ? <ChargePage /> : <PaymentHistory />}
             </div>
           ) : (
             "Main My Page Body Display"

@@ -2,6 +2,8 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useState } from "react";
 import Head from "next/head";
+import * as C from "./styled";
+import { useRouter } from "next/router";
 
 const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
@@ -24,29 +26,16 @@ const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
   }
 `;
 
-const FETCH_POINT_TRANSACTIONS_OF_LOADING = gql`
-  query fetchPointTransactionsOfLoading($search: String, $page: Int) {
-    fetchPointTransactionsOfLoading(search: $search, page: $page) {
-      _id
-      impUid
-      amount
-      updatedAt
-    }
-  }
-`;
-
 export default function ChargePage() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING
   );
-  const { data: pointData } = useQuery(FETCH_POINT_TRANSACTIONS_OF_LOADING);
 
   const [amount, setAmount] = useState(0);
 
   const onChangeAmount = (event) => {
     setAmount(event.currentTarget.value);
-    console.log(amount);
   };
 
   const onClickPayment = () => {
@@ -83,7 +72,7 @@ export default function ChargePage() {
   };
 
   return (
-    <div>
+    <C.Wrapper>
       <Head>
         <script
           type="text/javascript"
@@ -95,20 +84,25 @@ export default function ChargePage() {
         ></script>
       </Head>
 
-      {/* <input type="text" onChange={onChangeAmount} /> */}
-      <button onClick={onChangeAmount} value={100}>
-        100
-      </button>
-      <button onClick={onChangeAmount} value={300}>
-        300
-      </button>
-      <button onClick={onChangeAmount} value={500}>
-        500
-      </button>
-      <br />
-      <div>Selected Point: {amount}</div>
-      <button onClick={onClickPayment}>Charge</button>
+      <C.Header>Charging Zone</C.Header>
+      <C.ButtonWrapper>
+        <C.SelectAmount onClick={onChangeAmount} value={500}>
+          500
+        </C.SelectAmount>
+        <C.SelectAmount onClick={onChangeAmount} value={1000}>
+          1000
+        </C.SelectAmount>
+        <C.SelectAmount onClick={onChangeAmount} value={3000}>
+          3000
+        </C.SelectAmount>
+        <C.SelectAmount onClick={onChangeAmount} value={5000}>
+          5000
+        </C.SelectAmount>
+      </C.ButtonWrapper>
+
+      <C.Selected>Selected Point: {amount}</C.Selected>
+      <C.ChargeButton onClick={onClickPayment}>Charge</C.ChargeButton>
       <div>Current Point: {data?.fetchUserLoggedIn?.userPoint.amount}</div>
-    </div>
+    </C.Wrapper>
   );
 }
