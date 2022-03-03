@@ -67,7 +67,11 @@ export default function PurchaseHistory() {
               <P.Content>
                 {el.updatedAt.slice(0, 10)} | {el.updatedAt.slice(12, 16)}
               </P.Content>
-              <P.Content>{el.useditem.name}</P.Content>
+              <P.Content>
+                {el?.useditem?.name.length > 10
+                  ? `${el?.useditem?.name.slice(0, 11)}...`
+                  : el?.useditem?.name}
+              </P.Content>
               {/* <P.Content>{el.seller.name}</P.Content> */}
               <P.Gain>{el.amount}₩</P.Gain>
               <P.Content>{el.balance}₩</P.Content>

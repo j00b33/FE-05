@@ -1,3 +1,8 @@
-{
-  /* <AiTwotoneExperiment />  상품 찜하기*/
+export default function PinPage() {
+  return (
+    <div>
+      <div>Pin Page</div>
+      <div>Contents</div>
+    </div>
+  );
 }

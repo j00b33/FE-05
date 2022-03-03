@@ -18,7 +18,7 @@ export default function LandingPage() {
 
   return (
     <LandingUIPage
-      onClickHome={onClickCommunity}
+      onClickCommunity={onClickCommunity}
       onClickMarket={onClickMarket}
       onClickMyPage={onClickMyPage}
     />
