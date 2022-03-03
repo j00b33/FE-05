@@ -1,3 +1,4 @@
+import { GiFizzingFlask } from "react-icons/gi";
 import * as L from "./landingstyles";
 
 export default function LandingUIPage(props) {
@@ -5,22 +6,28 @@ export default function LandingUIPage(props) {
     <L.Wrapper>
       <L.TopBox>
         <L.TopBoxLetter>GO MAD</L.TopBoxLetter>
+        <L.LandingNavigation>
+          <L.Navigation onClick={props.onClickCommunity}>
+            Community
+          </L.Navigation>
+          <L.Navigation onClick={props.onClickMarket}>Market</L.Navigation>
+          <L.Navigation onClick={props.onClickMyPage}>My Page</L.Navigation>
+          <L.Navigation>Help</L.Navigation>
+        </L.LandingNavigation>
       </L.TopBox>
+
       <L.TopLine />
-      <L.TopLine />
+      <L.TopLine2 />
 
       <L.MainWrapper>
-        <L.MainSubWrapper>
-          <L.MainTitleOne>WE ARE</L.MainTitleOne>
-          <L.Space> </L.Space>
-          <L.MainTitleTwo> MAD SCIENTISTS</L.MainTitleTwo>
-        </L.MainSubWrapper>
-
-        <L.Description>Share Your Music Tastes</L.Description>
+        <L.MainTitle>
+          <GiFizzingFlask />
+          Music of the Month
+        </L.MainTitle>
       </L.MainWrapper>
 
       <L.ColumnWrapper>
-        <L.ColumnOne>
+        <L.RowOne>
           <L.SubWrapper>
             <L.MainPic src="/music-landing/beautiful.png" />
             <L.DescriptionWrapper>
@@ -44,9 +51,9 @@ export default function LandingUIPage(props) {
               <L.MainPicSinger>{"PENOMECO"}</L.MainPicSinger>
             </L.DescriptionWrapper>
           </L.SubWrapper>
-        </L.ColumnOne>
+        </L.RowOne>
 
-        <L.Columntwo>
+        <L.RowTwo>
           <L.SubWrapper>
             <L.MainPic src="/music-landing/warning.JPG" />
             <L.DescriptionWrapper>
@@ -62,12 +69,8 @@ export default function LandingUIPage(props) {
               <L.MainPicSinger>{"CKay"}</L.MainPicSinger>
             </L.DescriptionWrapper>
           </L.SubWrapper>
-        </L.Columntwo>
+        </L.RowTwo>
       </L.ColumnWrapper>
-
-      <L.Footer>
-        <L.HomeButton onClick={props.onClickHome}>EXPLORE</L.HomeButton>
-      </L.Footer>
     </L.Wrapper>
   );
 }

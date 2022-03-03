@@ -1,10 +1,26 @@
+import { useRouter } from "next/router";
 import LandingUIPage from "./landingpresenter";
-import Router from "next/router";
 
 export default function LandingPage() {
-  const onClickHome = () => {
-    Router.push(`/01-01-market/home`);
+  const router = useRouter();
+
+  const onClickCommunity = () => {
+    router.push("/01-01-board/list");
   };
 
-  return <LandingUIPage onClickHome={onClickHome} />;
+  const onClickMarket = () => {
+    router.push("/01-01-market/home");
+  };
+
+  const onClickMyPage = () => {
+    router.push("/01-01-market/mypage");
+  };
+
+  return (
+    <LandingUIPage
+      onClickHome={onClickCommunity}
+      onClickMarket={onClickMarket}
+      onClickMyPage={onClickMyPage}
+    />
+  );
 }
