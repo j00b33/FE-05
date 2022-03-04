@@ -45,6 +45,9 @@ export const Box = styled.div`
 export const ProductImage = styled.img`
   width: 70px;
   height: 70px;
+
+  object-fit: cover;
+  margin-top: 5px;
 `;
 
 export const Product = styled.div`

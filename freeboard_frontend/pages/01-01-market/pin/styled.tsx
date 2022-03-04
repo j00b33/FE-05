@@ -15,6 +15,12 @@ export const Wrapper = styled.div`
 export const Title = styled.div`
   font-size: 40px;
   font-family: "CodaCaption";
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 50px;
 `;
 
 export const SinglePin = styled.div`
@@ -34,6 +40,8 @@ export const SinglePin = styled.div`
 export const Image = styled.img`
   width: 200px;
   height: 200px;
+  object-fit: cover;
+  cursor: pointer;
 `;
 
 export const PinWrapper = styled.div`
@@ -41,5 +49,7 @@ export const PinWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   //한 줄에 3개씩
-  overflow: scroll;
+  flex-wrap: wrap;
+
+  width: 1200px;
 `;

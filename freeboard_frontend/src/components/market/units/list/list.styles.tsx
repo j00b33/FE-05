@@ -136,4 +136,8 @@ export const RightSection = styled.div``;
 
 export const Image = styled.img`
   margin-right: 80px;
+  object-fit: cover;
+
+  width: 200px;
+  height: 200px;
 `;
