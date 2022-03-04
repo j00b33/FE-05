@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import ProductDetailUIPage from "./detail.presenter";
 
 const FETCH_USED_ITEM = gql`
@@ -24,7 +25,25 @@ const FETCH_USED_ITEM = gql`
       seller {
         name
       }
+      pickedCount
     }
+  }
+`;
+
+const FETCH_USED_ITEMS_I_PICKED = gql`
+  query fetchUseditemsIPicked($search: String!, $page: Int) {
+    fetchUseditemsIPicked(search: $search, page: $page) {
+      _id
+      name
+      price
+      images
+    }
+  }
+`;
+
+const TOGGLE_USED_ITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId)
   }
 `;
 
@@ -45,11 +64,15 @@ const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
 `;
 
 export default function ProductDetailContainer() {
+  const { data: IPickedData } = useQuery(FETCH_USED_ITEMS_I_PICKED, {
+    variables: { search: "" },
+  });
   const router = useRouter();
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: String(router.query.productDetail) },
   });
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
@@ -84,6 +107,40 @@ export default function ProductDetailContainer() {
     }
   };
 
+  const [isPicked, setIsPicked] = useState(false);
+
+  const onClickPin = async () => {
+    //상품 찜하기
+    const toggled = await toggleUseditemPick({
+      variables: {
+        useditemId: router.query.productDetail,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USED_ITEM,
+          variables: {
+            useditemId: router.query.productDetail,
+          },
+        },
+      ],
+    });
+    setIsPicked((prev) => !prev);
+    console.log("Toggle Success Console");
+    console.log(toggled);
+  };
+
+  useEffect(() => {
+    if (
+      IPickedData?.fetchUseditemsIPicked.filter(
+        (el) => el._id === data?.fetchUseditem._id
+      ).length === 1
+    ) {
+      setIsPicked(true);
+    } else {
+      setIsPicked(false);
+    }
+  }, [IPickedData]);
+
   return (
     <ProductDetailUIPage
       data={data}
@@ -91,6 +148,8 @@ export default function ProductDetailContainer() {
       onClickMoveToEdit={onClickMoveToEdit}
       onClickDelete={onClickDelete}
       onClickList={onClickList}
+      onClickPin={onClickPin}
+      isPicked={isPicked}
     />
   );
 }

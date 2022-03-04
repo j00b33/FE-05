@@ -2,12 +2,17 @@ import * as D from "./detail.styles";
 import { Tooltip } from "antd";
 import { VscLocation } from "react-icons/vsc";
 import { FaMoneyCheck, FaRegEdit } from "react-icons/fa";
-import { RiDeleteBinLine, RiFileList3Line } from "react-icons/ri";
+import {
+  RiDeleteBinLine,
+  RiFileList3Line,
+  RiFileMusicLine,
+} from "react-icons/ri";
 import Dompurify from "dompurify";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GiBottledShadow } from "react-icons/gi";
 import ViewedPage from "../../../../../pages/01-01-market/today";
+import { IoPersonOutline } from "react-icons/io5";
 
 declare const window: typeof globalThis & {
   kakao: any; //뭐가 더 들어오는지 모르기 때문에 any 사용
@@ -83,7 +88,9 @@ export default function ProductDetailUIPage(props) {
         </D.LeftDetail>
 
         <D.RightDetail>
-          <D.Product>{props.data?.fetchUseditem?.name}</D.Product>
+          <D.Product>
+            <RiFileMusicLine /> {props.data?.fetchUseditem?.name}
+          </D.Product>
           <D.SecondRow>
             <D.Price>{props.data?.fetchUseditem?.price}₩</D.Price>
             <D.SecondInner>
@@ -109,7 +116,7 @@ export default function ProductDetailUIPage(props) {
 
           <D.ContentWrapper>
             <D.Seller>
-              Seller: {props.data?.fetchUseditem?.seller.name}
+              <IoPersonOutline /> {props.data?.fetchUseditem?.seller.name}
             </D.Seller>
             <D.Remarks>{props.data?.fetchUseditem?.remarks}</D.Remarks>
             {process.browser && (
@@ -131,11 +138,17 @@ export default function ProductDetailUIPage(props) {
         <D.ThirdLeft>
           <D.Update>
             <D.Pay onClick={props.onClickPay}>{FaMoneyCheck}</D.Pay>
-            <D.Pin>{GiBottledShadow}</D.Pin>
+            <D.Pin
+              onClick={props.onClickPin}
+              style={{ color: props.isPicked ? "#09ff00" : "grey" }}
+            >
+              {GiBottledShadow}
+            </D.Pin>
             <D.List onClick={props.onClickList}>{RiFileList3Line}</D.List>
             <D.Edit onClick={props.onClickMoveToEdit}>{FaRegEdit}</D.Edit>
             <D.Delete onClick={props.onClickDelete}>{RiDeleteBinLine}</D.Delete>
           </D.Update>
+          <D.PickCount>{props.data?.fetchUseditem?.pickedCount}</D.PickCount>
         </D.ThirdLeft>
         <D.Map id="map" style={{ width: "500px", height: "350px" }} />
 

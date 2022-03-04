@@ -1,6 +1,8 @@
 import * as L from "./list.styles";
 import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
+import { RiFileMusicLine } from "react-icons/ri";
+import { IoPersonOutline } from "react-icons/io5";
 
 export default function ListUIPage(props) {
   return (
@@ -33,13 +35,15 @@ export default function ListUIPage(props) {
               <L.LeftSection>
                 <L.Date>{el.createdAt.slice(0, 10)}</L.Date>
 
-                <L.Seller>Seller: {el.seller.name}</L.Seller>
+                <L.Seller>
+                  <IoPersonOutline /> {el.seller.name}
+                </L.Seller>
 
                 <L.Product
                   id={el._id}
                   onClick={props.onClickProductsDetail(el)}
                 >
-                  Product:{" "}
+                  <RiFileMusicLine />
                   {el.name
                     .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
                     .split("#$%")

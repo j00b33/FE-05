@@ -82,6 +82,10 @@ export const DivisionL = styled.div`
 export const Product = styled.div`
   font-size: 36px;
   font-weight: 700;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const Price = styled.div`
@@ -110,6 +114,10 @@ export const Seller = styled.div`
   font-weight: 500;
   font-size: 23px;
   padding-bottom: 10px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const Remarks = styled.div`
@@ -135,9 +143,12 @@ export const Update = styled.div`
   width: 240px;
 `;
 
+export const PickCount = styled.div`
+  font-size: 10px;
+`;
+
 export const Pin = styled(GiBottledShadow)`
   cursor: pointer;
-  color: grey;
   :hover {
     color: #09ff00;
   }

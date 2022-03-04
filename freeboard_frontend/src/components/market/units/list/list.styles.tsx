@@ -107,6 +107,9 @@ export const Date = styled.div`
 
 export const Seller = styled.div`
   font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 export const Product = styled.div`
   font-size: 25px;
@@ -114,6 +117,10 @@ export const Product = styled.div`
   :hover {
     color: #9900ff;
   }
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const Remarks = styled.div`
