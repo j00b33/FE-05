@@ -22,7 +22,7 @@ export default function LandingUIPage(props) {
       <L.MainWrapper>
         <L.MainTitle>
           <GiFizzingFlask />
-          Music of the Month
+          Best Hits
         </L.MainTitle>
       </L.MainWrapper>
 

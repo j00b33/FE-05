@@ -18,6 +18,15 @@ export const TopBox = styled.div`
   align-items: center;
 
   width: 1000px;
+
+  @media (min-width: 0px) and (max-width: 1000px) {
+    height: 140px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 1000px;
 `;
 export const TopBoxLetter = styled.div`
   font-family: "CodaCaption";
@@ -63,7 +72,7 @@ export const TopLine2 = styled.div`
   margin-bottom: 16px;
 `;
 
-//Main Title: We are mad scientists
+//Main Title
 export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,6 +81,9 @@ export const MainWrapper = styled.div`
 
   height: 80px;
   width: 1200px;
+
+  @media (min-width: 0px) and (max-width: 1000px) {
+    margin-top: 60px;
 `;
 
 export const MainSubWrapper = styled.div`
@@ -92,7 +104,7 @@ export const MainTitle = styled.div`
   font-weight: 700;
   font-size: 34px;
 
-  width: 350px;
+  width: 180px;
 
   display: flex;
   justify-content: space-between;
@@ -104,9 +116,6 @@ export const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-
-  height: 460px;
 `;
 
 //picture
@@ -152,6 +161,11 @@ export const RowOne = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 800px;
+
+  @media (min-width: 0px) and (max-width: 850px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const RowTwo = styled.div`
@@ -160,6 +174,13 @@ export const RowTwo = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 600px;
+
+  margin-top: 80px;
+
+  @media (min-width: 0px) and (max-width: 850px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 //Each whole one pic Wrappcer

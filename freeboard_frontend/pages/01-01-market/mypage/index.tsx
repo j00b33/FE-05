@@ -9,6 +9,10 @@ import PurchaseHistory from "../../history/purchasehistory/purchasehistory";
 import SaleHistory from "../../history/salehistory/salehistory";
 import { useRouter } from "next/router";
 import SettingsPage from "../settings";
+import MyPageMainUI from "../mypageui";
+import { FaBullseye } from "react-icons/fa";
+import withAuth from "../../../src/components/commons/hoc/withAuth";
+import WrittenPostsPage from "../writtenposts";
 
 const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
@@ -23,12 +27,16 @@ const FETCH_USER_LOGGED_IN = gql`
   }
 `;
 
-export default function MyPage() {
+const MyPage = () => {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
 
   const router = useRouter();
 
+  const [isMyPage, setIsMyPage] = useState(true);
+
   const [isSettings, setIsSettings] = useState(false);
+
+  const [isWrittenPosts, setIsWrittenPosts] = useState(false);
 
   const [isPayment, setIsPayment] = useState(false);
   const [isCharge, setIsCharge] = useState(false);
@@ -38,9 +46,23 @@ export default function MyPage() {
 
   const onClickMyPage = () => {
     router.push("/01-01-market/mypage");
+    setIsMyPage(true);
+
+    setIsSettings(false);
+    setIsCharge(false);
+    setIsChargeHistory(false);
+    setIsPurchase(false);
+    setIsSale(false);
+    setIsWrittenPosts(false);
+
+    setIsPayment(false);
+    setIsCharge(false);
   };
 
   const onclickSettingsPage = () => {
+    setIsMyPage(false);
+    setIsWrittenPosts(false);
+
     setIsSettings(true);
     setIsCharge(false);
     setIsChargeHistory(false);
@@ -52,13 +74,32 @@ export default function MyPage() {
   };
 
   const onClickPaymentPage = () => {
+    setIsMyPage(false);
+    setIsWrittenPosts(false);
     setIsSettings(false);
     setIsPayment(true);
     setIsCharge(true);
   };
 
+  const onClickWrittenPosts = () => {
+    setIsWrittenPosts(true);
+
+    setIsMyPage(false);
+    setIsSettings(false);
+    setIsCharge(false);
+    setIsChargeHistory(false);
+    setIsPurchase(false);
+    setIsSale(false);
+
+    setIsPayment(false);
+    setIsCharge(false);
+  };
+
   //충전 and 내역
   const onClickChargeZone = () => {
+    setIsMyPage(false);
+    setIsWrittenPosts(false);
+
     setIsSettings(false);
 
     setIsCharge(true);
@@ -67,6 +108,10 @@ export default function MyPage() {
     setIsSale(false);
   };
   const onClickHistory = () => {
+    setIsMyPage(false);
+
+    setIsWrittenPosts(false);
+
     setIsSettings(false);
     setIsCharge(false);
     setIsChargeHistory(true);
@@ -76,6 +121,9 @@ export default function MyPage() {
 
   //구매 and 내역
   const onClickPurchase = () => {
+    setIsMyPage(false);
+    setIsWrittenPosts(false);
+
     setIsSettings(false);
     setIsCharge(false);
     setIsChargeHistory(false);
@@ -84,6 +132,9 @@ export default function MyPage() {
   };
 
   const onClickSale = () => {
+    setIsMyPage(false);
+
+    setIsWrittenPosts(false);
     setIsSettings(false);
     setIsCharge(false);
     setIsChargeHistory(false);
@@ -101,7 +152,7 @@ export default function MyPage() {
           <M.Title2 onClick={onClickMyPage}>
             {data?.fetchUserLoggedIn?.name}
           </M.Title2>
-          <M.Title3>Zone</M.Title3>
+          <M.Title3>'s Zone</M.Title3>
         </M.Title>
       </M.Header>
 
@@ -122,19 +173,21 @@ export default function MyPage() {
 
           <M.MyPageNavigationWrapper>
             <M.Navigation onClick={onclickSettingsPage}>
-              My Profile ➤
+              Profile Edit ➤
             </M.Navigation>
-            <M.Navigation onClick={onClickPaymentPage}>
-              My Payment ➤
+            <M.Navigation onClick={onClickPaymentPage}>Payment ➤</M.Navigation>
+            <M.Navigation onClick={onClickWrittenPosts}>
+              Written Posts ➤
             </M.Navigation>
-            <M.Navigation>My Posts ➤</M.Navigation>
           </M.MyPageNavigationWrapper>
         </M.BodyLeftWrapper>
 
         <M.DivisionLine />
         <M.BodyRightWrapper>
+          {isMyPage && <MyPageMainUI />}
           {/* 이건 Navigation을 눌렀을시 실행되는 것들 */}
-          {isSettings ? <SettingsPage /> : ""}
+          {isSettings && <SettingsPage />}
+          {isWrittenPosts && <WrittenPostsPage />}
           {isPayment && (
             <div>
               <M.PreSelectWrapper>
@@ -165,4 +218,6 @@ export default function MyPage() {
       </M.Body>
     </M.Wrapper>
   );
-}
+};
+
+export default withAuth(MyPage);

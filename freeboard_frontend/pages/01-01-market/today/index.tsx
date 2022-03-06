@@ -15,7 +15,7 @@ export default function ViewedPage() {
     }
   }, []);
 
-  console.log(viewed);
+  console.log("viewed:", viewed);
 
   const router = useRouter();
 

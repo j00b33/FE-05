@@ -1,6 +1,30 @@
+import { gql, useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import * as S from "./styled";
 
+// const RESET_USED_PASSWORD = gql`
+//   mutation: resetUserPassword($password: String!){
+//     resetUserPassword(password: $password)
+//   }
+// `;
+
+const UPDATE_USER = gql`
+  mutation updateUser($updateUserInput: UpdateUserInput!) {
+    updateUser(updateUserInput: $updateUserInput) {
+      _id
+      email
+      name
+    }
+  }
+`;
+
 export default function SettingsPage() {
+  // const [resetUserPassword] = useMutation(RESET_USED_PASSWORD);
+  const [updateUser] = useMutation(UPDATE_USER);
+
+  const onClickUpdate = () => {
+    Modal.success({ content: "Successfully Updated" });
+  };
   return (
     <S.Wrapper>
       <S.Header>Profile Settings</S.Header>
@@ -21,7 +45,7 @@ export default function SettingsPage() {
           <S.Input placeholder="Enter your new password once more"></S.Input>
         </S.InnerWrapper>
       </S.BodyWrapper>
-      <S.Button>Change Password</S.Button>
+      <S.Button onClick={onClickUpdate}>Update Profile</S.Button>
     </S.Wrapper>
   );
 }

@@ -20,7 +20,7 @@ export default function PinPage() {
   });
 
   const router = useRouter();
-  const onClickMoveToDetail = (el) => (event) => {
+  const onClickMoveToDetail = (event) => {
     router.push(`/01-01-market/${event.currentTarget.id}`);
   };
   return (
@@ -31,16 +31,17 @@ export default function PinPage() {
       </P.Title>
 
       <P.PinWrapper>
-        {data?.fetchUseditemsIPicked.map((el) => (
-          <P.SinglePin key={el?._id}>
+        {data?.fetchUseditemsIPicked.map((el, index) => (
+          <P.SinglePin key={index} id={el._id} onClick={onClickMoveToDetail}>
             <P.Image
-              onClick={onClickMoveToDetail}
               src={`https://storage.googleapis.com/${el.images[0]}`}
               height="200px"
               onError={(e) => (e.currentTarget.src = "/empty.png")}
             />
-            <div>{el?.name}</div>
-            <div>{el?.price}₩</div>
+            <P.Text>
+              {el.name.length > 19 ? `${el?.name.slice(0, 20)}...` : el?.name}
+            </P.Text>
+            <P.Text>{el?.price}₩</P.Text>
           </P.SinglePin>
         ))}
       </P.PinWrapper>

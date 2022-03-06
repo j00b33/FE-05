@@ -14,8 +14,6 @@ export const Header = styled.div``;
 
 //Title Settings
 export const Title = styled.div`
-  width: 350px;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,12 +27,17 @@ export const Title1 = styled.div`
 `;
 
 export const Title2 = styled.div`
+  margin-left: 10px;
   font-size: 60px;
   font-family: "CodaCaption";
   color: #9900ff;
+
+  cursor: pointer;
 `;
 
 export const Title3 = styled.div`
+  margin-left: 10px;
+
   font-size: 60px;
   font-family: "CodaCaption";
 `;
@@ -43,7 +46,7 @@ export const Title3 = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 100px;
+  margin-top: 60px;
 `;
 
 //Left Section of Body
@@ -124,6 +127,8 @@ export const Navigation = styled.div`
   :hover {
     color: #9900ff;
   }
+
+  font-weight: 700;
 
   display: flex;
   flex-direction: row;

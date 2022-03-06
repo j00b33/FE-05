@@ -35,13 +35,14 @@ export const SinglePin = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+
+  cursor: pointer;
 `;
 
 export const Image = styled.img`
   width: 200px;
   height: 200px;
   object-fit: cover;
-  cursor: pointer;
 `;
 
 export const PinWrapper = styled.div`
@@ -52,4 +53,9 @@ export const PinWrapper = styled.div`
   flex-wrap: wrap;
 
   width: 1200px;
+`;
+
+export const Text = styled.div`
+  font-size: 15px;
+  font-weight: 700;
 `;

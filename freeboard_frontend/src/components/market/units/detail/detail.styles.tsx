@@ -144,7 +144,13 @@ export const Update = styled.div`
 `;
 
 export const PickCount = styled.div`
-  font-size: 10px;
+  font-size: 15px;
+
+  margin-top: 7px;
+  margin-right: 185px;
+  color: #a0a0a0;
+
+  font-family: "CodaCaption";
 `;
 
 export const Pin = styled(GiBottledShadow)`
@@ -213,9 +219,9 @@ export const ThirdWrapper = styled.div`
 export const ThirdLeft = styled.div`
   width: 500px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const ThirdRight = styled.div``;

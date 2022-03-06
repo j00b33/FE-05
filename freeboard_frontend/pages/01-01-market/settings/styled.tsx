@@ -35,6 +35,7 @@ export const Text = styled.div`
 export const Input = styled.input`
   font-size: 17px;
   width: 300px;
+  border: 2px solid black;
 `;
 
 export const Button = styled.div`
