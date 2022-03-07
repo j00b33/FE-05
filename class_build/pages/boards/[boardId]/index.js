@@ -11,7 +11,7 @@ export default function BoardsDetailPage(props) {
       <Head>
         <meta property="og:title" content={props.myboardData.title} />
         <meta property="og:description" content={props.myboardData.contents} />
-        <meta property="og:image" content={props.myboardData.images} />
+        <meta property="og:image" content={props.myboardData.images[0]} />
       </Head>
 
       <div>
