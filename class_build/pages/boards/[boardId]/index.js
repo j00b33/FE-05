@@ -40,7 +40,7 @@ export const getServerSideProps = async (context) => {
   //데이터를 요청할 것
   //이 페이지는 서버사이드 렌더링 할 예정 --> 그래서 getServerSideProps가 먼저 실행되고 이때 return Data가 props로 넘어가게 됨
   const result = await request(
-    "https://backend05.codebootcamp.co.kr/graphql",
+    "http://backend05.codebootcamp.co.kr/graphql",
     FETCH_BOARD,
     { boardId: context.query.boardId }
   );
