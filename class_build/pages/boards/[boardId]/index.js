@@ -4,7 +4,7 @@ import Head from "next/head";
 
 export default function BoardsDetailPage(props) {
   const router = useRouter();
-  const { data } = useQuery(FETCH_BOARDS);
+  // const { data } = useQuery(FETCH_BOARD);
 
   return (
     <div>
@@ -32,7 +32,7 @@ const FETCH_BOARD = gql`
   }
 `;
 
-export const getServerSideProps = (context) => {
+export const getServerSideProps = async (context) => {
   //page에서만 요청 가능
   //정해진 이름이라 aaa 이런식으로 바꾸기 불가능
   //export const 를 사용하여 내보내줘야함
