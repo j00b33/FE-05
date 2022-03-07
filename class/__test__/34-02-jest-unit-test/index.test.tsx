@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import JestUnitTestPage from "../../pages/34-02-jest-unit-test";
+import JestUnitTestPage from "../../pages/07Week/34-02-jest-unit-test";
 
 it("내가 원하는대로 그려지는지 테스트하기", () => {
   render(<JestUnitTestPage />);

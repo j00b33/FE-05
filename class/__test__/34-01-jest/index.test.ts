@@ -1,4 +1,4 @@
-import { add } from "../../pages/34-01-jest/index";
+import { add } from "../../pages/07Week/34-01-jest/index";
 
 it("내가 하고싶은 작은 테스트 - 1", () => {
   const result = add(3, 5);

@@ -20,13 +20,12 @@ const SearchBox = styled.input`
   width: 500px;
   height: 40px;
   font-size: 20px;
-  border: 1px solid #818181;
+  border: none;
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid white;
 `;
 
-// const Searchtitle = styled.div`
-//   font-size: 20px;
-//   margin-right: 15px;
-// `;
 const Wrapper = styled.div`
   margin-top: 100px;
   width: 1000px;
@@ -120,7 +119,7 @@ export default function BoardList() {
           </Title>
           <SearchBox
             type="text"
-            placeholder="Enter the title of the post that you are looking for here"
+            placeholder="🔍 Enter the title of the post that you are looking for here"
             onChange={onChangeSearch}
           />
         </Header>

@@ -7,6 +7,8 @@ export const Wrapper = styled.div`
 
   padding-bottom: 80px;
   background-color: black;
+
+  height: 100vh;
 `;
 
 export const TopBox = styled.div`

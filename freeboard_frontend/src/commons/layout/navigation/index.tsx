@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Router from "next/router";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   height: 60px;
@@ -24,37 +25,59 @@ const InnerWrapper = styled.div`
   width: 600px;
 `;
 const Inner = styled.div`
-  font-family: Arial;
-
   cursor: pointer;
   font-weight: 700;
-  :hover {
-    color: white;
-  }
   font-size: 22px;
 `;
 
-const onClickList = () => {
-  Router.push(`/01-01-board/list`);
-};
-
-const onClickMarket = () => {
-  Router.push(`/01-01-market/home`);
-};
-
-const onClickPin = () => {
-  Router.push(`/01-01-market/pin`);
-};
-
 export default function LayoutNavigation() {
+  const [isCommunity, setIsCommunity] = useState(false);
+  const [isMarket, setIsMarket] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+
+  const onClickList = () => {
+    Router.push(`/01-01-board/list`);
+    setIsCommunity(true);
+    setIsMarket(false);
+    setIsPinned(false);
+  };
+
+  const onClickMarket = () => {
+    Router.push(`/01-01-market/home`);
+    setIsCommunity(false);
+    setIsMarket(true);
+    setIsPinned(false);
+  };
+
+  const onClickPin = () => {
+    Router.push(`/01-01-market/pin`);
+    setIsCommunity(false);
+    setIsMarket(false);
+    setIsPinned(true);
+  };
   return (
     <Wrapper>
       <InnerWrapper>
-        <Inner onClick={onClickList}>Community</Inner>
+        <Inner
+          onClick={onClickList}
+          style={{ color: isCommunity ? "white" : "black" }}
+        >
+          Community
+        </Inner>
         {"  /  "}
-        <Inner onClick={onClickMarket}>Market</Inner>
+        <Inner
+          onClick={onClickMarket}
+          style={{ color: isMarket ? "white" : "black" }}
+        >
+          Market
+        </Inner>
         {"  /  "}
-        <Inner onClick={onClickPin}>Pinned</Inner>
+        <Inner
+          onClick={onClickPin}
+          style={{ color: isPinned ? "white" : "black" }}
+        >
+          Pinned
+        </Inner>
       </InnerWrapper>
     </Wrapper>
   );

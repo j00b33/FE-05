@@ -7,7 +7,6 @@ import {
   LIKE_BOARD,
   DISLIKE_BOARD,
 } from "./BoardDetail.queries";
-import BoardCommentPage from "../comments/BoardComment.container";
 import { Modal } from "antd";
 import withAuth from "../../../commons/hoc/withAuth";
 
@@ -75,7 +74,6 @@ const BoardDetailPage = (props) => {
         dislikeCount={data?.fetchBoard.dislikeCount}
         keyword={props.keyword}
       />
-      <BoardCommentPage />
     </>
   );
 };

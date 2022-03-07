@@ -17,11 +17,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 4px 20px grey;
 `;
 
 export const Title = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 36px;
   padding-bottom: 40px;
@@ -46,7 +44,6 @@ export const Label = styled.div`
   font-weight: 500;
   font-size: 16px;
   color: black;
-  font-family: Cochin;
 `;
 
 export const Writer = styled.input`
@@ -54,7 +51,6 @@ export const Writer = styled.input`
   height: 52px;
   font-size: 16px;
   border: 1px solid #bdbdbd;
-  font-family: Cochin;
 `;
 
 export const Password = styled.input`
@@ -62,7 +58,6 @@ export const Password = styled.input`
   height: 52px;
   font-size: 16px;
   border: 1px solid #bdbdbd;
-  font-family: Cochin;
 `;
 export const Longbox = styled.input`
   width: 996px;
@@ -70,7 +65,6 @@ export const Longbox = styled.input`
   border: 1px solid #bdbdbd;
   /* box-sizing: border-box; */
   font-size: 16px;
-  font-family: Cochin;
 `;
 export const AddressDetail = styled.input`
   width: 996px;
@@ -78,7 +72,6 @@ export const AddressDetail = styled.input`
   border: 1px solid #bdbdbd;
   /* box-sizing: border-box; */
   font-size: 16px;
-  font-family: Cochin;
 `;
 
 export const Contents = styled.input`
@@ -86,10 +79,9 @@ export const Contents = styled.input`
   flex-direction: row;
   justify-content: flex-start;
   width: 996px;
-  height: 480px;
+  height: 400px;
   font-size: 16px;
   border: 1px solid #bdbdbd;
-  font-family: Cochin;
 `;
 
 export const ZipWrapper = styled.div`
@@ -112,7 +104,6 @@ export const Zipcode = styled.input`
   width: 77px;
   height: 52px;
   font-size: 16px;
-  font-family: Cochin;
 
   border: 1px solid #bdbdbd;
 
@@ -133,7 +124,6 @@ export const AddressBtn = styled.button`
   background-color: black;
   color: white;
   font-size: 16px;
-  font-family: Cochin;
 
   cursor: pointer;
 `;
@@ -144,7 +134,6 @@ export const Youtube = styled.input`
   border: 1px solid #bdbdbd;
   /* box-sizing: border-box; */
   font-size: 16px;
-  font-family: Cochin;
 `;
 
 export const ImageWrapper = styled.div`
@@ -178,7 +167,6 @@ export const AddImage = styled.div`
 `;
 
 export const BoxWord = styled.div`
-  font-family: Cochin;
   font-size: 15px;
 `;
 
@@ -209,7 +197,6 @@ export const RadioWrapper = styled.div`
 
   height: 24px;
   width: 159px;
-  font-family: Cochin;
 `;
 
 export const RadioButton = styled.input`
@@ -233,7 +220,6 @@ interface IProps {
 }
 
 export const MyBtn = styled.button`
-  font-family: Cochin;
   width: 179px;
   height: 52px;
   color: black;

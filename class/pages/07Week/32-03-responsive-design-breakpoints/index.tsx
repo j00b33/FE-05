@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { breakPoints } from "../../src/commons/styles/media";
+import { breakPoints } from "../../../src/commons/styles/media";
 
 const Wrapper = styled.div`
   width: 1000px;

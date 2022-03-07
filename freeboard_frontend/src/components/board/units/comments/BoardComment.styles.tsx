@@ -4,9 +4,10 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1100px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   border: none;
 
   padding-top: 100px;
@@ -21,8 +22,12 @@ export const CreateC = styled.div`
 
 export const MyTitle = styled.div`
   width: 100%;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
+
+  font-family: "CodaCaption";
+
+  margin-bottom: 20px;
 `;
 
 export const InputWrapper = styled.div`
@@ -56,13 +61,13 @@ export const MyWriting = styled.input`
   color: grey;
   font-size: 164x;
   font-weight: 500;
-  width: 950px;
-  height: 90px;
+  width: 800px;
+  height: 70px;
 `;
 
 export const SubmitBtn = styled.div`
   width: 100px;
-  height: 90px;
+  height: 70px;
 
   background-color: white;
   border: 2px solid black;
@@ -105,7 +110,7 @@ export const WriterComment = styled.div`
 `;
 
 export const DivisionLine = styled.div`
-  width: 1000px;
+  width: 900px;
   border: 1px solid grey;
 `;
 
@@ -124,11 +129,15 @@ export const CommentsWrapper = styled.div`
   height: 400px;
   overflow: auto;
   width: 1200px;
+
+  margin-top: 30px;
 `;
 
 export const CommentAlert = styled.div`
   color: #f1345a;
-  padding-top: 10px;
+  margin-top: 20px;
+
+  margin-bottom: 100px;
 `;
 
 export const CommentEdit = styled(GrEdit)`
