@@ -14,7 +14,7 @@ export const Header = styled.div`
 
 export const BodyWrapper = styled.div`
   margin-top: 50px;
-  height: 150px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,11 +25,31 @@ export const InnerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+
   width: 500px;
+`;
+
+export const SectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+
+  height: 700px;
+
+  margin-bottom: 50px;
+`;
+
+export const SubHeader = styled.div`
+  font-size: 25px;
+  font-family: "CodaCaption";
+  font-weight: 700;
 `;
 
 export const Text = styled.div`
   font-size: 20px;
+  margin-right: 10px;
 `;
 
 export const Input = styled.input`

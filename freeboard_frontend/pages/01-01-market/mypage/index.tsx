@@ -173,7 +173,7 @@ const MyPage = () => {
 
           <M.MyPageNavigationWrapper>
             <M.Navigation onClick={onclickSettingsPage}>
-              Profile Edit ➤
+              Edit Profile ➤
             </M.Navigation>
             <M.Navigation onClick={onClickPaymentPage}>Payment ➤</M.Navigation>
             <M.Navigation onClick={onClickWrittenPosts}>
