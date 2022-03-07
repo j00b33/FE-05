@@ -172,11 +172,22 @@ const MyPage = () => {
           </M.PaymentWrapper>
 
           <M.MyPageNavigationWrapper>
-            <M.Navigation onClick={onclickSettingsPage}>
+            <M.Navigation
+              onClick={onclickSettingsPage}
+              style={{ color: isSettings ? "#9900ff" : "black" }}
+            >
               Edit Profile ➤
             </M.Navigation>
-            <M.Navigation onClick={onClickPaymentPage}>Payment ➤</M.Navigation>
-            <M.Navigation onClick={onClickWrittenPosts}>
+            <M.Navigation
+              onClick={onClickPaymentPage}
+              style={{ color: isPayment ? "#9900ff" : "black" }}
+            >
+              Payment ➤
+            </M.Navigation>
+            <M.Navigation
+              onClick={onClickWrittenPosts}
+              style={{ color: isWrittenPosts ? "#9900ff" : "black" }}
+            >
               Written Posts ➤
             </M.Navigation>
           </M.MyPageNavigationWrapper>
@@ -191,19 +202,31 @@ const MyPage = () => {
           {isPayment && (
             <div>
               <M.PreSelectWrapper>
-                <M.PresenterSelect onClick={onClickChargeZone}>
+                <M.PresenterSelect
+                  onClick={onClickChargeZone}
+                  style={{ color: isCharge ? "black" : "grey" }}
+                >
                   Charge Money
                 </M.PresenterSelect>
                 {" | "}
-                <M.PresenterSelect onClick={onClickHistory}>
+                <M.PresenterSelect
+                  onClick={onClickHistory}
+                  style={{ color: isChargeHistory ? "black" : "grey" }}
+                >
                   Charge History
                 </M.PresenterSelect>
                 {" | "}
-                <M.PresenterSelect onClick={onClickPurchase}>
+                <M.PresenterSelect
+                  onClick={onClickPurchase}
+                  style={{ color: isPurchase ? "black" : "grey" }}
+                >
                   Purchase History
                 </M.PresenterSelect>
                 {" | "}
-                <M.PresenterSelect onClick={onClickSale}>
+                <M.PresenterSelect
+                  onClick={onClickSale}
+                  style={{ color: isSale ? "black" : "grey" }}
+                >
                   Sale History
                 </M.PresenterSelect>
               </M.PreSelectWrapper>

@@ -14,11 +14,10 @@ export const Header = styled.div`
 
 export const BodyWrapper = styled.div`
   margin-top: 50px;
-  height: 500px;
+  height: 650px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
 `;
 
 export const InnerWrapper = styled.div`
@@ -30,15 +29,33 @@ export const InnerWrapper = styled.div`
   width: 500px;
 `;
 
+export const NameSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+
+  height: 550px;
+
+  margin-bottom: 50px;
+  margin-left: 50px;
+`;
+
+export const DivisionLine = styled.div`
+  border: 1px solid grey;
+  width: 600px;
+`;
+
 export const SectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
 
-  height: 700px;
+  height: 900px;
 
   margin-bottom: 50px;
+  margin-left: 50px;
 `;
 
 export const SubHeader = styled.div`
@@ -50,6 +67,7 @@ export const SubHeader = styled.div`
 export const Text = styled.div`
   font-size: 20px;
   margin-right: 10px;
+  font-weight: 700;
 `;
 
 export const Input = styled.input`
@@ -59,7 +77,6 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.div`
-  margin-top: 30px;
   cursor: pointer;
   width: 160px;
   height: 30px;

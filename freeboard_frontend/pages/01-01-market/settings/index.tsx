@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useState } from "react";
 import * as S from "./styled";
@@ -18,6 +18,19 @@ const UPDATE_USER = gql`
   }
 `;
 
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      name
+      userPoint {
+        _id
+        amount
+      }
+    }
+  }
+`;
+
 export default function SettingsPage() {
   const [newName, setNewName] = useState("");
   const [prevPw, setPrevPw] = useState("");
@@ -26,6 +39,8 @@ export default function SettingsPage() {
 
   const [resetUserPassword] = useMutation(RESET_USED_PASSWORD);
   const [updateUser] = useMutation(UPDATE_USER);
+
+  const { data: userData, refetch } = useQuery(FETCH_USER_LOGGED_IN);
 
   const onChangeNewName = (event) => {
     setNewName(event.target.value);
@@ -55,6 +70,14 @@ export default function SettingsPage() {
       },
     });
 
+    if (newPw === pwCheck) {
+      Modal.success({ content: "Profile Successfully Updated" });
+    } else {
+      Modal.error({ content: "The password doesn't match" });
+    }
+  };
+
+  const onClickUserName = async () => {
     await updateUser({
       variables: {
         updateUserInput: {
@@ -62,16 +85,14 @@ export default function SettingsPage() {
         },
       },
     });
-    if (newPw === pwCheck) {
-      Modal.success({ content: "Profile Successfully Updated" });
-    } else {
-      Modal.error({ content: "The password doesn't match" });
-    }
+
+    Modal.success({ content: "Successfully Updated" });
+    refetch();
   };
   return (
     <S.Wrapper>
       <S.BodyWrapper>
-        <S.SectionWrapper>
+        <S.NameSection>
           <S.SubHeader>Edit Username</S.SubHeader>
           <S.InnerWrapper>
             <S.Text>New Username</S.Text>
@@ -81,7 +102,10 @@ export default function SettingsPage() {
               placeholder="Enter your new username"
             ></S.Input>
           </S.InnerWrapper>
-        </S.SectionWrapper>
+          <S.Button onClick={onClickUserName}>Update username</S.Button>
+        </S.NameSection>
+
+        <S.DivisionLine />
 
         <S.SectionWrapper>
           <S.SubHeader>Edit Password</S.SubHeader>
@@ -111,9 +135,9 @@ export default function SettingsPage() {
               placeholder="Enter your new password once more"
             ></S.Input>
           </S.InnerWrapper>
+          <S.Button onClick={onClickUpdate}>Update Profile</S.Button>
         </S.SectionWrapper>
       </S.BodyWrapper>
-      <S.Button onClick={onClickUpdate}>Update Profile</S.Button>
     </S.Wrapper>
   );
 }

@@ -30,7 +30,7 @@ export const UserImage = styled.img`
   height: 300px;
   object-fit: cover;
 
-  border: 2px solid black;
+  border: 3px solid black;
 `;
 
 export const UserInfo = styled.div`

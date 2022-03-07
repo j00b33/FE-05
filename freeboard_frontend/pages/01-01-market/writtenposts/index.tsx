@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 
 const FETCH_BOARDS_OF_MINE = gql`
-  query fetchBoardsOfMine($userId: ID!) {
-    fetchBoardsOfMine(userId: $userId) {
+  query fetchBoardsOfMine($boardId: ID!) {
+    fetchBoardsOfMine(boardId: $boardId) {
       _id
       title
       images
@@ -32,7 +32,7 @@ export default function WrittenPostsPage() {
 
   const { data } = useQuery(FETCH_BOARDS_OF_MINE, {
     variables: {
-      userId: String(userData?.fetchUserLoggedIn.email),
+      boardId: String(userData?.fetchUserLoggedIn.email),
     },
   });
 

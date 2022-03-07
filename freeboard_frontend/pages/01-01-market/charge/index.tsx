@@ -86,7 +86,15 @@ export default function ChargePage() {
 
       <C.Header>Charging Zone</C.Header>
       <C.ButtonWrapper>
-        <C.SelectAmount onClick={onChangeAmount} value={500}>
+        <C.SelectAmount
+          onClick={onChangeAmount}
+          value={500}
+          // style={{
+          //   backgroundColor: amount ? "black" : "none",
+          //   color: amount ? "#00eeff" : "black",
+          //   border: amount ? "2px solid #00eeff" : "2px solid black",
+          // }}
+        >
           500
         </C.SelectAmount>
         <C.SelectAmount onClick={onChangeAmount} value={1000}>
