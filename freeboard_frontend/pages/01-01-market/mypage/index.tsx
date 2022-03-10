@@ -167,7 +167,7 @@ const MyPage = () => {
 
           <M.PaymentWrapper>
             <M.UserMoney>
-              ${data?.fetchUserLoggedIn?.userPoint.amount}
+              {data?.fetchUserLoggedIn?.userPoint.amount}₩
             </M.UserMoney>
           </M.PaymentWrapper>
 
@@ -184,12 +184,12 @@ const MyPage = () => {
             >
               Payment ➤
             </M.Navigation>
-            <M.Navigation
+            {/* <M.Navigation
               onClick={onClickWrittenPosts}
               style={{ color: isWrittenPosts ? "#9900ff" : "black" }}
             >
               Written Posts ➤
-            </M.Navigation>
+            </M.Navigation> */}
           </M.MyPageNavigationWrapper>
         </M.BodyLeftWrapper>
 

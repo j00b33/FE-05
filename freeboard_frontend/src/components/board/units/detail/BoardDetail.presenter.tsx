@@ -11,7 +11,7 @@ export default function BoardDetailUIPage(props) {
         <D.RightSection>
           <D.MainPic
             src={`https://storage.googleapis.com/${props.data?.fetchBoard.images?.[0]}`}
-            onError={(e) => (e.currentTarget.src = "/white.png")}
+            onError={(e) => (e.currentTarget.src = "/empty.png")}
           />
         </D.RightSection>
 

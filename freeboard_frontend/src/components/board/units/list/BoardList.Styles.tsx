@@ -34,7 +34,7 @@ export const InnerWrapper = styled.div`
 
 export const HeadType = styled.div`
   font-size: 20px;
-  color: white;
+  color: #e7daf7;
   font-family: "CodaCaption";
 `;
 

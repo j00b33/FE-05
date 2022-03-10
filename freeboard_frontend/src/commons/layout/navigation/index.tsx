@@ -28,6 +28,7 @@ const Inner = styled.div`
   cursor: pointer;
   font-weight: 700;
   font-size: 22px;
+  transition: 0.4s;
 `;
 
 export default function LayoutNavigation() {

@@ -12,7 +12,7 @@ export default function LandingUIPage(props) {
           </L.Navigation>
           <L.Navigation onClick={props.onClickMarket}>Market</L.Navigation>
           <L.Navigation onClick={props.onClickMyPage}>My Page</L.Navigation>
-          <L.Navigation>Help</L.Navigation>
+          <L.Navigation>Contact</L.Navigation>
         </L.LandingNavigation>
       </L.TopBox>
 

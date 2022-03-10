@@ -92,6 +92,7 @@ export const PresenterSelect = styled.div`
   :hover {
     color: black;
   }
+  transition: 0.4s;
 `;
 
 //current money
@@ -113,7 +114,8 @@ export const MyPageNavigationWrapper = styled.div`
   padding-right: 100px;
 
   width: 300px;
-  height: 120px;
+  /* height: 120px; */
+  height: 70px;
 
   display: flex;
   flex-direction: column;
@@ -127,6 +129,8 @@ export const Navigation = styled.div`
   :hover {
     color: #9900ff;
   }
+
+  transition: 0.4s;
 
   font-weight: 700;
 

@@ -48,21 +48,30 @@ export const Header = styled.div`
 
 export const HeaderTitle = styled.div`
   font-size: 56px;
+  font-family: Impact;
   font-weight: 700;
-`;
-
-export const HeaderSubtitle = styled.div`
-  color: #313131;
-  font-size: 23px;
 `;
 
 export const HeaderRouter = styled.div`
   font-size: 17px;
-  color: #9d6eb3;
   cursor: pointer;
   :hover {
-    color: #9900ff;
+    color: #ce84ff;
+    border: 2px solid #9900ff;
+    background-color: black;
   }
+
+  transition: 0.4s;
+
+  width: 100px;
+  border: 2px solid black;
+
+  font-weight: 700;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const BoxWrapper = styled.div`
@@ -106,7 +115,7 @@ export const Date = styled.div`
 `;
 
 export const Seller = styled.div`
-  font-size: 25px;
+  font-size: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -117,6 +126,10 @@ export const Product = styled.div`
   :hover {
     color: #9900ff;
   }
+
+  font-weight: 700;
+
+  transition: 0.4s;
 
   display: flex;
   flex-direction: row;

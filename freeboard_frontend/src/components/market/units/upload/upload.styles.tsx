@@ -127,6 +127,12 @@ export const AddressBtn = styled.div`
   background-color: black;
   color: white;
   cursor: pointer;
+
+  :hover {
+    background-color: #797979;
+  }
+
+  transition: 0.3s;
 `;
 export const AddressWrapper = styled.div`
   width: 100%;

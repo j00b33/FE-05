@@ -20,10 +20,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
-  font-weight: bold;
+  font-weight: 700;
   font-size: 36px;
   padding-bottom: 40px;
-  font-family: Cochin;
 `;
 
 export const AccountSection = styled.div`
@@ -41,7 +40,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Label = styled.div`
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   color: black;
 `;
@@ -162,8 +161,10 @@ export const AddImage = styled.div`
   cursor: pointer;
 
   :hover {
-    background-color: #99ce99;
+    background-color: #c4fbff;
   }
+
+  transition: 0.4s;
 `;
 
 export const BoxWord = styled.div`
@@ -222,7 +223,6 @@ interface IProps {
 export const MyBtn = styled.button`
   width: 179px;
   height: 52px;
-  color: black;
   font-size: 20px;
 
   display: flex;
@@ -232,5 +232,10 @@ export const MyBtn = styled.button`
   cursor: pointer;
 
   background-color: ${(props: IProps) =>
-    props.isActive === true ? "#09ff09" : "white"};
+    props.isActive === true ? "black" : "white"};
+
+  color: ${(props: IProps) => (props.isActive === true ? "#00eeff" : "black")};
+
+  border: ${(props: IProps) =>
+    props.isActive === true ? "2px solid #00eeff" : "2px solid black"};
 `;

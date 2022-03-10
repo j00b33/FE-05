@@ -93,10 +93,10 @@ export const LeftBody = styled.div`
 `;
 
 export const MyWriter = styled.div`
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
   padding-bottom: 10px;
+  font-weight: 700;
 `;
 
 export const MyContents = styled.div`

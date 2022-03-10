@@ -53,6 +53,14 @@ export const PinWrapper = styled.div`
   flex-wrap: wrap;
 
   width: 1200px;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 1200px;
+  }
 `;
 
 export const Text = styled.div`

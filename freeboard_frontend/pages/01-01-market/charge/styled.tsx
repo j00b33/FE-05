@@ -42,6 +42,8 @@ export const SelectAmount = styled.button`
     border: 2px solid #00eeff;
     background-color: black;
   }
+
+  transition: 0.4s;
 `;
 
 export const Selected = styled.div`
@@ -78,6 +80,8 @@ export const ChargeButton = styled.div`
     color: #00eeff;
     border: 2px solid #00eeff;
   }
+
+  transition: 0.4s;
 `;
 
 export const Current = styled.div`

@@ -15,6 +15,7 @@ export const NextPage = styled.button`
   :hover {
     background-color: #00eeff;
   }
+  transition: 0.4s;
 `;
 
 export const Pages = styled.span`
@@ -31,6 +32,7 @@ export const Pages = styled.span`
   &.isNow {
     color: #00eeff;
   }
+  transition: 0.4s;
 `;
 
 export const TextList = styled.span`
@@ -66,4 +68,5 @@ export const Button = styled.button`
     background-color: #9900ff;
     color: white;
   }
+  transition: 0.4s;
 `;

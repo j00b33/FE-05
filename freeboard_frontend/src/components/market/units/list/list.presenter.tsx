@@ -8,10 +8,9 @@ export default function ListUIPage(props) {
   return (
     <L.Wrapper>
       <L.Header>
-        <L.HeaderTitle>Market</L.HeaderTitle>
-        <L.HeaderSubtitle>View new albums!</L.HeaderSubtitle>
+        <L.HeaderTitle>VIEW NEW ALBUMS</L.HeaderTitle>
         <L.HeaderRouter onClick={props.onClickMoveToUpload}>
-          Click here to upload your album
+          Upload
         </L.HeaderRouter>
       </L.Header>
 
@@ -34,11 +33,6 @@ export default function ListUIPage(props) {
             <L.Box id={el._id} key={el._id}>
               <L.LeftSection>
                 <L.Date>{el.createdAt.slice(0, 10)}</L.Date>
-
-                <L.Seller>
-                  <IoPersonOutline /> {el.seller.name}
-                </L.Seller>
-
                 <L.Product
                   id={el._id}
                   onClick={props.onClickProductsDetail(el)}
@@ -53,6 +47,9 @@ export default function ListUIPage(props) {
                       </L.Word>
                     ))}
                 </L.Product>
+                <L.Seller>
+                  <IoPersonOutline /> {el.seller.name}
+                </L.Seller>
 
                 <L.Remarks>{el.remarks}</L.Remarks>
 

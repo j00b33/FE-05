@@ -78,6 +78,7 @@ export const InnerBodyWrapper = styled.div`
   :hover {
     color: #00eeff;
   }
+  transition: 0.4s;
 `;
 
 export const InnerBodyWrapper2 = styled.div`
@@ -97,6 +98,7 @@ export const InnerBodyWrapper2 = styled.div`
   :hover {
     color: #9900ff;
   }
+  transition: 0.4s;
 `;
 
 export const MainPic1 = styled(GiRoundBottomFlask)`

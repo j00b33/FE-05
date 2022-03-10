@@ -10,6 +10,8 @@ import styled from "@emotion/styled";
 import _ from "lodash";
 
 const OutLine = styled.div`
+  padding-top: 100px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,23 +26,18 @@ const SearchBox = styled.input`
   background-color: black;
   color: white;
   border-bottom: 1px solid white;
-`;
 
-const Wrapper = styled.div`
-  margin-top: 100px;
-  width: 1000px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  text-align: center;
 `;
 
 const Header = styled.div`
   width: 1000px;
+  height: 130px;
+
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const FETCH_BOARDS_COUNT = gql`
@@ -53,19 +50,19 @@ const Title = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 450px;
+  width: 490px;
 `;
 
 const Title1 = styled.div`
-  font-size: 45px;
-  font-family: "CodaCaption";
+  font-family: Impact;
   color: #9900ff;
+  font-size: 60px;
 `;
 
 const Title2 = styled.div`
-  font-size: 45px;
-  font-family: "CodaCaption";
+  font-family: Impact;
   color: #00eeff;
+  font-size: 60px;
 `;
 
 const FETCH_BOARDS = gql`
@@ -111,19 +108,17 @@ export default function BoardList() {
 
   return (
     <OutLine>
-      <Wrapper>
-        <Header>
-          <Title>
-            <Title1>Community</Title1>
-            <Title2>Zone</Title2>
-          </Title>
-          <SearchBox
-            type="text"
-            placeholder="🔍 Enter the title of the post that you are looking for here"
-            onChange={onChangeSearch}
-          />
-        </Header>
-      </Wrapper>
+      <Header>
+        <Title>
+          <Title1>GO MAD</Title1>
+          <Title2>COMMUNITY</Title2>
+        </Title>
+        <SearchBox
+          type="text"
+          placeholder="🔍 Search the title of the post you're looking for"
+          onChange={onChangeSearch}
+        />
+      </Header>
       <BoardListPage data={data} keyword={keyword} />
       <Pagination refetch={refetch} lastPage={lastPage} keyword={keyword} />
     </OutLine>
