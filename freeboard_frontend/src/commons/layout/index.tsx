@@ -31,7 +31,7 @@ export default function Layout(props: IProps) {
   const HIDDEN_HEADERS = ["/"];
   const HIDDEN_BANNERS = [
     "/",
-    "/01-01-boars/signin",
+    "/01-01-board/signin",
     "/01-01-board/signup",
     "/01-01-board/new",
     "/01-01-market/create",
@@ -40,7 +40,7 @@ export default function Layout(props: IProps) {
     `/01-01-board/${router.query.boardDetail}/edit`,
     `/01-01-board/${router.query.productDetail}/edit`,
   ];
-  const HIDDEN_NAVIGATION = ["/"];
+  const HIDDEN_NAVIGATION = ["/", "/01-01-board/signin", "/01-01-board/signup"];
 
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
   const isHiddenBanner = HIDDEN_BANNERS.includes(router.asPath);
